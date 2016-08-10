@@ -1,0 +1,4 @@
+﻿CREATE TABLE [dbo].[Miete]
+(
+	[Id] INT NOT NULL PRIMARY KEY
+)

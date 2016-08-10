@@ -8,13 +8,13 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{f493d0af-9420-482b-a66f-9bc705c7cb48}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
     <RootNamespace>Wochenmarkt.Sql</RootNamespace>
     <AssemblyName>Wochenmarkt.Sql</AssemblyName>
-    <ModelCollation>1033, CI</ModelCollation>
+    <ModelCollation>1033,CS</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
@@ -23,6 +23,7 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>Latin1_General_CS_AS</DefaultCollation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -59,11 +60,11 @@
     <Folder Include="Properties" />
     <Folder Include="market" />
     <Folder Include="invoice" />
-    <Folder Include="application" />
+    <Folder Include="app" />
     <Folder Include="market\Tables" />
     <Folder Include="invoice\Tables" />
-    <Folder Include="application\Tables" />
-    <Folder Include="application\Views" />
+    <Folder Include="app\Tables" />
+    <Folder Include="app\Views" />
     <Folder Include="invoice\Views" />
     <Folder Include="market\Views" />
     <Folder Include="PreDeployment" />
@@ -71,7 +72,30 @@
   <ItemGroup>
     <Build Include="market\market.sql" />
     <Build Include="invoice\invoice.sql" />
-    <Build Include="application\application.sql" />
+    <Build Include="app\app.sql" />
+    <Build Include="invoice\Tables\Miete.sql" />
+    <Build Include="invoice\Tables\Abonnement.sql" />
+    <Build Include="app\Tables\Mitglied.sql" />
+    <Build Include="app\Tables\Inspektor.sql" />
+    <Build Include="app\Tables\Anbieter.sql" />
+    <Build Include="app\Tables\Anmeldung.sql" />
+    <Build Include="market\Tables\Areal.sql" />
+    <Build Include="app\Tables\Adresse.sql" />
+    <Build Include="market\Tables\Nutzung.sql" />
+    <Build Include="market\Tables\Wochenmarkt.sql" />
+    <Build Include="app\Tables\Beurteilung.sql" />
+    <Build Include="app\Tables\Nachfrager.sql" />
+    <Build Include="market\Tables\Anbieter_Wochenmarkt.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="PreDeployment\Script.PreDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\120\SqlSchemas\master.dacpac">
+      <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\120\SqlSchemas\master.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+    </ArtifactReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Wochenmarkt.Sql.Master\Wochenmarkt.Sql.Master.sqlproj">
@@ -79,16 +103,6 @@
       <Project>{4e152625-2185-4a05-8e99-61843fee0b8b}</Project>
       <Private>True</Private>
       <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
-      <DatabaseSqlCmdVariable>WochenmarktMaster</DatabaseSqlCmdVariable>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <SqlCmdVariable Include="WochenmarktMaster">
-      <DefaultValue>Wochenmarkt.Sql.Master</DefaultValue>
-      <Value>$(SqlCmdVar__1)</Value>
-    </SqlCmdVariable>
-  </ItemGroup>
-  <ItemGroup>
-    <PreDeploy Include="PreDeployment\Script.PreDeployment.sql" />
   </ItemGroup>
 </Project>

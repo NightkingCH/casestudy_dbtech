@@ -1,3 +1,9 @@
-﻿CREATE SCHEMA [market]
+﻿CREATE SCHEMA [invoice]
         AUTHORIZATION [dbo];
+GO
+
+GRANT ALTER, EXECUTE, SELECT ON SCHEMA::[invoice] TO [application] AS [dbo]
+GO
+
+GRANT ALTER, DELETE, EXECUTE, INSERT, SELECT, UPDATE ON SCHEMA::[invoice] TO [invoice] AS [dbo]
 GO

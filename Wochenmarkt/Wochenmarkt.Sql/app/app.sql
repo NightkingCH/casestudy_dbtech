@@ -1,0 +1,9 @@
+﻿CREATE SCHEMA [app]
+        AUTHORIZATION [dbo];
+GO
+
+GRANT ALTER, DELETE, EXECUTE, INSERT, SELECT, UPDATE ON SCHEMA::[app] TO [application] AS [dbo]
+GO
+
+GRANT SELECT ON SCHEMA::[app] TO [invoice] AS [dbo]
+GO
