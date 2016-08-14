@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BDE343C1-792B-4AC3-97C0-386C24AA2E28}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wochenmarkt.Data</RootNamespace>
+    <AssemblyName>Wochenmarkt.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abonnement.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AbonnementMiete.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AbonnementTyp.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Abonnement_Areal.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Adresse.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Anmeldung.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areal.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Beurteilung.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Inspektor.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Miete.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mitglied.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Nachfrager.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Nutzung.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ort.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlatzMiete.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Standbetreiber.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Wochenmarkt.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WochenmarktModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WochenmarktModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WochenmarktModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WochenmarktModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WochenmarktModel.edmx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="WochenmarktModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WochenmarktModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="packages.config" />
+    <None Include="WochenmarktModel.edmx.diagram">
+      <DependentUpon>WochenmarktModel.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WochenmarktModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>WochenmarktModel.Context.cs</LastGenOutput>
+      <DependentUpon>WochenmarktModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="WochenmarktModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WochenmarktModel.edmx</DependentUpon>
+      <LastGenOutput>WochenmarktModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

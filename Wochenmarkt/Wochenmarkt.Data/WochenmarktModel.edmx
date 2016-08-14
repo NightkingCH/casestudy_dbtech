@@ -1,0 +1,1336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WochenmarktModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adresse">
+          <Key>
+            <PropertyRef Name="AdresseId" />
+          </Key>
+          <Property Name="AdresseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrtId" Type="int" Nullable="false" />
+          <Property Name="Strasse" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Hausnummer" Type="int" Nullable="false" />
+          <Property Name="HausnummerZusatz" Type="nvarchar(max)" />
+          <Property Name="StrasseFull" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Anmeldung">
+          <Key>
+            <PropertyRef Name="AnmeldungId" />
+          </Key>
+          <Property Name="AnmeldungId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MitgliedId" Type="int" Nullable="false" />
+          <Property Name="BesucherMitgliedId" Type="int" Nullable="false" />
+          <Property Name="AngemeldetAm" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="StatutenUnterschrieben" Type="bit" Nullable="false" />
+          <Property Name="BesuchDurchgefuehrt" Type="bit" Nullable="false" />
+          <Property Name="BesuchDurchgefuehrtAm" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="BonitaetsPruefungBestanden" Type="bit" Nullable="false" />
+          <Property Name="BonitaetsPruefungBestandenAm" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="AnmeldungValid" Type="bit" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Beurteilung">
+          <Key>
+            <PropertyRef Name="BeurteilungId" />
+          </Key>
+          <Property Name="BeurteilungId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StandbetreiberId" Type="int" Nullable="false" />
+          <Property Name="InspektorId" Type="int" Nullable="false" />
+          <Property Name="BeurteilungAm" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="BeurteilungDurchgefuehrt" Type="bit" Nullable="false" />
+          <Property Name="Bestanden" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inspektor">
+          <Key>
+            <PropertyRef Name="InspektorId" />
+          </Key>
+          <Property Name="InspektorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MitgliedId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mitglied">
+          <Key>
+            <PropertyRef Name="MitgliedId" />
+          </Key>
+          <Property Name="MitgliedId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdresseId" Type="int" Nullable="false" />
+          <Property Name="Vorname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Nachname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="Geburtsdatum" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ProvisorischesMitglied" Type="bit" Nullable="false" />
+          <Property Name="ProbezeitVon" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ProbezeitBis" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Abgelehnt" Type="bit" Nullable="false" />
+          <Property Name="Ablehnungsgrund" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nachfrager">
+          <Key>
+            <PropertyRef Name="NachfragerId" />
+          </Key>
+          <Property Name="NachfragerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MitgliedId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ort">
+          <Key>
+            <PropertyRef Name="OrtId" />
+          </Key>
+          <Property Name="OrtId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bezeichnung" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PLZ" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Standbetreiber">
+          <Key>
+            <PropertyRef Name="StandbetreiberId" />
+          </Key>
+          <Property Name="StandbetreiberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MitgliedId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Abonnement">
+          <Key>
+            <PropertyRef Name="AbonnementId" />
+          </Key>
+          <Property Name="AbonnementId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AbonnementTypId" Type="int" Nullable="false" />
+          <Property Name="StandbetreiberId" Type="int" Nullable="false" />
+          <Property Name="GueltigAb" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="GueltigBis" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Abonnement_Areal">
+          <Key>
+            <PropertyRef Name="Abonnement_ArealId" />
+          </Key>
+          <Property Name="Abonnement_ArealId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AbonnementId" Type="int" Nullable="false" />
+          <Property Name="ArealId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AbonnementMiete">
+          <Key>
+            <PropertyRef Name="AbonnementMieteId" />
+          </Key>
+          <Property Name="AbonnementMieteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MieteId" Type="int" Nullable="false" />
+          <Property Name="AbonnementId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AbonnementTyp">
+          <Key>
+            <PropertyRef Name="AbonnementTypId" />
+          </Key>
+          <Property Name="AbonnementTypId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bezeichnung" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Wert" Type="int" Nullable="false" />
+          <Property Name="Dauer" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Miete">
+          <Key>
+            <PropertyRef Name="MieteId" />
+          </Key>
+          <Property Name="MieteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Betrag" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Bezahlt" Type="bit" Nullable="false" />
+          <Property Name="Mahnstufe" Type="int" Nullable="false" />
+          <Property Name="GemahntAm" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="PlatzMiete">
+          <Key>
+            <PropertyRef Name="PlatzMieteId" />
+          </Key>
+          <Property Name="PlatzMieteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MieteId" Type="int" Nullable="false" />
+          <Property Name="NutzungId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Areal">
+          <Key>
+            <PropertyRef Name="ArealId" />
+          </Key>
+          <Property Name="ArealId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdresseId" Type="int" Nullable="false" />
+          <Property Name="Laenge" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Breite" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Flaeche" Type="decimal" Precision="37" Scale="8" StoreGeneratedPattern="Computed" />
+          <Property Name="MietPreis" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="Nutzung">
+          <Key>
+            <PropertyRef Name="NutzungId" />
+          </Key>
+          <Property Name="NutzungId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArealId" Type="int" Nullable="false" />
+          <Property Name="WochenmarktId" Type="int" Nullable="false" />
+          <Property Name="StandbetreiberId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Wochenmarkt">
+          <Key>
+            <PropertyRef Name="WochenmarktId" />
+          </Key>
+          <Property Name="WochenmarktId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdresseId" Type="int" Nullable="false" />
+          <Property Name="MarktDatumVon" Type="datetime2" Precision="7" />
+          <Property Name="MarktDatumBis" Type="datetime2" Precision="7" />
+        </EntityType>
+        <Association Name="FK_Abonnement_Abonnement_AbonnementTyp">
+          <End Role="AbonnementTyp" Type="Self.AbonnementTyp" Multiplicity="1" />
+          <End Role="Abonnement" Type="Self.Abonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AbonnementTyp">
+              <PropertyRef Name="AbonnementTypId" />
+            </Principal>
+            <Dependent Role="Abonnement">
+              <PropertyRef Name="AbonnementTypId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Abonnement_Abonnement_Standbetreiber">
+          <End Role="Standbetreiber" Type="Self.Standbetreiber" Multiplicity="1" />
+          <End Role="Abonnement" Type="Self.Abonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Standbetreiber">
+              <PropertyRef Name="StandbetreiberId" />
+            </Principal>
+            <Dependent Role="Abonnement">
+              <PropertyRef Name="StandbetreiberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Abonnement_Areal_Abonnement">
+          <End Role="Abonnement" Type="Self.Abonnement" Multiplicity="1" />
+          <End Role="Abonnement_Areal" Type="Self.Abonnement_Areal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abonnement">
+              <PropertyRef Name="AbonnementId" />
+            </Principal>
+            <Dependent Role="Abonnement_Areal">
+              <PropertyRef Name="AbonnementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Abonnement_Areal_Areal">
+          <End Role="Areal" Type="Self.Areal" Multiplicity="1" />
+          <End Role="Abonnement_Areal" Type="Self.Abonnement_Areal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areal">
+              <PropertyRef Name="ArealId" />
+            </Principal>
+            <Dependent Role="Abonnement_Areal">
+              <PropertyRef Name="ArealId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adresse_Adresse_Ort">
+          <End Role="Ort" Type="Self.Ort" Multiplicity="1" />
+          <End Role="Adresse" Type="Self.Adresse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ort">
+              <PropertyRef Name="OrtId" />
+            </Principal>
+            <Dependent Role="Adresse">
+              <PropertyRef Name="OrtId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Anmeldung_Anmeldung_Besucher">
+          <End Role="Mitglied" Type="Self.Mitglied" Multiplicity="1" />
+          <End Role="Anmeldung" Type="Self.Anmeldung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mitglied">
+              <PropertyRef Name="MitgliedId" />
+            </Principal>
+            <Dependent Role="Anmeldung">
+              <PropertyRef Name="BesucherMitgliedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Anmeldung_Anmeldung_Mitglied">
+          <End Role="Mitglied" Type="Self.Mitglied" Multiplicity="1" />
+          <End Role="Anmeldung" Type="Self.Anmeldung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mitglied">
+              <PropertyRef Name="MitgliedId" />
+            </Principal>
+            <Dependent Role="Anmeldung">
+              <PropertyRef Name="MitgliedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Areal_Areal_Adresse">
+          <End Role="Adresse" Type="Self.Adresse" Multiplicity="1" />
+          <End Role="Areal" Type="Self.Areal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresse">
+              <PropertyRef Name="AdresseId" />
+            </Principal>
+            <Dependent Role="Areal">
+              <PropertyRef Name="AdresseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Beurteilung_Beurteilung_Inspektor">
+          <End Role="Inspektor" Type="Self.Inspektor" Multiplicity="1" />
+          <End Role="Beurteilung" Type="Self.Beurteilung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inspektor">
+              <PropertyRef Name="InspektorId" />
+            </Principal>
+            <Dependent Role="Beurteilung">
+              <PropertyRef Name="InspektorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Beurteilung_Beurteilung_Standbetreiber">
+          <End Role="Standbetreiber" Type="Self.Standbetreiber" Multiplicity="1" />
+          <End Role="Beurteilung" Type="Self.Beurteilung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Standbetreiber">
+              <PropertyRef Name="StandbetreiberId" />
+            </Principal>
+            <Dependent Role="Beurteilung">
+              <PropertyRef Name="StandbetreiberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inspektor_Inspektor_Mitglied">
+          <End Role="Mitglied" Type="Self.Mitglied" Multiplicity="1" />
+          <End Role="Inspektor" Type="Self.Inspektor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mitglied">
+              <PropertyRef Name="MitgliedId" />
+            </Principal>
+            <Dependent Role="Inspektor">
+              <PropertyRef Name="MitgliedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Miete_Miete_Abonnement">
+          <End Role="Abonnement" Type="Self.Abonnement" Multiplicity="1" />
+          <End Role="AbonnementMiete" Type="Self.AbonnementMiete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abonnement">
+              <PropertyRef Name="AbonnementId" />
+            </Principal>
+            <Dependent Role="AbonnementMiete">
+              <PropertyRef Name="AbonnementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Miete_Miete_Miete">
+          <End Role="Miete" Type="Self.Miete" Multiplicity="1" />
+          <End Role="AbonnementMiete" Type="Self.AbonnementMiete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Miete">
+              <PropertyRef Name="MieteId" />
+            </Principal>
+            <Dependent Role="AbonnementMiete">
+              <PropertyRef Name="MieteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mitglied_Mitglied_Adresse">
+          <End Role="Adresse" Type="Self.Adresse" Multiplicity="1" />
+          <End Role="Mitglied" Type="Self.Mitglied" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresse">
+              <PropertyRef Name="AdresseId" />
+            </Principal>
+            <Dependent Role="Mitglied">
+              <PropertyRef Name="AdresseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nachfrager_Nachfrager_Mitglied">
+          <End Role="Mitglied" Type="Self.Mitglied" Multiplicity="1" />
+          <End Role="Nachfrager" Type="Self.Nachfrager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mitglied">
+              <PropertyRef Name="MitgliedId" />
+            </Principal>
+            <Dependent Role="Nachfrager">
+              <PropertyRef Name="MitgliedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nutzung_Nutzung_Areal">
+          <End Role="Areal" Type="Self.Areal" Multiplicity="1" />
+          <End Role="Nutzung" Type="Self.Nutzung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areal">
+              <PropertyRef Name="ArealId" />
+            </Principal>
+            <Dependent Role="Nutzung">
+              <PropertyRef Name="ArealId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nutzung_Nutzung_Standbetreiber">
+          <End Role="Standbetreiber" Type="Self.Standbetreiber" Multiplicity="1" />
+          <End Role="Nutzung" Type="Self.Nutzung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Standbetreiber">
+              <PropertyRef Name="StandbetreiberId" />
+            </Principal>
+            <Dependent Role="Nutzung">
+              <PropertyRef Name="StandbetreiberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nutzung_Nutzung_Wochenmarkt">
+          <End Role="Wochenmarkt" Type="Self.Wochenmarkt" Multiplicity="1" />
+          <End Role="Nutzung" Type="Self.Nutzung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wochenmarkt">
+              <PropertyRef Name="WochenmarktId" />
+            </Principal>
+            <Dependent Role="Nutzung">
+              <PropertyRef Name="WochenmarktId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlatzMiete_Miete_Miete">
+          <End Role="Miete" Type="Self.Miete" Multiplicity="1" />
+          <End Role="PlatzMiete" Type="Self.PlatzMiete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Miete">
+              <PropertyRef Name="MieteId" />
+            </Principal>
+            <Dependent Role="PlatzMiete">
+              <PropertyRef Name="MieteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlatzMiete_Miete_Nutzung">
+          <End Role="Nutzung" Type="Self.Nutzung" Multiplicity="1" />
+          <End Role="PlatzMiete" Type="Self.PlatzMiete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nutzung">
+              <PropertyRef Name="NutzungId" />
+            </Principal>
+            <Dependent Role="PlatzMiete">
+              <PropertyRef Name="NutzungId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Standbetreiber_Standbetreiber_Mitglied">
+          <End Role="Mitglied" Type="Self.Mitglied" Multiplicity="1" />
+          <End Role="Standbetreiber" Type="Self.Standbetreiber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mitglied">
+              <PropertyRef Name="MitgliedId" />
+            </Principal>
+            <Dependent Role="Standbetreiber">
+              <PropertyRef Name="MitgliedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wochenmarkt_Wochenmarkt_Adresse">
+          <End Role="Adresse" Type="Self.Adresse" Multiplicity="1" />
+          <End Role="Wochenmarkt" Type="Self.Wochenmarkt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresse">
+              <PropertyRef Name="AdresseId" />
+            </Principal>
+            <Dependent Role="Wochenmarkt">
+              <PropertyRef Name="AdresseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WochenmarktModelStoreContainer">
+          <EntitySet Name="Adresse" EntityType="Self.Adresse" Schema="app" store:Type="Tables" />
+          <EntitySet Name="Anmeldung" EntityType="Self.Anmeldung" Schema="app" store:Type="Tables" />
+          <EntitySet Name="Beurteilung" EntityType="Self.Beurteilung" Schema="app" store:Type="Tables" />
+          <EntitySet Name="Inspektor" EntityType="Self.Inspektor" Schema="app" store:Type="Tables" />
+          <EntitySet Name="Mitglied" EntityType="Self.Mitglied" Schema="app" store:Type="Tables" />
+          <EntitySet Name="Nachfrager" EntityType="Self.Nachfrager" Schema="app" store:Type="Tables" />
+          <EntitySet Name="Ort" EntityType="Self.Ort" Schema="app" store:Type="Tables" />
+          <EntitySet Name="Standbetreiber" EntityType="Self.Standbetreiber" Schema="app" store:Type="Tables" />
+          <EntitySet Name="Abonnement" EntityType="Self.Abonnement" Schema="invoice" store:Type="Tables" />
+          <EntitySet Name="Abonnement_Areal" EntityType="Self.Abonnement_Areal" Schema="invoice" store:Type="Tables" />
+          <EntitySet Name="AbonnementMiete" EntityType="Self.AbonnementMiete" Schema="invoice" store:Type="Tables" />
+          <EntitySet Name="AbonnementTyp" EntityType="Self.AbonnementTyp" Schema="invoice" store:Type="Tables" />
+          <EntitySet Name="Miete" EntityType="Self.Miete" Schema="invoice" store:Type="Tables" />
+          <EntitySet Name="PlatzMiete" EntityType="Self.PlatzMiete" Schema="invoice" store:Type="Tables" />
+          <EntitySet Name="Areal" EntityType="Self.Areal" Schema="market" store:Type="Tables" />
+          <EntitySet Name="Nutzung" EntityType="Self.Nutzung" Schema="market" store:Type="Tables" />
+          <EntitySet Name="Wochenmarkt" EntityType="Self.Wochenmarkt" Schema="market" store:Type="Tables" />
+          <AssociationSet Name="FK_Abonnement_Abonnement_AbonnementTyp" Association="Self.FK_Abonnement_Abonnement_AbonnementTyp">
+            <End Role="AbonnementTyp" EntitySet="AbonnementTyp" />
+            <End Role="Abonnement" EntitySet="Abonnement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Abonnement_Abonnement_Standbetreiber" Association="Self.FK_Abonnement_Abonnement_Standbetreiber">
+            <End Role="Standbetreiber" EntitySet="Standbetreiber" />
+            <End Role="Abonnement" EntitySet="Abonnement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Abonnement_Areal_Abonnement" Association="Self.FK_Abonnement_Areal_Abonnement">
+            <End Role="Abonnement" EntitySet="Abonnement" />
+            <End Role="Abonnement_Areal" EntitySet="Abonnement_Areal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Abonnement_Areal_Areal" Association="Self.FK_Abonnement_Areal_Areal">
+            <End Role="Areal" EntitySet="Areal" />
+            <End Role="Abonnement_Areal" EntitySet="Abonnement_Areal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adresse_Adresse_Ort" Association="Self.FK_Adresse_Adresse_Ort">
+            <End Role="Ort" EntitySet="Ort" />
+            <End Role="Adresse" EntitySet="Adresse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Anmeldung_Anmeldung_Besucher" Association="Self.FK_Anmeldung_Anmeldung_Besucher">
+            <End Role="Mitglied" EntitySet="Mitglied" />
+            <End Role="Anmeldung" EntitySet="Anmeldung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Anmeldung_Anmeldung_Mitglied" Association="Self.FK_Anmeldung_Anmeldung_Mitglied">
+            <End Role="Mitglied" EntitySet="Mitglied" />
+            <End Role="Anmeldung" EntitySet="Anmeldung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Areal_Areal_Adresse" Association="Self.FK_Areal_Areal_Adresse">
+            <End Role="Adresse" EntitySet="Adresse" />
+            <End Role="Areal" EntitySet="Areal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Beurteilung_Beurteilung_Inspektor" Association="Self.FK_Beurteilung_Beurteilung_Inspektor">
+            <End Role="Inspektor" EntitySet="Inspektor" />
+            <End Role="Beurteilung" EntitySet="Beurteilung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Beurteilung_Beurteilung_Standbetreiber" Association="Self.FK_Beurteilung_Beurteilung_Standbetreiber">
+            <End Role="Standbetreiber" EntitySet="Standbetreiber" />
+            <End Role="Beurteilung" EntitySet="Beurteilung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inspektor_Inspektor_Mitglied" Association="Self.FK_Inspektor_Inspektor_Mitglied">
+            <End Role="Mitglied" EntitySet="Mitglied" />
+            <End Role="Inspektor" EntitySet="Inspektor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Miete_Miete_Abonnement" Association="Self.FK_Miete_Miete_Abonnement">
+            <End Role="Abonnement" EntitySet="Abonnement" />
+            <End Role="AbonnementMiete" EntitySet="AbonnementMiete" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Miete_Miete_Miete" Association="Self.FK_Miete_Miete_Miete">
+            <End Role="Miete" EntitySet="Miete" />
+            <End Role="AbonnementMiete" EntitySet="AbonnementMiete" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mitglied_Mitglied_Adresse" Association="Self.FK_Mitglied_Mitglied_Adresse">
+            <End Role="Adresse" EntitySet="Adresse" />
+            <End Role="Mitglied" EntitySet="Mitglied" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nachfrager_Nachfrager_Mitglied" Association="Self.FK_Nachfrager_Nachfrager_Mitglied">
+            <End Role="Mitglied" EntitySet="Mitglied" />
+            <End Role="Nachfrager" EntitySet="Nachfrager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nutzung_Nutzung_Areal" Association="Self.FK_Nutzung_Nutzung_Areal">
+            <End Role="Areal" EntitySet="Areal" />
+            <End Role="Nutzung" EntitySet="Nutzung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nutzung_Nutzung_Standbetreiber" Association="Self.FK_Nutzung_Nutzung_Standbetreiber">
+            <End Role="Standbetreiber" EntitySet="Standbetreiber" />
+            <End Role="Nutzung" EntitySet="Nutzung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nutzung_Nutzung_Wochenmarkt" Association="Self.FK_Nutzung_Nutzung_Wochenmarkt">
+            <End Role="Wochenmarkt" EntitySet="Wochenmarkt" />
+            <End Role="Nutzung" EntitySet="Nutzung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlatzMiete_Miete_Miete" Association="Self.FK_PlatzMiete_Miete_Miete">
+            <End Role="Miete" EntitySet="Miete" />
+            <End Role="PlatzMiete" EntitySet="PlatzMiete" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlatzMiete_Miete_Nutzung" Association="Self.FK_PlatzMiete_Miete_Nutzung">
+            <End Role="Nutzung" EntitySet="Nutzung" />
+            <End Role="PlatzMiete" EntitySet="PlatzMiete" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Standbetreiber_Standbetreiber_Mitglied" Association="Self.FK_Standbetreiber_Standbetreiber_Mitglied">
+            <End Role="Mitglied" EntitySet="Mitglied" />
+            <End Role="Standbetreiber" EntitySet="Standbetreiber" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wochenmarkt_Wochenmarkt_Adresse" Association="Self.FK_Wochenmarkt_Wochenmarkt_Adresse">
+            <End Role="Adresse" EntitySet="Adresse" />
+            <End Role="Wochenmarkt" EntitySet="Wochenmarkt" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WochenmarktModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Adresse">
+          <Key>
+            <PropertyRef Name="AdresseId" />
+          </Key>
+          <Property Name="AdresseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrtId" Type="Int32" Nullable="false" />
+          <Property Name="Strasse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hausnummer" Type="Int32" Nullable="false" />
+          <Property Name="HausnummerZusatz" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StrasseFull" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Ort" Relationship="Self.FK_Adresse_Adresse_Ort" FromRole="Adresse" ToRole="Ort" />
+          <NavigationProperty Name="Areal" Relationship="Self.FK_Areal_Areal_Adresse" FromRole="Adresse" ToRole="Areal" />
+          <NavigationProperty Name="Mitglied" Relationship="Self.FK_Mitglied_Mitglied_Adresse" FromRole="Adresse" ToRole="Mitglied" />
+          <NavigationProperty Name="Wochenmarkt" Relationship="Self.FK_Wochenmarkt_Wochenmarkt_Adresse" FromRole="Adresse" ToRole="Wochenmarkt" />
+        </EntityType>
+        <EntityType Name="Beurteilung">
+          <Key>
+            <PropertyRef Name="BeurteilungId" />
+          </Key>
+          <Property Name="BeurteilungId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StandbetreiberId" Type="Int32" Nullable="false" />
+          <Property Name="InspektorId" Type="Int32" Nullable="false" />
+          <Property Name="BeurteilungAm" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="BeurteilungDurchgefuehrt" Type="Boolean" Nullable="false" />
+          <Property Name="Bestanden" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Inspektor" Relationship="Self.FK_Beurteilung_Beurteilung_Inspektor" FromRole="Beurteilung" ToRole="Inspektor" />
+          <NavigationProperty Name="Standbetreiber" Relationship="Self.FK_Beurteilung_Beurteilung_Standbetreiber" FromRole="Beurteilung" ToRole="Standbetreiber" />
+        </EntityType>
+        <EntityType Name="Inspektor">
+          <Key>
+            <PropertyRef Name="InspektorId" />
+          </Key>
+          <Property Name="InspektorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MitgliedId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Beurteilung" Relationship="Self.FK_Beurteilung_Beurteilung_Inspektor" FromRole="Inspektor" ToRole="Beurteilung" />
+          <NavigationProperty Name="Mitglied" Relationship="Self.FK_Inspektor_Inspektor_Mitglied" FromRole="Inspektor" ToRole="Mitglied" />
+        </EntityType>
+        <EntityType Name="Mitglied">
+          <Key>
+            <PropertyRef Name="MitgliedId" />
+          </Key>
+          <Property Name="MitgliedId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdresseId" Type="Int32" Nullable="false" />
+          <Property Name="Vorname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nachname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Geburtsdatum" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ProvisorischesMitglied" Type="Boolean" Nullable="false" />
+          <Property Name="ProbezeitVon" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ProbezeitBis" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Abgelehnt" Type="Boolean" Nullable="false" />
+          <Property Name="Ablehnungsgrund" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Adresse" Relationship="Self.FK_Mitglied_Mitglied_Adresse" FromRole="Mitglied" ToRole="Adresse" />
+          <NavigationProperty Name="Inspektor" Relationship="Self.FK_Inspektor_Inspektor_Mitglied" FromRole="Mitglied" ToRole="Inspektor" />
+          <NavigationProperty Name="Nachfrager" Relationship="Self.FK_Nachfrager_Nachfrager_Mitglied" FromRole="Mitglied" ToRole="Nachfrager" />
+          <NavigationProperty Name="Standbetreiber" Relationship="Self.FK_Standbetreiber_Standbetreiber_Mitglied" FromRole="Mitglied" ToRole="Standbetreiber" />
+          <NavigationProperty Name="Anmeldung" Relationship="WochenmarktModel.FK_Anmeldung_Anmeldung_Besucher" FromRole="Mitglied" ToRole="Anmeldung" />
+          <NavigationProperty Name="Anmeldung1" Relationship="WochenmarktModel.FK_Anmeldung_Anmeldung_Mitglied" FromRole="Mitglied" ToRole="Anmeldung" />
+          </EntityType>
+        <EntityType Name="Nachfrager">
+          <Key>
+            <PropertyRef Name="NachfragerId" />
+          </Key>
+          <Property Name="NachfragerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MitgliedId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Mitglied" Relationship="Self.FK_Nachfrager_Nachfrager_Mitglied" FromRole="Nachfrager" ToRole="Mitglied" />
+        </EntityType>
+        <EntityType Name="Ort">
+          <Key>
+            <PropertyRef Name="OrtId" />
+          </Key>
+          <Property Name="OrtId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bezeichnung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PLZ" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Adresse" Relationship="Self.FK_Adresse_Adresse_Ort" FromRole="Ort" ToRole="Adresse" />
+        </EntityType>
+        <EntityType Name="Standbetreiber">
+          <Key>
+            <PropertyRef Name="StandbetreiberId" />
+          </Key>
+          <Property Name="StandbetreiberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MitgliedId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Beurteilung" Relationship="Self.FK_Beurteilung_Beurteilung_Standbetreiber" FromRole="Standbetreiber" ToRole="Beurteilung" />
+          <NavigationProperty Name="Mitglied" Relationship="Self.FK_Standbetreiber_Standbetreiber_Mitglied" FromRole="Standbetreiber" ToRole="Mitglied" />
+          <NavigationProperty Name="Abonnement" Relationship="Self.FK_Abonnement_Abonnement_Standbetreiber" FromRole="Standbetreiber" ToRole="Abonnement" />
+          <NavigationProperty Name="Nutzung" Relationship="Self.FK_Nutzung_Nutzung_Standbetreiber" FromRole="Standbetreiber" ToRole="Nutzung" />
+        </EntityType>
+        <EntityType Name="Abonnement">
+          <Key>
+            <PropertyRef Name="AbonnementId" />
+          </Key>
+          <Property Name="AbonnementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AbonnementTypId" Type="Int32" Nullable="false" />
+          <Property Name="StandbetreiberId" Type="Int32" Nullable="false" />
+          <Property Name="GueltigAb" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="GueltigBis" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Standbetreiber" Relationship="Self.FK_Abonnement_Abonnement_Standbetreiber" FromRole="Abonnement" ToRole="Standbetreiber" />
+          <NavigationProperty Name="AbonnementTyp" Relationship="Self.FK_Abonnement_Abonnement_AbonnementTyp" FromRole="Abonnement" ToRole="AbonnementTyp" />
+          <NavigationProperty Name="Abonnement_Areal" Relationship="Self.FK_Abonnement_Areal_Abonnement" FromRole="Abonnement" ToRole="Abonnement_Areal" />
+          <NavigationProperty Name="AbonnementMiete" Relationship="Self.FK_Miete_Miete_Abonnement" FromRole="Abonnement" ToRole="AbonnementMiete" />
+        </EntityType>
+        <EntityType Name="Abonnement_Areal">
+          <Key>
+            <PropertyRef Name="Abonnement_ArealId" />
+          </Key>
+          <Property Name="Abonnement_ArealId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AbonnementId" Type="Int32" Nullable="false" />
+          <Property Name="ArealId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Abonnement" Relationship="Self.FK_Abonnement_Areal_Abonnement" FromRole="Abonnement_Areal" ToRole="Abonnement" />
+          <NavigationProperty Name="Areal" Relationship="Self.FK_Abonnement_Areal_Areal" FromRole="Abonnement_Areal" ToRole="Areal" />
+        </EntityType>
+        <EntityType Name="AbonnementMiete">
+          <Key>
+            <PropertyRef Name="AbonnementMieteId" />
+          </Key>
+          <Property Name="AbonnementMieteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MieteId" Type="Int32" Nullable="false" />
+          <Property Name="AbonnementId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Abonnement" Relationship="Self.FK_Miete_Miete_Abonnement" FromRole="AbonnementMiete" ToRole="Abonnement" />
+          <NavigationProperty Name="Miete" Relationship="Self.FK_Miete_Miete_Miete" FromRole="AbonnementMiete" ToRole="Miete" />
+        </EntityType>
+        <EntityType Name="AbonnementTyp">
+          <Key>
+            <PropertyRef Name="AbonnementTypId" />
+          </Key>
+          <Property Name="AbonnementTypId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bezeichnung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Wert" Type="Int32" Nullable="false" />
+          <Property Name="Dauer" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Abonnement" Relationship="Self.FK_Abonnement_Abonnement_AbonnementTyp" FromRole="AbonnementTyp" ToRole="Abonnement" />
+        </EntityType>
+        <EntityType Name="Miete">
+          <Key>
+            <PropertyRef Name="MieteId" />
+          </Key>
+          <Property Name="MieteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Betrag" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Bezahlt" Type="Boolean" Nullable="false" />
+          <Property Name="Mahnstufe" Type="Int32" Nullable="false" />
+          <Property Name="GemahntAm" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="AbonnementMiete" Relationship="Self.FK_Miete_Miete_Miete" FromRole="Miete" ToRole="AbonnementMiete" />
+          <NavigationProperty Name="PlatzMiete" Relationship="Self.FK_PlatzMiete_Miete_Miete" FromRole="Miete" ToRole="PlatzMiete" />
+        </EntityType>
+        <EntityType Name="PlatzMiete">
+          <Key>
+            <PropertyRef Name="PlatzMieteId" />
+          </Key>
+          <Property Name="PlatzMieteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MieteId" Type="Int32" Nullable="false" />
+          <Property Name="NutzungId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Miete" Relationship="Self.FK_PlatzMiete_Miete_Miete" FromRole="PlatzMiete" ToRole="Miete" />
+          <NavigationProperty Name="Nutzung" Relationship="Self.FK_PlatzMiete_Miete_Nutzung" FromRole="PlatzMiete" ToRole="Nutzung" />
+        </EntityType>
+        <EntityType Name="Areal">
+          <Key>
+            <PropertyRef Name="ArealId" />
+          </Key>
+          <Property Name="ArealId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdresseId" Type="Int32" Nullable="false" />
+          <Property Name="Laenge" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Breite" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Flaeche" Type="Decimal" Precision="37" Scale="8" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="MietPreis" Type="Decimal" Precision="18" Scale="4" />
+          <NavigationProperty Name="Adresse" Relationship="Self.FK_Areal_Areal_Adresse" FromRole="Areal" ToRole="Adresse" />
+          <NavigationProperty Name="Abonnement_Areal" Relationship="Self.FK_Abonnement_Areal_Areal" FromRole="Areal" ToRole="Abonnement_Areal" />
+          <NavigationProperty Name="Nutzung" Relationship="Self.FK_Nutzung_Nutzung_Areal" FromRole="Areal" ToRole="Nutzung" />
+        </EntityType>
+        <EntityType Name="Nutzung">
+          <Key>
+            <PropertyRef Name="NutzungId" />
+          </Key>
+          <Property Name="NutzungId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArealId" Type="Int32" Nullable="false" />
+          <Property Name="WochenmarktId" Type="Int32" Nullable="false" />
+          <Property Name="StandbetreiberId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Standbetreiber" Relationship="Self.FK_Nutzung_Nutzung_Standbetreiber" FromRole="Nutzung" ToRole="Standbetreiber" />
+          <NavigationProperty Name="PlatzMiete" Relationship="Self.FK_PlatzMiete_Miete_Nutzung" FromRole="Nutzung" ToRole="PlatzMiete" />
+          <NavigationProperty Name="Areal" Relationship="Self.FK_Nutzung_Nutzung_Areal" FromRole="Nutzung" ToRole="Areal" />
+          <NavigationProperty Name="Wochenmarkt" Relationship="Self.FK_Nutzung_Nutzung_Wochenmarkt" FromRole="Nutzung" ToRole="Wochenmarkt" />
+        </EntityType>
+        <EntityType Name="Wochenmarkt">
+          <Key>
+            <PropertyRef Name="WochenmarktId" />
+          </Key>
+          <Property Name="WochenmarktId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdresseId" Type="Int32" Nullable="false" />
+          <Property Name="MarktDatumVon" Type="DateTime" Precision="7" />
+          <Property Name="MarktDatumBis" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Adresse" Relationship="Self.FK_Wochenmarkt_Wochenmarkt_Adresse" FromRole="Wochenmarkt" ToRole="Adresse" />
+          <NavigationProperty Name="Nutzung" Relationship="Self.FK_Nutzung_Nutzung_Wochenmarkt" FromRole="Wochenmarkt" ToRole="Nutzung" />
+        </EntityType>
+        <Association Name="FK_Adresse_Adresse_Ort">
+          <End Role="Ort" Type="Self.Ort" Multiplicity="1" />
+          <End Role="Adresse" Type="Self.Adresse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ort">
+              <PropertyRef Name="OrtId" />
+            </Principal>
+            <Dependent Role="Adresse">
+              <PropertyRef Name="OrtId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Areal_Areal_Adresse">
+          <End Role="Adresse" Type="Self.Adresse" Multiplicity="1" />
+          <End Role="Areal" Type="Self.Areal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresse">
+              <PropertyRef Name="AdresseId" />
+            </Principal>
+            <Dependent Role="Areal">
+              <PropertyRef Name="AdresseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mitglied_Mitglied_Adresse">
+          <End Role="Adresse" Type="Self.Adresse" Multiplicity="1" />
+          <End Role="Mitglied" Type="Self.Mitglied" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresse">
+              <PropertyRef Name="AdresseId" />
+            </Principal>
+            <Dependent Role="Mitglied">
+              <PropertyRef Name="AdresseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wochenmarkt_Wochenmarkt_Adresse">
+          <End Role="Adresse" Type="Self.Adresse" Multiplicity="1" />
+          <End Role="Wochenmarkt" Type="Self.Wochenmarkt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresse">
+              <PropertyRef Name="AdresseId" />
+            </Principal>
+            <Dependent Role="Wochenmarkt">
+              <PropertyRef Name="AdresseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Beurteilung_Beurteilung_Inspektor">
+          <End Role="Inspektor" Type="Self.Inspektor" Multiplicity="1" />
+          <End Role="Beurteilung" Type="Self.Beurteilung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inspektor">
+              <PropertyRef Name="InspektorId" />
+            </Principal>
+            <Dependent Role="Beurteilung">
+              <PropertyRef Name="InspektorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Beurteilung_Beurteilung_Standbetreiber">
+          <End Role="Standbetreiber" Type="Self.Standbetreiber" Multiplicity="1" />
+          <End Role="Beurteilung" Type="Self.Beurteilung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Standbetreiber">
+              <PropertyRef Name="StandbetreiberId" />
+            </Principal>
+            <Dependent Role="Beurteilung">
+              <PropertyRef Name="StandbetreiberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inspektor_Inspektor_Mitglied">
+          <End Role="Mitglied" Type="Self.Mitglied" Multiplicity="1" />
+          <End Role="Inspektor" Type="Self.Inspektor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mitglied">
+              <PropertyRef Name="MitgliedId" />
+            </Principal>
+            <Dependent Role="Inspektor">
+              <PropertyRef Name="MitgliedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nachfrager_Nachfrager_Mitglied">
+          <End Role="Mitglied" Type="Self.Mitglied" Multiplicity="1" />
+          <End Role="Nachfrager" Type="Self.Nachfrager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mitglied">
+              <PropertyRef Name="MitgliedId" />
+            </Principal>
+            <Dependent Role="Nachfrager">
+              <PropertyRef Name="MitgliedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Standbetreiber_Standbetreiber_Mitglied">
+          <End Role="Mitglied" Type="Self.Mitglied" Multiplicity="1" />
+          <End Role="Standbetreiber" Type="Self.Standbetreiber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mitglied">
+              <PropertyRef Name="MitgliedId" />
+            </Principal>
+            <Dependent Role="Standbetreiber">
+              <PropertyRef Name="MitgliedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Abonnement_Abonnement_Standbetreiber">
+          <End Role="Standbetreiber" Type="Self.Standbetreiber" Multiplicity="1" />
+          <End Role="Abonnement" Type="Self.Abonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Standbetreiber">
+              <PropertyRef Name="StandbetreiberId" />
+            </Principal>
+            <Dependent Role="Abonnement">
+              <PropertyRef Name="StandbetreiberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nutzung_Nutzung_Standbetreiber">
+          <End Role="Standbetreiber" Type="Self.Standbetreiber" Multiplicity="1" />
+          <End Role="Nutzung" Type="Self.Nutzung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Standbetreiber">
+              <PropertyRef Name="StandbetreiberId" />
+            </Principal>
+            <Dependent Role="Nutzung">
+              <PropertyRef Name="StandbetreiberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Abonnement_Abonnement_AbonnementTyp">
+          <End Role="AbonnementTyp" Type="Self.AbonnementTyp" Multiplicity="1" />
+          <End Role="Abonnement" Type="Self.Abonnement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AbonnementTyp">
+              <PropertyRef Name="AbonnementTypId" />
+            </Principal>
+            <Dependent Role="Abonnement">
+              <PropertyRef Name="AbonnementTypId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Abonnement_Areal_Abonnement">
+          <End Role="Abonnement" Type="Self.Abonnement" Multiplicity="1" />
+          <End Role="Abonnement_Areal" Type="Self.Abonnement_Areal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abonnement">
+              <PropertyRef Name="AbonnementId" />
+            </Principal>
+            <Dependent Role="Abonnement_Areal">
+              <PropertyRef Name="AbonnementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Miete_Miete_Abonnement">
+          <End Role="Abonnement" Type="Self.Abonnement" Multiplicity="1" />
+          <End Role="AbonnementMiete" Type="Self.AbonnementMiete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abonnement">
+              <PropertyRef Name="AbonnementId" />
+            </Principal>
+            <Dependent Role="AbonnementMiete">
+              <PropertyRef Name="AbonnementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Abonnement_Areal_Areal">
+          <End Role="Areal" Type="Self.Areal" Multiplicity="1" />
+          <End Role="Abonnement_Areal" Type="Self.Abonnement_Areal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areal">
+              <PropertyRef Name="ArealId" />
+            </Principal>
+            <Dependent Role="Abonnement_Areal">
+              <PropertyRef Name="ArealId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Miete_Miete_Miete">
+          <End Role="Miete" Type="Self.Miete" Multiplicity="1" />
+          <End Role="AbonnementMiete" Type="Self.AbonnementMiete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Miete">
+              <PropertyRef Name="MieteId" />
+            </Principal>
+            <Dependent Role="AbonnementMiete">
+              <PropertyRef Name="MieteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlatzMiete_Miete_Miete">
+          <End Role="Miete" Type="Self.Miete" Multiplicity="1" />
+          <End Role="PlatzMiete" Type="Self.PlatzMiete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Miete">
+              <PropertyRef Name="MieteId" />
+            </Principal>
+            <Dependent Role="PlatzMiete">
+              <PropertyRef Name="MieteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlatzMiete_Miete_Nutzung">
+          <End Role="Nutzung" Type="Self.Nutzung" Multiplicity="1" />
+          <End Role="PlatzMiete" Type="Self.PlatzMiete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nutzung">
+              <PropertyRef Name="NutzungId" />
+            </Principal>
+            <Dependent Role="PlatzMiete">
+              <PropertyRef Name="NutzungId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nutzung_Nutzung_Areal">
+          <End Role="Areal" Type="Self.Areal" Multiplicity="1" />
+          <End Role="Nutzung" Type="Self.Nutzung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areal">
+              <PropertyRef Name="ArealId" />
+            </Principal>
+            <Dependent Role="Nutzung">
+              <PropertyRef Name="ArealId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nutzung_Nutzung_Wochenmarkt">
+          <End Role="Wochenmarkt" Type="Self.Wochenmarkt" Multiplicity="1" />
+          <End Role="Nutzung" Type="Self.Nutzung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wochenmarkt">
+              <PropertyRef Name="WochenmarktId" />
+            </Principal>
+            <Dependent Role="Nutzung">
+              <PropertyRef Name="WochenmarktId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WochenmarktEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adresse" EntityType="Self.Adresse" />
+          <EntitySet Name="Beurteilung" EntityType="Self.Beurteilung" />
+          <EntitySet Name="Inspektor" EntityType="Self.Inspektor" />
+          <EntitySet Name="Mitglied" EntityType="Self.Mitglied" />
+          <EntitySet Name="Nachfrager" EntityType="Self.Nachfrager" />
+          <EntitySet Name="Ort" EntityType="Self.Ort" />
+          <EntitySet Name="Standbetreiber" EntityType="Self.Standbetreiber" />
+          <EntitySet Name="Abonnement" EntityType="Self.Abonnement" />
+          <EntitySet Name="Abonnement_Areal" EntityType="Self.Abonnement_Areal" />
+          <EntitySet Name="AbonnementMiete" EntityType="Self.AbonnementMiete" />
+          <EntitySet Name="AbonnementTyp" EntityType="Self.AbonnementTyp" />
+          <EntitySet Name="Miete" EntityType="Self.Miete" />
+          <EntitySet Name="PlatzMiete" EntityType="Self.PlatzMiete" />
+          <EntitySet Name="Areal" EntityType="Self.Areal" />
+          <EntitySet Name="Nutzung" EntityType="Self.Nutzung" />
+          <EntitySet Name="Wochenmarkt" EntityType="Self.Wochenmarkt" />
+          <AssociationSet Name="FK_Adresse_Adresse_Ort" Association="Self.FK_Adresse_Adresse_Ort">
+            <End Role="Ort" EntitySet="Ort" />
+            <End Role="Adresse" EntitySet="Adresse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Areal_Areal_Adresse" Association="Self.FK_Areal_Areal_Adresse">
+            <End Role="Adresse" EntitySet="Adresse" />
+            <End Role="Areal" EntitySet="Areal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mitglied_Mitglied_Adresse" Association="Self.FK_Mitglied_Mitglied_Adresse">
+            <End Role="Adresse" EntitySet="Adresse" />
+            <End Role="Mitglied" EntitySet="Mitglied" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wochenmarkt_Wochenmarkt_Adresse" Association="Self.FK_Wochenmarkt_Wochenmarkt_Adresse">
+            <End Role="Adresse" EntitySet="Adresse" />
+            <End Role="Wochenmarkt" EntitySet="Wochenmarkt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Beurteilung_Beurteilung_Inspektor" Association="Self.FK_Beurteilung_Beurteilung_Inspektor">
+            <End Role="Inspektor" EntitySet="Inspektor" />
+            <End Role="Beurteilung" EntitySet="Beurteilung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Beurteilung_Beurteilung_Standbetreiber" Association="Self.FK_Beurteilung_Beurteilung_Standbetreiber">
+            <End Role="Standbetreiber" EntitySet="Standbetreiber" />
+            <End Role="Beurteilung" EntitySet="Beurteilung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inspektor_Inspektor_Mitglied" Association="Self.FK_Inspektor_Inspektor_Mitglied">
+            <End Role="Mitglied" EntitySet="Mitglied" />
+            <End Role="Inspektor" EntitySet="Inspektor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nachfrager_Nachfrager_Mitglied" Association="Self.FK_Nachfrager_Nachfrager_Mitglied">
+            <End Role="Mitglied" EntitySet="Mitglied" />
+            <End Role="Nachfrager" EntitySet="Nachfrager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Standbetreiber_Standbetreiber_Mitglied" Association="Self.FK_Standbetreiber_Standbetreiber_Mitglied">
+            <End Role="Mitglied" EntitySet="Mitglied" />
+            <End Role="Standbetreiber" EntitySet="Standbetreiber" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Abonnement_Abonnement_Standbetreiber" Association="Self.FK_Abonnement_Abonnement_Standbetreiber">
+            <End Role="Standbetreiber" EntitySet="Standbetreiber" />
+            <End Role="Abonnement" EntitySet="Abonnement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nutzung_Nutzung_Standbetreiber" Association="Self.FK_Nutzung_Nutzung_Standbetreiber">
+            <End Role="Standbetreiber" EntitySet="Standbetreiber" />
+            <End Role="Nutzung" EntitySet="Nutzung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Abonnement_Abonnement_AbonnementTyp" Association="Self.FK_Abonnement_Abonnement_AbonnementTyp">
+            <End Role="AbonnementTyp" EntitySet="AbonnementTyp" />
+            <End Role="Abonnement" EntitySet="Abonnement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Abonnement_Areal_Abonnement" Association="Self.FK_Abonnement_Areal_Abonnement">
+            <End Role="Abonnement" EntitySet="Abonnement" />
+            <End Role="Abonnement_Areal" EntitySet="Abonnement_Areal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Miete_Miete_Abonnement" Association="Self.FK_Miete_Miete_Abonnement">
+            <End Role="Abonnement" EntitySet="Abonnement" />
+            <End Role="AbonnementMiete" EntitySet="AbonnementMiete" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Abonnement_Areal_Areal" Association="Self.FK_Abonnement_Areal_Areal">
+            <End Role="Areal" EntitySet="Areal" />
+            <End Role="Abonnement_Areal" EntitySet="Abonnement_Areal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Miete_Miete_Miete" Association="Self.FK_Miete_Miete_Miete">
+            <End Role="Miete" EntitySet="Miete" />
+            <End Role="AbonnementMiete" EntitySet="AbonnementMiete" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlatzMiete_Miete_Miete" Association="Self.FK_PlatzMiete_Miete_Miete">
+            <End Role="Miete" EntitySet="Miete" />
+            <End Role="PlatzMiete" EntitySet="PlatzMiete" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlatzMiete_Miete_Nutzung" Association="Self.FK_PlatzMiete_Miete_Nutzung">
+            <End Role="Nutzung" EntitySet="Nutzung" />
+            <End Role="PlatzMiete" EntitySet="PlatzMiete" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nutzung_Nutzung_Areal" Association="Self.FK_Nutzung_Nutzung_Areal">
+            <End Role="Areal" EntitySet="Areal" />
+            <End Role="Nutzung" EntitySet="Nutzung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nutzung_Nutzung_Wochenmarkt" Association="Self.FK_Nutzung_Nutzung_Wochenmarkt">
+            <End Role="Wochenmarkt" EntitySet="Wochenmarkt" />
+            <End Role="Nutzung" EntitySet="Nutzung" />
+          </AssociationSet>
+          <EntitySet Name="Anmeldung" EntityType="WochenmarktModel.Anmeldung" />
+          <AssociationSet Name="FK_Anmeldung_Anmeldung_Besucher" Association="WochenmarktModel.FK_Anmeldung_Anmeldung_Besucher">
+            <End Role="Mitglied" EntitySet="Mitglied" />
+            <End Role="Anmeldung" EntitySet="Anmeldung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Anmeldung_Anmeldung_Mitglied" Association="WochenmarktModel.FK_Anmeldung_Anmeldung_Mitglied">
+            <End Role="Mitglied" EntitySet="Mitglied" />
+            <End Role="Anmeldung" EntitySet="Anmeldung" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Anmeldung">
+          <Key>
+            <PropertyRef Name="AnmeldungId" />
+          </Key>
+          <Property Name="AnmeldungId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MitgliedId" Type="Int32" Nullable="false" />
+          <Property Name="BesucherMitgliedId" Type="Int32" Nullable="false" />
+          <Property Name="AngemeldetAm" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="StatutenUnterschrieben" Type="Boolean" Nullable="false" />
+          <Property Name="BesuchDurchgefuehrt" Type="Boolean" Nullable="false" />
+          <Property Name="BesuchDurchgefuehrtAm" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="BonitaetsPruefungBestanden" Type="Boolean" Nullable="false" />
+          <Property Name="BonitaetsPruefungBestandenAm" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="AnmeldungValid" Type="Boolean" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Besucher" Relationship="WochenmarktModel.FK_Anmeldung_Anmeldung_Besucher" FromRole="Anmeldung" ToRole="Mitglied" />
+          <NavigationProperty Name="Mitglied" Relationship="WochenmarktModel.FK_Anmeldung_Anmeldung_Mitglied" FromRole="Anmeldung" ToRole="Mitglied" />
+        </EntityType>
+        <Association Name="FK_Anmeldung_Anmeldung_Besucher">
+          <End Type="WochenmarktModel.Mitglied" Role="Mitglied" Multiplicity="1" />
+          <End Type="WochenmarktModel.Anmeldung" Role="Anmeldung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mitglied">
+              <PropertyRef Name="MitgliedId" />
+            </Principal>
+            <Dependent Role="Anmeldung">
+              <PropertyRef Name="BesucherMitgliedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Anmeldung_Anmeldung_Mitglied">
+          <End Type="WochenmarktModel.Mitglied" Role="Mitglied" Multiplicity="1" />
+          <End Type="WochenmarktModel.Anmeldung" Role="Anmeldung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mitglied">
+              <PropertyRef Name="MitgliedId" />
+            </Principal>
+            <Dependent Role="Anmeldung">
+              <PropertyRef Name="MitgliedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WochenmarktModelStoreContainer" CdmEntityContainer="WochenmarktEntities">
+          <EntitySetMapping Name="Adresse">
+            <EntityTypeMapping TypeName="WochenmarktModel.Adresse">
+              <MappingFragment StoreEntitySet="Adresse">
+                <ScalarProperty Name="AdresseId" ColumnName="AdresseId" />
+                <ScalarProperty Name="OrtId" ColumnName="OrtId" />
+                <ScalarProperty Name="Strasse" ColumnName="Strasse" />
+                <ScalarProperty Name="Hausnummer" ColumnName="Hausnummer" />
+                <ScalarProperty Name="HausnummerZusatz" ColumnName="HausnummerZusatz" />
+                <ScalarProperty Name="StrasseFull" ColumnName="StrasseFull" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Beurteilung">
+            <EntityTypeMapping TypeName="WochenmarktModel.Beurteilung">
+              <MappingFragment StoreEntitySet="Beurteilung">
+                <ScalarProperty Name="BeurteilungId" ColumnName="BeurteilungId" />
+                <ScalarProperty Name="StandbetreiberId" ColumnName="StandbetreiberId" />
+                <ScalarProperty Name="InspektorId" ColumnName="InspektorId" />
+                <ScalarProperty Name="BeurteilungAm" ColumnName="BeurteilungAm" />
+                <ScalarProperty Name="BeurteilungDurchgefuehrt" ColumnName="BeurteilungDurchgefuehrt" />
+                <ScalarProperty Name="Bestanden" ColumnName="Bestanden" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inspektor">
+            <EntityTypeMapping TypeName="WochenmarktModel.Inspektor">
+              <MappingFragment StoreEntitySet="Inspektor">
+                <ScalarProperty Name="InspektorId" ColumnName="InspektorId" />
+                <ScalarProperty Name="MitgliedId" ColumnName="MitgliedId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mitglied">
+            <EntityTypeMapping TypeName="WochenmarktModel.Mitglied">
+              <MappingFragment StoreEntitySet="Mitglied">
+                <ScalarProperty Name="MitgliedId" ColumnName="MitgliedId" />
+                <ScalarProperty Name="AdresseId" ColumnName="AdresseId" />
+                <ScalarProperty Name="Vorname" ColumnName="Vorname" />
+                <ScalarProperty Name="Nachname" ColumnName="Nachname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Geburtsdatum" ColumnName="Geburtsdatum" />
+                <ScalarProperty Name="ProvisorischesMitglied" ColumnName="ProvisorischesMitglied" />
+                <ScalarProperty Name="ProbezeitVon" ColumnName="ProbezeitVon" />
+                <ScalarProperty Name="ProbezeitBis" ColumnName="ProbezeitBis" />
+                <ScalarProperty Name="Abgelehnt" ColumnName="Abgelehnt" />
+                <ScalarProperty Name="Ablehnungsgrund" ColumnName="Ablehnungsgrund" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nachfrager">
+            <EntityTypeMapping TypeName="WochenmarktModel.Nachfrager">
+              <MappingFragment StoreEntitySet="Nachfrager">
+                <ScalarProperty Name="NachfragerId" ColumnName="NachfragerId" />
+                <ScalarProperty Name="MitgliedId" ColumnName="MitgliedId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ort">
+            <EntityTypeMapping TypeName="WochenmarktModel.Ort">
+              <MappingFragment StoreEntitySet="Ort">
+                <ScalarProperty Name="OrtId" ColumnName="OrtId" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="PLZ" ColumnName="PLZ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Standbetreiber">
+            <EntityTypeMapping TypeName="WochenmarktModel.Standbetreiber">
+              <MappingFragment StoreEntitySet="Standbetreiber">
+                <ScalarProperty Name="StandbetreiberId" ColumnName="StandbetreiberId" />
+                <ScalarProperty Name="MitgliedId" ColumnName="MitgliedId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Abonnement">
+            <EntityTypeMapping TypeName="WochenmarktModel.Abonnement">
+              <MappingFragment StoreEntitySet="Abonnement">
+                <ScalarProperty Name="AbonnementId" ColumnName="AbonnementId" />
+                <ScalarProperty Name="AbonnementTypId" ColumnName="AbonnementTypId" />
+                <ScalarProperty Name="StandbetreiberId" ColumnName="StandbetreiberId" />
+                <ScalarProperty Name="GueltigAb" ColumnName="GueltigAb" />
+                <ScalarProperty Name="GueltigBis" ColumnName="GueltigBis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Abonnement_Areal">
+            <EntityTypeMapping TypeName="WochenmarktModel.Abonnement_Areal">
+              <MappingFragment StoreEntitySet="Abonnement_Areal">
+                <ScalarProperty Name="Abonnement_ArealId" ColumnName="Abonnement_ArealId" />
+                <ScalarProperty Name="AbonnementId" ColumnName="AbonnementId" />
+                <ScalarProperty Name="ArealId" ColumnName="ArealId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AbonnementMiete">
+            <EntityTypeMapping TypeName="WochenmarktModel.AbonnementMiete">
+              <MappingFragment StoreEntitySet="AbonnementMiete">
+                <ScalarProperty Name="AbonnementMieteId" ColumnName="AbonnementMieteId" />
+                <ScalarProperty Name="MieteId" ColumnName="MieteId" />
+                <ScalarProperty Name="AbonnementId" ColumnName="AbonnementId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AbonnementTyp">
+            <EntityTypeMapping TypeName="WochenmarktModel.AbonnementTyp">
+              <MappingFragment StoreEntitySet="AbonnementTyp">
+                <ScalarProperty Name="AbonnementTypId" ColumnName="AbonnementTypId" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="Wert" ColumnName="Wert" />
+                <ScalarProperty Name="Dauer" ColumnName="Dauer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Miete">
+            <EntityTypeMapping TypeName="WochenmarktModel.Miete">
+              <MappingFragment StoreEntitySet="Miete">
+                <ScalarProperty Name="MieteId" ColumnName="MieteId" />
+                <ScalarProperty Name="Betrag" ColumnName="Betrag" />
+                <ScalarProperty Name="Bezahlt" ColumnName="Bezahlt" />
+                <ScalarProperty Name="Mahnstufe" ColumnName="Mahnstufe" />
+                <ScalarProperty Name="GemahntAm" ColumnName="GemahntAm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlatzMiete">
+            <EntityTypeMapping TypeName="WochenmarktModel.PlatzMiete">
+              <MappingFragment StoreEntitySet="PlatzMiete">
+                <ScalarProperty Name="PlatzMieteId" ColumnName="PlatzMieteId" />
+                <ScalarProperty Name="MieteId" ColumnName="MieteId" />
+                <ScalarProperty Name="NutzungId" ColumnName="NutzungId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Areal">
+            <EntityTypeMapping TypeName="WochenmarktModel.Areal">
+              <MappingFragment StoreEntitySet="Areal">
+                <ScalarProperty Name="ArealId" ColumnName="ArealId" />
+                <ScalarProperty Name="AdresseId" ColumnName="AdresseId" />
+                <ScalarProperty Name="Laenge" ColumnName="Laenge" />
+                <ScalarProperty Name="Breite" ColumnName="Breite" />
+                <ScalarProperty Name="Flaeche" ColumnName="Flaeche" />
+                <ScalarProperty Name="MietPreis" ColumnName="MietPreis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nutzung">
+            <EntityTypeMapping TypeName="WochenmarktModel.Nutzung">
+              <MappingFragment StoreEntitySet="Nutzung">
+                <ScalarProperty Name="NutzungId" ColumnName="NutzungId" />
+                <ScalarProperty Name="ArealId" ColumnName="ArealId" />
+                <ScalarProperty Name="WochenmarktId" ColumnName="WochenmarktId" />
+                <ScalarProperty Name="StandbetreiberId" ColumnName="StandbetreiberId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wochenmarkt">
+            <EntityTypeMapping TypeName="WochenmarktModel.Wochenmarkt">
+              <MappingFragment StoreEntitySet="Wochenmarkt">
+                <ScalarProperty Name="WochenmarktId" ColumnName="WochenmarktId" />
+                <ScalarProperty Name="AdresseId" ColumnName="AdresseId" />
+                <ScalarProperty Name="MarktDatumVon" ColumnName="MarktDatumVon" />
+                <ScalarProperty Name="MarktDatumBis" ColumnName="MarktDatumBis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Anmeldung">
+            <EntityTypeMapping TypeName="WochenmarktModel.Anmeldung">
+              <MappingFragment StoreEntitySet="Anmeldung">
+                <ScalarProperty Name="AnmeldungValid" ColumnName="AnmeldungValid" />
+                <ScalarProperty Name="BonitaetsPruefungBestandenAm" ColumnName="BonitaetsPruefungBestandenAm" />
+                <ScalarProperty Name="BonitaetsPruefungBestanden" ColumnName="BonitaetsPruefungBestanden" />
+                <ScalarProperty Name="BesuchDurchgefuehrtAm" ColumnName="BesuchDurchgefuehrtAm" />
+                <ScalarProperty Name="BesuchDurchgefuehrt" ColumnName="BesuchDurchgefuehrt" />
+                <ScalarProperty Name="StatutenUnterschrieben" ColumnName="StatutenUnterschrieben" />
+                <ScalarProperty Name="AngemeldetAm" ColumnName="AngemeldetAm" />
+                <ScalarProperty Name="BesucherMitgliedId" ColumnName="BesucherMitgliedId" />
+                <ScalarProperty Name="MitgliedId" ColumnName="MitgliedId" />
+                <ScalarProperty Name="AnmeldungId" ColumnName="AnmeldungId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

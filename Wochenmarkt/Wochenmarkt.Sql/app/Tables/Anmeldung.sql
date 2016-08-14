@@ -11,5 +11,6 @@
 	[BonitaetsPruefungBestandenAm] DATETIME2(7) NOT NULL,
 	[AnmeldungValid] AS (CASE WHEN [StatutenUnterschrieben] = 1 AND [BesuchDurchgefuehrt] = 1 AND [BonitaetsPruefungBestanden] = 1 THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END) PERSISTED
 	CONSTRAINT PK_AnmeldungId PRIMARY KEY ([AnmeldungId]),
-	CONSTRAINT FK_Anmeldung_Anmeldung_Mitglied FOREIGN KEY ([MitgliedId]) REFERENCES [app].[Mitglied] ([MitgliedId])
+	CONSTRAINT FK_Anmeldung_Anmeldung_Mitglied FOREIGN KEY ([MitgliedId]) REFERENCES [app].[Mitglied] ([MitgliedId]),
+	CONSTRAINT FK_Anmeldung_Anmeldung_Besucher FOREIGN KEY ([BesucherMitgliedId]) REFERENCES [app].[Mitglied] ([MitgliedId])
 )

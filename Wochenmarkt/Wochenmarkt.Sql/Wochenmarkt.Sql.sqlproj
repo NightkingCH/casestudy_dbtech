@@ -68,6 +68,7 @@
     <Folder Include="invoice\Views" />
     <Folder Include="market\Views" />
     <Folder Include="PreDeployment" />
+    <Folder Include="app\Functions" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="market\market.sql" />
@@ -90,6 +91,7 @@
     <Build Include="invoice\Tables\Abonnement_Areal.sql" />
     <Build Include="invoice\Tables\PlatzMiete.sql" />
     <Build Include="invoice\Tables\Miete.sql" />
+    <Build Include="app\Functions\fncCheckIsUniqueMitglied.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="PreDeployment\Script.PreDeployment.sql" />

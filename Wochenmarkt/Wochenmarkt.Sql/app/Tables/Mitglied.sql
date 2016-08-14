@@ -2,6 +2,8 @@
 (
 	[MitgliedId] INT NOT NULL IDENTITY(1,1),
 	[AdresseId] INT NOT NULL,
+	[Email] NVARCHAR(MAX) NOT NULL DEFAULT(''),
+	[Telefon] NVARCHAR(MAX) NOT NULL,
 	[Vorname] NVARCHAR(MAX) NOT NULL,
 	[Nachname] NVARCHAR(MAX) NOT NULL,
 	[Name] AS ([Vorname] + ' ' + [Nachname]) PERSISTED,
@@ -12,5 +14,6 @@
 	[Abgelehnt] BIT NOT NULL DEFAULT (0),
 	[Ablehnungsgrund] NVARCHAR(MAX) NOT NULL DEFAULT(''),
 	CONSTRAINT PK_MitgliedId PRIMARY KEY ([MitgliedId]),
-	CONSTRAINT FK_Mitglied_Mitglied_Adresse FOREIGN KEY ([AdresseId]) REFERENCES [app].[Adresse] ([AdresseId])
+	CONSTRAINT FK_Mitglied_Mitglied_Adresse FOREIGN KEY ([AdresseId]) REFERENCES [app].[Adresse] ([AdresseId]),
+	CONSTRAINT CK_UniqueUser CHECK (fncCheckIsUniqueMitglied([Vorname], [Nachname], [AdresseId], [Geburtsdatum]) = 1 )
 )

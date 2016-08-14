@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f1fb18cfda1c44ff8420b8c62a02f411" Name="Base">
+        <EntityTypeShape EntityType="WochenmarktModel.Adresse" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="WochenmarktModel.Beurteilung" Width="1.5" PointX="9.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="WochenmarktModel.Inspektor" Width="1.5" PointX="7.5" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WochenmarktModel.Mitglied" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WochenmarktModel.Nachfrager" Width="1.5" PointX="7.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WochenmarktModel.Ort" Width="1.5" PointX="0.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WochenmarktModel.Standbetreiber" Width="1.5" PointX="7.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WochenmarktModel.Abonnement" Width="1.5" PointX="9.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WochenmarktModel.Abonnement_Areal" Width="1.5" PointX="12" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WochenmarktModel.AbonnementMiete" Width="1.5" PointX="12" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WochenmarktModel.AbonnementTyp" Width="1.5" PointX="7.5" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WochenmarktModel.Miete" Width="1.5" PointX="9.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WochenmarktModel.PlatzMiete" Width="1.5" PointX="12" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WochenmarktModel.Areal" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WochenmarktModel.Nutzung" Width="1.5" PointX="9.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WochenmarktModel.Wochenmarkt" Width="1.5" PointX="5.25" PointY="19" IsExpanded="true" />
+        <AssociationConnector Association="WochenmarktModel.FK_Adresse_Adresse_Ort" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_Areal_Areal_Adresse" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_Mitglied_Mitglied_Adresse" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_Wochenmarkt_Wochenmarkt_Adresse" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_Beurteilung_Beurteilung_Inspektor" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_Beurteilung_Beurteilung_Standbetreiber" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_Inspektor_Inspektor_Mitglied" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_Nachfrager_Nachfrager_Mitglied" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_Standbetreiber_Standbetreiber_Mitglied" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_Abonnement_Abonnement_Standbetreiber" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_Nutzung_Nutzung_Standbetreiber" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_Abonnement_Abonnement_AbonnementTyp" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_Abonnement_Areal_Abonnement" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_Miete_Miete_Abonnement" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_Abonnement_Areal_Areal" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_Miete_Miete_Miete" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_PlatzMiete_Miete_Miete" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_PlatzMiete_Miete_Nutzung" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_Nutzung_Nutzung_Areal" ManuallyRouted="false" />
+        <AssociationConnector Association="WochenmarktModel.FK_Nutzung_Nutzung_Wochenmarkt" ManuallyRouted="false" />
+      </Diagram>
+      <Diagram DiagramId="6d9937f513114a52b8b7c6a442a5d6d1" Name="Invoice_Market" >
+        <EntityTypeShape EntityType="WochenmarktModel.Abonnement" Width="1.5" PointX="5.5" PointY="2.125" />
+        <EntityTypeShape EntityType="WochenmarktModel.Abonnement_Areal" Width="1.5" PointX="7.625" PointY="2.25" />
+        <AssociationConnector Association="WochenmarktModel.FK_Abonnement_Areal_Abonnement" />
+        <EntityTypeShape EntityType="WochenmarktModel.Areal" Width="1.5" PointX="9.75" PointY="2.75" />
+        <AssociationConnector Association="WochenmarktModel.FK_Abonnement_Areal_Areal" />
+        <EntityTypeShape EntityType="WochenmarktModel.AbonnementMiete" Width="1.5" PointX="3.625" PointY="2" />
+        <AssociationConnector Association="WochenmarktModel.FK_Miete_Miete_Abonnement" />
+        <EntityTypeShape EntityType="WochenmarktModel.PlatzMiete" Width="1.5" PointX="3.625" PointY="4" />
+        <EntityTypeShape EntityType="WochenmarktModel.Nutzung" Width="1.5" PointX="7.25" PointY="4.25" />
+        <AssociationConnector Association="WochenmarktModel.FK_PlatzMiete_Miete_Nutzung" />
+        <AssociationConnector Association="WochenmarktModel.FK_Nutzung_Nutzung_Areal" />
+        <EntityTypeShape EntityType="WochenmarktModel.Miete" Width="1.5" PointX="1.25" PointY="2.5" />
+        <AssociationConnector Association="WochenmarktModel.FK_Miete_Miete_Miete" />
+        <AssociationConnector Association="WochenmarktModel.FK_PlatzMiete_Miete_Miete" />
+      </Diagram>
+      <Diagram DiagramId="82a6da748ce448d6880ca01227e6fa13" Name="Market" >
+        <EntityTypeShape EntityType="WochenmarktModel.Areal" Width="1.5" PointX="8" PointY="1.25" />
+        <EntityTypeShape EntityType="WochenmarktModel.Wochenmarkt" Width="1.5" PointX="3.375" PointY="2.75" />
+        <EntityTypeShape EntityType="WochenmarktModel.Adresse" Width="1.5" PointX="5.875" PointY="0.625" />
+        <AssociationConnector Association="WochenmarktModel.FK_Areal_Areal_Adresse" />
+        <AssociationConnector Association="WochenmarktModel.FK_Wochenmarkt_Wochenmarkt_Adresse" />
+        <EntityTypeShape EntityType="WochenmarktModel.Nutzung" Width="1.5" PointX="5.625" PointY="3.125" />
+        <AssociationConnector Association="WochenmarktModel.FK_Nutzung_Nutzung_Areal" />
+        <AssociationConnector Association="WochenmarktModel.FK_Nutzung_Nutzung_Wochenmarkt" />
+        <EntityTypeShape EntityType="WochenmarktModel.Standbetreiber" Width="1.5" PointX="7.875" PointY="4" />
+        <AssociationConnector Association="WochenmarktModel.FK_Nutzung_Nutzung_Standbetreiber" />
+      </Diagram>
+      <Diagram DiagramId="cda5df00716a440b8d793e8e9e049578" Name="User" >
+        <EntityTypeShape EntityType="WochenmarktModel.Inspektor" Width="1.5" PointX="6.875" PointY="3.25" />
+        <EntityTypeShape EntityType="WochenmarktModel.Mitglied" Width="1.5" PointX="4.625" PointY="1.375" />
+        <AssociationConnector Association="WochenmarktModel.FK_Inspektor_Inspektor_Mitglied" />
+        <EntityTypeShape EntityType="WochenmarktModel.Standbetreiber" Width="1.5" PointX="2.375" PointY="1.5" />
+        <AssociationConnector Association="WochenmarktModel.FK_Standbetreiber_Standbetreiber_Mitglied" />
+        <EntityTypeShape EntityType="WochenmarktModel.Nachfrager" Width="1.5" PointX="6.75" PointY="1.125" />
+        <AssociationConnector Association="WochenmarktModel.FK_Nachfrager_Nachfrager_Mitglied" />
+        </Diagram>
+      <Diagram DiagramId="0ade45ac39164b9590fe86415ce28de2" Name="Address" ZoomLevel="95" >
+        <EntityTypeShape EntityType="WochenmarktModel.Ort" Width="1.5" PointX="7.5" PointY="3.75" />
+        <EntityTypeShape EntityType="WochenmarktModel.Adresse" Width="1.5" PointX="7.5" PointY="1" />
+        <AssociationConnector Association="WochenmarktModel.FK_Adresse_Adresse_Ort" />
+        <EntityTypeShape EntityType="WochenmarktModel.Mitglied" Width="1.5" PointX="9.5" PointY="0.875" />
+        <AssociationConnector Association="WochenmarktModel.FK_Mitglied_Mitglied_Adresse" />
+        <EntityTypeShape EntityType="WochenmarktModel.Areal" Width="1.5" PointX="5.25" PointY="1.125" />
+        <AssociationConnector Association="WochenmarktModel.FK_Areal_Areal_Adresse" />
+        <EntityTypeShape EntityType="WochenmarktModel.Wochenmarkt" Width="1.5" PointX="5.125" PointY="3.625" />
+        <AssociationConnector Association="WochenmarktModel.FK_Wochenmarkt_Wochenmarkt_Adresse" />
+      </Diagram>
+      <Diagram DiagramId="6c8efde988374ab3a192d7763ba60319" Name="Abonnement" >
+        <EntityTypeShape EntityType="WochenmarktModel.Abonnement" Width="1.625" PointX="7.625" PointY="1.375" />
+        <EntityTypeShape EntityType="WochenmarktModel.AbonnementTyp" Width="1.75" PointX="5.25" PointY="1.625" />
+        <AssociationConnector Association="WochenmarktModel.FK_Abonnement_Abonnement_AbonnementTyp" />
+        <EntityTypeShape EntityType="WochenmarktModel.Standbetreiber" Width="1.5" PointX="9.875" PointY="1.5" />
+        <AssociationConnector Association="WochenmarktModel.FK_Abonnement_Abonnement_Standbetreiber" />
+      </Diagram>
+      <Diagram DiagramId="c7b42e9110b541558429fa8e887ff4d1" Name="Verification" >
+        <EntityTypeShape EntityType="WochenmarktModel.Mitglied" Width="1.75" PointX="7.125" PointY="2.25" />
+        <EntityTypeShape EntityType="WochenmarktModel.Beurteilung" Width="2.125" PointX="11.5" PointY="3.25" />
+        <EntityTypeShape EntityType="WochenmarktModel.Inspektor" Width="1.5" PointX="9.5" PointY="1" />
+        <AssociationConnector Association="WochenmarktModel.FK_Beurteilung_Beurteilung_Inspektor" />
+        <AssociationConnector Association="WochenmarktModel.FK_Inspektor_Inspektor_Mitglied" />
+        <EntityTypeShape EntityType="WochenmarktModel.Standbetreiber" Width="1.5" PointX="9.25" PointY="3.25" />
+        <AssociationConnector Association="WochenmarktModel.FK_Beurteilung_Beurteilung_Standbetreiber" />
+        <AssociationConnector Association="WochenmarktModel.FK_Standbetreiber_Standbetreiber_Mitglied" />
+        <EntityTypeShape EntityType="WochenmarktModel.Anmeldung" Width="2.375" PointX="4.25" PointY="2.125" />
+        <AssociationConnector Association="WochenmarktModel.FK_Anmeldung_Anmeldung_Besucher" />
+        <AssociationConnector Association="WochenmarktModel.FK_Anmeldung_Anmeldung_Mitglied" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
