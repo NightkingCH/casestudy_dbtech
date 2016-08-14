@@ -64,13 +64,16 @@
     <Folder Include="PostDeployment" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Security\Logins\application.sql" />
-    <Build Include="Security\Users\application.sql" />
+    <Build Include="Security\Logins\Wochenmarkt_App.sql" />
+    <Build Include="Security\Users\Wochenmarkt_App.sql" />
     <Build Include="PostDeployment\01_GrantConnect.sql" />
-    <Build Include="Security\Users\invoice.sql" />
-    <Build Include="Security\Logins\invoice.sql" />
+    <Build Include="Security\Users\Wochenmarkt_Invoice.sql" />
+    <Build Include="Security\Logins\Wochenmarkt_Invoice.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostDeployment\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Wochenmarkt.Sql.Master.publish.xml" />
   </ItemGroup>
 </Project>

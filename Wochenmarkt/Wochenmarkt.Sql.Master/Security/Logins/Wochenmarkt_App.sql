@@ -1,4 +1,4 @@
-﻿CREATE LOGIN [invoice] 
+﻿CREATE LOGIN [Wochenmarkt_App] 
 	WITH PASSWORD = '12345678', 
 	DEFAULT_LANGUAGE=[us_english], 
 	CHECK_EXPIRATION=OFF, 

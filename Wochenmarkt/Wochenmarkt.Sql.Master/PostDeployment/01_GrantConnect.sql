@@ -1,5 +1,5 @@
-﻿GRANT CONNECT TO [application];
+﻿GRANT CONNECT TO [Wochenmarkt_App];
 GO
 
-GRANT CONNECT TO [invoice];
+GRANT CONNECT TO [Wochenmarkt_Invoice];
 GO

@@ -73,7 +73,7 @@
     <Build Include="market\market.sql" />
     <Build Include="invoice\invoice.sql" />
     <Build Include="app\app.sql" />
-    <Build Include="invoice\Tables\Miete.sql" />
+    <Build Include="invoice\Tables\AbonnementMiete.sql" />
     <Build Include="invoice\Tables\Abonnement.sql" />
     <Build Include="app\Tables\Mitglied.sql" />
     <Build Include="app\Tables\Inspektor.sql" />
@@ -87,6 +87,9 @@
     <Build Include="app\Tables\Nachfrager.sql" />
     <Build Include="app\Tables\Ort.sql" />
     <Build Include="invoice\Tables\AbonnementTyp.sql" />
+    <Build Include="invoice\Tables\Abonnement_Areal.sql" />
+    <Build Include="invoice\Tables\PlatzMiete.sql" />
+    <Build Include="invoice\Tables\Miete.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="PreDeployment\Script.PreDeployment.sql" />
@@ -105,5 +108,8 @@
       <Private>True</Private>
       <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Wochenmarkt.Sql.publish.xml" />
   </ItemGroup>
 </Project>
