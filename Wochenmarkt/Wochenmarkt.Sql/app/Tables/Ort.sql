@@ -1,0 +1,7 @@
+﻿CREATE TABLE [app].[Ort]
+(
+	[OrtId] INT NOT NULL IDENTITY(1,1),
+	[Bezeichnung] NVARCHAR(MAX) NOT NULL,
+	[PLZ] NVARCHAR(MAX) NOT NULL, -- COULD BE A STRING! (London e.g.)
+	CONSTRAINT PK_OrtId PRIMARY KEY ([OrtId])
+)

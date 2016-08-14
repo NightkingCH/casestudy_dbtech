@@ -86,6 +86,7 @@
     <Build Include="app\Tables\Beurteilung.sql" />
     <Build Include="app\Tables\Nachfrager.sql" />
     <Build Include="market\Tables\Anbieter_Wochenmarkt.sql" />
+    <Build Include="app\Tables\Ort.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="PreDeployment\Script.PreDeployment.sql" />
