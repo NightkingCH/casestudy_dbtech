@@ -1,4 +1,5 @@
-﻿CREATE TABLE [dbo].[Abonnement]
+﻿CREATE TABLE [invoice].[Abonnement]
 (
-	[Id] INT NOT NULL PRIMARY KEY
+	[AbonnementId] INT NOT NULL IDENTITY(1,1),
+	CONSTRAINT PK_AbonnementId PRIMARY KEY ([AbonnementId])
 )

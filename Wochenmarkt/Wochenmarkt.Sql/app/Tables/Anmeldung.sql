@@ -1,4 +1,5 @@
-﻿CREATE TABLE [dbo].[Anmeldung]
+﻿CREATE TABLE [app].[Anmeldung]
 (
-	[Id] INT NOT NULL PRIMARY KEY
+	[AnmeldungId] INT NOT NULL IDENTITY(1,1),
+	CONSTRAINT PK_AnmeldungId PRIMARY KEY ([AnmeldungId])
 )

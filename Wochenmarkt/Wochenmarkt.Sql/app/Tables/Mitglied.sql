@@ -1,4 +1,5 @@
-﻿CREATE TABLE [dbo].[Mitglied]
+﻿CREATE TABLE [app].[Mitglied]
 (
-	[Id] INT NOT NULL PRIMARY KEY
+	[MitgliedId] INT NOT NULL IDENTITY(1,1),
+	CONSTRAINT PK_MitgliedId PRIMARY KEY ([MitgliedId])
 )

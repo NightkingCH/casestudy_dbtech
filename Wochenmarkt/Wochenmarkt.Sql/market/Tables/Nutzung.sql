@@ -1,4 +1,5 @@
-﻿CREATE TABLE [dbo].[Nutzung]
+﻿CREATE TABLE [market].[Nutzung]
 (
-	[Id] INT NOT NULL PRIMARY KEY
+	[NutzungId] INT NOT NULL IDENTITY(1,1),
+	CONSTRAINT PK_NutzungId PRIMARY KEY ([NutzungId])
 )

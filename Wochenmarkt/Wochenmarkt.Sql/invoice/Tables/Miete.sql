@@ -1,4 +1,5 @@
-﻿CREATE TABLE [dbo].[Miete]
+﻿CREATE TABLE [invoice].[Miete]
 (
-	[Id] INT NOT NULL PRIMARY KEY
+	[MieteId] INT NOT NULL IDENTITY(1,1),
+	CONSTRAINT PK_MieteId PRIMARY KEY ([MieteId])
 )

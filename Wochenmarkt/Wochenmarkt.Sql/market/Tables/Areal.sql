@@ -1,4 +1,5 @@
-﻿CREATE TABLE [dbo].[Areal]
+﻿CREATE TABLE [market].[Areal]
 (
-	[Id] INT NOT NULL PRIMARY KEY
+	[ArealId] INT NOT NULL IDENTITY(1,1),
+	CONSTRAINT PK_ArealId PRIMARY KEY ([ArealId])
 )

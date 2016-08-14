@@ -1,4 +1,5 @@
-﻿CREATE TABLE [dbo].[Wochenmarkt]
+﻿CREATE TABLE [market].[Wochenmarkt]
 (
-	[Id] INT NOT NULL PRIMARY KEY
+	[WochenmarktId] INT NOT NULL IDENTITY(1,1),
+	CONSTRAINT PK_WochenmarktId PRIMARY KEY ([WochenmarktId])
 )

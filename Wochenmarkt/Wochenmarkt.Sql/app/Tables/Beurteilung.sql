@@ -1,4 +1,5 @@
-﻿CREATE TABLE [dbo].[Beurteilung]
+﻿CREATE TABLE [app].[Beurteilung]
 (
-	[Id] INT NOT NULL PRIMARY KEY
+	[BeurteilungId] INT NOT NULL IDENTITY(1,1),
+	CONSTRAINT PK_BeurteilungId PRIMARY KEY ([BeurteilungId])
 )
