@@ -77,7 +77,7 @@
     <Build Include="invoice\Tables\Abonnement.sql" />
     <Build Include="app\Tables\Mitglied.sql" />
     <Build Include="app\Tables\Inspektor.sql" />
-    <Build Include="app\Tables\Anbieter.sql" />
+    <Build Include="app\Tables\Standbetreiber.sql" />
     <Build Include="app\Tables\Anmeldung.sql" />
     <Build Include="market\Tables\Areal.sql" />
     <Build Include="app\Tables\Adresse.sql" />
@@ -85,8 +85,8 @@
     <Build Include="market\Tables\Wochenmarkt.sql" />
     <Build Include="app\Tables\Beurteilung.sql" />
     <Build Include="app\Tables\Nachfrager.sql" />
-    <Build Include="market\Tables\Anbieter_Wochenmarkt.sql" />
     <Build Include="app\Tables\Ort.sql" />
+    <Build Include="invoice\Tables\AbonnementTyp.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="PreDeployment\Script.PreDeployment.sql" />
