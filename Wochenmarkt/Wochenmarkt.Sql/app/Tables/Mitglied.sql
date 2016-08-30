@@ -15,5 +15,5 @@
 	[Ablehnungsgrund] NVARCHAR(MAX) NOT NULL DEFAULT(''),
 	CONSTRAINT PK_MitgliedId PRIMARY KEY ([MitgliedId]),
 	CONSTRAINT FK_Mitglied_Mitglied_Adresse FOREIGN KEY ([AdresseId]) REFERENCES [app].[Adresse] ([AdresseId]),
-	CONSTRAINT CK_UniqueUser CHECK (fncCheckIsUniqueMitglied([Vorname], [Nachname], [AdresseId], [Geburtsdatum]) = 1 )
+	CONSTRAINT CK_UniqueUser CHECK ([app].fncCheckIsUniqueMitglied([Vorname], [Nachname], [AdresseId], [Geburtsdatum]) = 1 )
 )
