@@ -73,7 +73,4 @@
   <ItemGroup>
     <PostDeploy Include="PostDeployment\Script.PostDeployment.sql" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Wochenmarkt.Sql.Master.publish.xml" />
-  </ItemGroup>
 </Project>

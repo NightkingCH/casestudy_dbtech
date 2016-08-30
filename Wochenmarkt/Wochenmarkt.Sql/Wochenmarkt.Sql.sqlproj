@@ -111,7 +111,4 @@
       <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Wochenmarkt.Sql.publish.xml" />
-  </ItemGroup>
 </Project>
