@@ -5,7 +5,7 @@
 	[Strasse] NVARCHAR(MAX) NOT NULL,
 	[Hausnummer] INT NOT NULL,
 	[HausnummerZusatz] NVARCHAR(MAX) NULL,
-	[StrasseFull] AS ([Strasse] + ' ' + [Hausnummer] + COALESCE([HausnummerZusatz], '')) PERSISTED
+	[StrasseFull] AS ([Strasse] + ' ' + CAST([Hausnummer] AS NVARCHAR(MAX)) + COALESCE([HausnummerZusatz], '')) PERSISTED
 	CONSTRAINT PK_AdresseId PRIMARY KEY ([AdresseId]),
 	CONSTRAINT FK_Adresse_Adresse_Ort FOREIGN KEY ([OrtId]) REFERENCES [app].[Ort] ([OrtId])
 )
