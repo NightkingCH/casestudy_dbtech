@@ -92,6 +92,18 @@
     <Build Include="invoice\Tables\PlatzMiete.sql" />
     <Build Include="invoice\Tables\Miete.sql" />
     <Build Include="app\Functions\fncCheckIsUniqueMitglied.sql" />
+    <Build Include="app\Views\AnmeldungView.sql" />
+    <Build Include="app\Views\BeurteilungView.sql" />
+    <Build Include="app\Views\InspektorView.sql" />
+    <Build Include="app\Views\MitgliederView.sql" />
+    <Build Include="app\Views\NachfragerView.sql" />
+    <Build Include="app\Views\StandbetreiberView.sql" />
+    <Build Include="invoice\Views\Abonnement_ArealView.sql" />
+    <Build Include="invoice\Views\Abonnement_MieteView.sql" />
+    <Build Include="invoice\Views\AbonnementView.sql" />
+    <Build Include="market\Views\ArealView.sql" />
+    <Build Include="market\Views\NutzungView.sql" />
+    <Build Include="market\Views\WochenmarktView.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="PreDeployment\Script.PreDeployment.sql" />
