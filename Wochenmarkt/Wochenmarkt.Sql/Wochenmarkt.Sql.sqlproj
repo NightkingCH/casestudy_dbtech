@@ -69,6 +69,8 @@
     <Folder Include="market\Views" />
     <Folder Include="PreDeployment" />
     <Folder Include="app\Functions" />
+    <Folder Include="Scripts" />
+    <Folder Include="PostDeployment" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="market\market.sql" />
@@ -104,6 +106,9 @@
     <Build Include="market\Views\ArealView.sql" />
     <Build Include="market\Views\NutzungView.sql" />
     <Build Include="market\Views\WochenmarktView.sql" />
+    <None Include="Scripts\DeleteTables.sql" />
+    <None Include="Scripts\Insert.sql" />
+    <None Include="Scripts\SelectAllTables.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="PreDeployment\Script.PreDeployment.sql" />
@@ -122,5 +127,8 @@
       <Private>True</Private>
       <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostDeployment\Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>

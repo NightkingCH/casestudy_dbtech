@@ -1,5 +1,15 @@
-﻿CREATE VIEW [app].[AnmeldungView] AS Select Anmeldung.AngemeldetAm, m.Name as Mitglied, mBesucher.Name as Besucher, Anmeldung.AnmeldungValid, Anmeldung.StatutenUnterschrieben, Anmeldung.BesuchDurchgefuehrt, Anmeldung.BesuchDurchgefuehrtAm, Anmeldung.BonitaetsPruefungBestanden, Anmeldung.BonitaetsPruefungBestandenAm from app.Anmeldung as Anmeldung
-	inner join app.Mitglied as m
-		on Anmeldung.MitgliedId = m.MitgliedId
-			inner join app.Mitglied as mBesucher
-				on Anmeldung.BesucherMitgliedId = mBesucher.MitgliedId
+﻿CREATE VIEW [app].[AnmeldungView] 
+	AS 
+SELECT 
+	an.AngemeldetAm, 
+	m.Name AS Mitglied, 
+	mBesucher.Name AS Besucher, 
+	an.AnmeldungValid, 
+	an.StatutenUnterschrieben, 
+	an.BesuchDurchgefuehrt, 
+	an.BesuchDurchgefuehrtAm, 
+	an.BonitaetsPruefungBestanden, 
+	an.BonitaetsPruefungBestandenAm 
+FROM app.Anmeldung AS an
+	INNER JOIN app.Mitglied AS m ON an.MitgliedId = m.MitgliedId
+	INNER JOIN app.Mitglied AS mBesucher ON an.BesucherMitgliedId = mBesucher.MitgliedId
