@@ -11,10 +11,10 @@
           </Key>
           <Property Name="AdresseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrtId" Type="int" Nullable="false" />
-          <Property Name="Strasse" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Strasse" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Hausnummer" Type="int" Nullable="false" />
-          <Property Name="HausnummerZusatz" Type="nvarchar(max)" />
-          <Property Name="StrasseFull" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="HausnummerZusatz" Type="nvarchar" MaxLength="4" />
+          <Property Name="StrasseFull" Type="nvarchar(max)" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Anmeldung">
           <Key>
@@ -41,6 +41,7 @@
           <Property Name="BeurteilungAm" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="BeurteilungDurchgefuehrt" Type="bit" Nullable="false" />
           <Property Name="Bestanden" Type="bit" Nullable="false" />
+          <Property Name="BeurteilungsFormularPfad" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Inspektor">
           <Key>
@@ -55,9 +56,12 @@
           </Key>
           <Property Name="MitgliedId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AdresseId" Type="int" Nullable="false" />
-          <Property Name="Vorname" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Nachname" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Passwort" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Vorname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nachname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="101" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="Geburtsdatum" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ProvisorischesMitglied" Type="bit" Nullable="false" />
           <Property Name="ProbezeitVon" Type="datetime2" Precision="7" Nullable="false" />
@@ -77,8 +81,8 @@
             <PropertyRef Name="OrtId" />
           </Key>
           <Property Name="OrtId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Bezeichnung" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="PLZ" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Bezeichnung" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="PLZ" Type="nvarchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="Standbetreiber">
           <Key>
@@ -118,7 +122,7 @@
             <PropertyRef Name="AbonnementTypId" />
           </Key>
           <Property Name="AbonnementTypId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Bezeichnung" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Bezeichnung" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Wert" Type="int" Nullable="false" />
           <Property Name="Dauer" Type="int" Nullable="false" />
         </EntityType>
@@ -166,6 +170,263 @@
           </Key>
           <Property Name="WochenmarktId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AdresseId" Type="int" Nullable="false" />
+          <Property Name="MarktDatumVon" Type="datetime2" Precision="7" />
+          <Property Name="MarktDatumBis" Type="datetime2" Precision="7" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Wochenmarkt.app.AnmeldungView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AnmeldungView">
+          <Key>
+            <PropertyRef Name="AngemeldetAm" />
+            <PropertyRef Name="Mitglied" />
+            <PropertyRef Name="Besucher" />
+            <PropertyRef Name="StatutenUnterschrieben" />
+            <PropertyRef Name="BesuchDurchgefuehrt" />
+            <PropertyRef Name="BesuchDurchgefuehrtAm" />
+            <PropertyRef Name="BonitaetsPruefungBestanden" />
+            <PropertyRef Name="BonitaetsPruefungBestandenAm" />
+          </Key>
+          <Property Name="AngemeldetAm" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Mitglied" Type="nvarchar" MaxLength="101" Nullable="false" />
+          <Property Name="Besucher" Type="nvarchar" MaxLength="101" Nullable="false" />
+          <Property Name="AnmeldungValid" Type="bit" />
+          <Property Name="StatutenUnterschrieben" Type="bit" Nullable="false" />
+          <Property Name="BesuchDurchgefuehrt" Type="bit" Nullable="false" />
+          <Property Name="BesuchDurchgefuehrtAm" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="BonitaetsPruefungBestanden" Type="bit" Nullable="false" />
+          <Property Name="BonitaetsPruefungBestandenAm" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Wochenmarkt.app.BeurteilungView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BeurteilungView">
+          <Key>
+            <PropertyRef Name="BeurteilungAm" />
+            <PropertyRef Name="Name des Standbetreibers" />
+            <PropertyRef Name="Name des Inspektors" />
+            <PropertyRef Name="BeurteilungDurchgefuehrt" />
+            <PropertyRef Name="Bestanden" />
+          </Key>
+          <Property Name="BeurteilungAm" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Name des Standbetreibers" Type="nvarchar" MaxLength="101" Nullable="false" />
+          <Property Name="Name des Inspektors" Type="nvarchar" MaxLength="101" Nullable="false" />
+          <Property Name="BeurteilungDurchgefuehrt" Type="bit" Nullable="false" />
+          <Property Name="Bestanden" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Wochenmarkt.app.InspektorView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="InspektorView">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="PLZ" />
+            <PropertyRef Name="Bezeichnung" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Telefon" />
+            <PropertyRef Name="Geburtsdatum" />
+            <PropertyRef Name="ProvisorischesMitglied" />
+            <PropertyRef Name="ProbezeitVon" />
+            <PropertyRef Name="ProbezeitBis" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="101" Nullable="false" />
+          <Property Name="StrasseFull" Type="nvarchar(max)" />
+          <Property Name="PLZ" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Bezeichnung" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Geburtsdatum" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ProvisorischesMitglied" Type="bit" Nullable="false" />
+          <Property Name="ProbezeitVon" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ProbezeitBis" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Wochenmarkt.app.MitgliederView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MitgliederView">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="PLZ" />
+            <PropertyRef Name="Bezeichnung" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Telefon" />
+            <PropertyRef Name="Geburtsdatum" />
+            <PropertyRef Name="ProvisorischesMitglied" />
+            <PropertyRef Name="ProbezeitVon" />
+            <PropertyRef Name="ProbezeitBis" />
+            <PropertyRef Name="Abgelehnt" />
+            <PropertyRef Name="Ablehnungsgrund" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="101" Nullable="false" />
+          <Property Name="StrasseFull" Type="nvarchar(max)" />
+          <Property Name="PLZ" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Bezeichnung" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Geburtsdatum" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ProvisorischesMitglied" Type="bit" Nullable="false" />
+          <Property Name="ProbezeitVon" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ProbezeitBis" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Abgelehnt" Type="bit" Nullable="false" />
+          <Property Name="Ablehnungsgrund" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Wochenmarkt.app.NachfragerView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="NachfragerView">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="PLZ" />
+            <PropertyRef Name="Bezeichnung" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Telefon" />
+            <PropertyRef Name="Geburtsdatum" />
+            <PropertyRef Name="ProvisorischesMitglied" />
+            <PropertyRef Name="ProbezeitVon" />
+            <PropertyRef Name="ProbezeitBis" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="101" Nullable="false" />
+          <Property Name="StrasseFull" Type="nvarchar(max)" />
+          <Property Name="PLZ" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Bezeichnung" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Geburtsdatum" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ProvisorischesMitglied" Type="bit" Nullable="false" />
+          <Property Name="ProbezeitVon" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ProbezeitBis" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Wochenmarkt.app.StandbetreiberView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="StandbetreiberView">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="PLZ" />
+            <PropertyRef Name="Bezeichnung" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Telefon" />
+            <PropertyRef Name="Geburtsdatum" />
+            <PropertyRef Name="ProvisorischesMitglied" />
+            <PropertyRef Name="ProbezeitVon" />
+            <PropertyRef Name="ProbezeitBis" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="101" Nullable="false" />
+          <Property Name="StrasseFull" Type="nvarchar(max)" />
+          <Property Name="PLZ" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Bezeichnung" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Geburtsdatum" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ProvisorischesMitglied" Type="bit" Nullable="false" />
+          <Property Name="ProbezeitVon" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ProbezeitBis" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Wochenmarkt.invoice.Abonnement_ArealView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Abonnement_ArealView">
+          <Key>
+            <PropertyRef Name="Abo-Typ" />
+            <PropertyRef Name="Wert" />
+            <PropertyRef Name="Dauer" />
+            <PropertyRef Name="GueltigAb" />
+            <PropertyRef Name="GueltigBis" />
+            <PropertyRef Name="PLZ" />
+            <PropertyRef Name="Ort" />
+          </Key>
+          <Property Name="Abo-Typ" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Wert" Type="int" Nullable="false" />
+          <Property Name="Dauer" Type="int" Nullable="false" />
+          <Property Name="GueltigAb" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="GueltigBis" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Strasse" Type="nvarchar(max)" />
+          <Property Name="PLZ" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Ort" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Laenge" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Breite" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Flaeche" Type="decimal" Precision="37" Scale="8" />
+          <Property Name="MietPreis" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Wochenmarkt.invoice.Abonnement_MieteView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Abonnement_MieteView">
+          <Key>
+            <PropertyRef Name="Abo-Typ" />
+            <PropertyRef Name="Abo-Wert" />
+            <PropertyRef Name="Abo-Dauer" />
+            <PropertyRef Name="GueltigAb" />
+            <PropertyRef Name="GueltigBis" />
+            <PropertyRef Name="Standbetreiber" />
+            <PropertyRef Name="Mietbetrag" />
+            <PropertyRef Name="Miete bezahlt" />
+            <PropertyRef Name="Mahnstufe" />
+          </Key>
+          <Property Name="Abo-Typ" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Abo-Wert" Type="int" Nullable="false" />
+          <Property Name="Abo-Dauer" Type="int" Nullable="false" />
+          <Property Name="GueltigAb" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="GueltigBis" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Standbetreiber" Type="nvarchar" MaxLength="101" Nullable="false" />
+          <Property Name="Mietbetrag" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Miete bezahlt" Type="bit" Nullable="false" />
+          <Property Name="Mahnstufe" Type="int" Nullable="false" />
+          <Property Name="GemahntAm" Type="datetime2" Precision="7" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Wochenmarkt.invoice.AbonnementView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AbonnementView">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Abo-Typ" />
+            <PropertyRef Name="Wert" />
+            <PropertyRef Name="Dauer" />
+            <PropertyRef Name="GueltigAb" />
+            <PropertyRef Name="GueltigBis" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="101" Nullable="false" />
+          <Property Name="Abo-Typ" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Wert" Type="int" Nullable="false" />
+          <Property Name="Dauer" Type="int" Nullable="false" />
+          <Property Name="GueltigAb" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="GueltigBis" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Wochenmarkt.market.ArealView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ArealView">
+          <Key>
+            <PropertyRef Name="PLZ" />
+            <PropertyRef Name="Ort" />
+          </Key>
+          <Property Name="Strasse" Type="nvarchar(max)" />
+          <Property Name="PLZ" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Ort" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Laenge" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Breite" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Flaeche" Type="decimal" Precision="37" Scale="8" />
+          <Property Name="MietPreis" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Wochenmarkt.market.NutzungView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="NutzungView">
+          <Key>
+            <PropertyRef Name="Areal PLZ" />
+            <PropertyRef Name="Areal Ort" />
+            <PropertyRef Name="Wpchenmarktl PLZ" />
+            <PropertyRef Name="Wochenmarkt Ort" />
+            <PropertyRef Name="Standbetreiber" />
+          </Key>
+          <Property Name="Areal Stasse" Type="nvarchar(max)" />
+          <Property Name="Areal PLZ" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Areal Ort" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Wochenmarkt Strasse" Type="nvarchar(max)" />
+          <Property Name="Wpchenmarktl PLZ" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Wochenmarkt Ort" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Standbetreiber" Type="nvarchar" MaxLength="101" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Wochenmarkt.market.WochenmarktView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="WochenmarktView">
+          <Key>
+            <PropertyRef Name="PLZ" />
+            <PropertyRef Name="Ort" />
+          </Key>
+          <Property Name="Strasse" Type="nvarchar(max)" />
+          <Property Name="PLZ" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Ort" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="MarktDatumVon" Type="datetime2" Precision="7" />
           <Property Name="MarktDatumBis" Type="datetime2" Precision="7" />
         </EntityType>
@@ -451,6 +712,157 @@
           <EntitySet Name="Areal" EntityType="Self.Areal" Schema="market" store:Type="Tables" />
           <EntitySet Name="Nutzung" EntityType="Self.Nutzung" Schema="market" store:Type="Tables" />
           <EntitySet Name="Wochenmarkt" EntityType="Self.Wochenmarkt" Schema="market" store:Type="Tables" />
+          <EntitySet Name="AnmeldungView" EntityType="Self.AnmeldungView" store:Type="Views" store:Schema="app">
+            <DefiningQuery>SELECT 
+    [AnmeldungView].[AngemeldetAm] AS [AngemeldetAm], 
+    [AnmeldungView].[Mitglied] AS [Mitglied], 
+    [AnmeldungView].[Besucher] AS [Besucher], 
+    [AnmeldungView].[AnmeldungValid] AS [AnmeldungValid], 
+    [AnmeldungView].[StatutenUnterschrieben] AS [StatutenUnterschrieben], 
+    [AnmeldungView].[BesuchDurchgefuehrt] AS [BesuchDurchgefuehrt], 
+    [AnmeldungView].[BesuchDurchgefuehrtAm] AS [BesuchDurchgefuehrtAm], 
+    [AnmeldungView].[BonitaetsPruefungBestanden] AS [BonitaetsPruefungBestanden], 
+    [AnmeldungView].[BonitaetsPruefungBestandenAm] AS [BonitaetsPruefungBestandenAm]
+    FROM [app].[AnmeldungView] AS [AnmeldungView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="BeurteilungView" EntityType="Self.BeurteilungView" store:Type="Views" store:Schema="app">
+            <DefiningQuery>SELECT 
+    [BeurteilungView].[BeurteilungAm] AS [BeurteilungAm], 
+    [BeurteilungView].[Name des Standbetreibers] AS [Name des Standbetreibers], 
+    [BeurteilungView].[Name des Inspektors] AS [Name des Inspektors], 
+    [BeurteilungView].[BeurteilungDurchgefuehrt] AS [BeurteilungDurchgefuehrt], 
+    [BeurteilungView].[Bestanden] AS [Bestanden]
+    FROM [app].[BeurteilungView] AS [BeurteilungView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="InspektorView" EntityType="Self.InspektorView" store:Type="Views" store:Schema="app">
+            <DefiningQuery>SELECT 
+    [InspektorView].[Name] AS [Name], 
+    [InspektorView].[StrasseFull] AS [StrasseFull], 
+    [InspektorView].[PLZ] AS [PLZ], 
+    [InspektorView].[Bezeichnung] AS [Bezeichnung], 
+    [InspektorView].[Email] AS [Email], 
+    [InspektorView].[Telefon] AS [Telefon], 
+    [InspektorView].[Geburtsdatum] AS [Geburtsdatum], 
+    [InspektorView].[ProvisorischesMitglied] AS [ProvisorischesMitglied], 
+    [InspektorView].[ProbezeitVon] AS [ProbezeitVon], 
+    [InspektorView].[ProbezeitBis] AS [ProbezeitBis]
+    FROM [app].[InspektorView] AS [InspektorView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MitgliederView" EntityType="Self.MitgliederView" store:Type="Views" store:Schema="app">
+            <DefiningQuery>SELECT 
+    [MitgliederView].[Name] AS [Name], 
+    [MitgliederView].[StrasseFull] AS [StrasseFull], 
+    [MitgliederView].[PLZ] AS [PLZ], 
+    [MitgliederView].[Bezeichnung] AS [Bezeichnung], 
+    [MitgliederView].[Email] AS [Email], 
+    [MitgliederView].[Telefon] AS [Telefon], 
+    [MitgliederView].[Geburtsdatum] AS [Geburtsdatum], 
+    [MitgliederView].[ProvisorischesMitglied] AS [ProvisorischesMitglied], 
+    [MitgliederView].[ProbezeitVon] AS [ProbezeitVon], 
+    [MitgliederView].[ProbezeitBis] AS [ProbezeitBis], 
+    [MitgliederView].[Abgelehnt] AS [Abgelehnt], 
+    [MitgliederView].[Ablehnungsgrund] AS [Ablehnungsgrund]
+    FROM [app].[MitgliederView] AS [MitgliederView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="NachfragerView" EntityType="Self.NachfragerView" store:Type="Views" store:Schema="app">
+            <DefiningQuery>SELECT 
+    [NachfragerView].[Name] AS [Name], 
+    [NachfragerView].[StrasseFull] AS [StrasseFull], 
+    [NachfragerView].[PLZ] AS [PLZ], 
+    [NachfragerView].[Bezeichnung] AS [Bezeichnung], 
+    [NachfragerView].[Email] AS [Email], 
+    [NachfragerView].[Telefon] AS [Telefon], 
+    [NachfragerView].[Geburtsdatum] AS [Geburtsdatum], 
+    [NachfragerView].[ProvisorischesMitglied] AS [ProvisorischesMitglied], 
+    [NachfragerView].[ProbezeitVon] AS [ProbezeitVon], 
+    [NachfragerView].[ProbezeitBis] AS [ProbezeitBis]
+    FROM [app].[NachfragerView] AS [NachfragerView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="StandbetreiberView" EntityType="Self.StandbetreiberView" store:Type="Views" store:Schema="app">
+            <DefiningQuery>SELECT 
+    [StandbetreiberView].[Name] AS [Name], 
+    [StandbetreiberView].[StrasseFull] AS [StrasseFull], 
+    [StandbetreiberView].[PLZ] AS [PLZ], 
+    [StandbetreiberView].[Bezeichnung] AS [Bezeichnung], 
+    [StandbetreiberView].[Email] AS [Email], 
+    [StandbetreiberView].[Telefon] AS [Telefon], 
+    [StandbetreiberView].[Geburtsdatum] AS [Geburtsdatum], 
+    [StandbetreiberView].[ProvisorischesMitglied] AS [ProvisorischesMitglied], 
+    [StandbetreiberView].[ProbezeitVon] AS [ProbezeitVon], 
+    [StandbetreiberView].[ProbezeitBis] AS [ProbezeitBis]
+    FROM [app].[StandbetreiberView] AS [StandbetreiberView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Abonnement_ArealView" EntityType="Self.Abonnement_ArealView" store:Type="Views" store:Schema="invoice">
+            <DefiningQuery>SELECT 
+    [Abonnement_ArealView].[Abo-Typ] AS [Abo-Typ], 
+    [Abonnement_ArealView].[Wert] AS [Wert], 
+    [Abonnement_ArealView].[Dauer] AS [Dauer], 
+    [Abonnement_ArealView].[GueltigAb] AS [GueltigAb], 
+    [Abonnement_ArealView].[GueltigBis] AS [GueltigBis], 
+    [Abonnement_ArealView].[Strasse] AS [Strasse], 
+    [Abonnement_ArealView].[PLZ] AS [PLZ], 
+    [Abonnement_ArealView].[Ort] AS [Ort], 
+    [Abonnement_ArealView].[Laenge] AS [Laenge], 
+    [Abonnement_ArealView].[Breite] AS [Breite], 
+    [Abonnement_ArealView].[Flaeche] AS [Flaeche], 
+    [Abonnement_ArealView].[MietPreis] AS [MietPreis]
+    FROM [invoice].[Abonnement_ArealView] AS [Abonnement_ArealView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Abonnement_MieteView" EntityType="Self.Abonnement_MieteView" store:Type="Views" store:Schema="invoice">
+            <DefiningQuery>SELECT 
+    [Abonnement_MieteView].[Abo-Typ] AS [Abo-Typ], 
+    [Abonnement_MieteView].[Abo-Wert] AS [Abo-Wert], 
+    [Abonnement_MieteView].[Abo-Dauer] AS [Abo-Dauer], 
+    [Abonnement_MieteView].[GueltigAb] AS [GueltigAb], 
+    [Abonnement_MieteView].[GueltigBis] AS [GueltigBis], 
+    [Abonnement_MieteView].[Standbetreiber] AS [Standbetreiber], 
+    [Abonnement_MieteView].[Mietbetrag] AS [Mietbetrag], 
+    [Abonnement_MieteView].[Miete bezahlt] AS [Miete bezahlt], 
+    [Abonnement_MieteView].[Mahnstufe] AS [Mahnstufe], 
+    [Abonnement_MieteView].[GemahntAm] AS [GemahntAm]
+    FROM [invoice].[Abonnement_MieteView] AS [Abonnement_MieteView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="AbonnementView" EntityType="Self.AbonnementView" store:Type="Views" store:Schema="invoice">
+            <DefiningQuery>SELECT 
+    [AbonnementView].[Name] AS [Name], 
+    [AbonnementView].[Abo-Typ] AS [Abo-Typ], 
+    [AbonnementView].[Wert] AS [Wert], 
+    [AbonnementView].[Dauer] AS [Dauer], 
+    [AbonnementView].[GueltigAb] AS [GueltigAb], 
+    [AbonnementView].[GueltigBis] AS [GueltigBis]
+    FROM [invoice].[AbonnementView] AS [AbonnementView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ArealView" EntityType="Self.ArealView" store:Type="Views" store:Schema="market">
+            <DefiningQuery>SELECT 
+    [ArealView].[Strasse] AS [Strasse], 
+    [ArealView].[PLZ] AS [PLZ], 
+    [ArealView].[Ort] AS [Ort], 
+    [ArealView].[Laenge] AS [Laenge], 
+    [ArealView].[Breite] AS [Breite], 
+    [ArealView].[Flaeche] AS [Flaeche], 
+    [ArealView].[MietPreis] AS [MietPreis]
+    FROM [market].[ArealView] AS [ArealView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="NutzungView" EntityType="Self.NutzungView" store:Type="Views" store:Schema="market">
+            <DefiningQuery>SELECT 
+    [NutzungView].[Areal Stasse] AS [Areal Stasse], 
+    [NutzungView].[Areal PLZ] AS [Areal PLZ], 
+    [NutzungView].[Areal Ort] AS [Areal Ort], 
+    [NutzungView].[Wochenmarkt Strasse] AS [Wochenmarkt Strasse], 
+    [NutzungView].[Wpchenmarktl PLZ] AS [Wpchenmarktl PLZ], 
+    [NutzungView].[Wochenmarkt Ort] AS [Wochenmarkt Ort], 
+    [NutzungView].[Standbetreiber] AS [Standbetreiber]
+    FROM [market].[NutzungView] AS [NutzungView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="WochenmarktView" EntityType="Self.WochenmarktView" store:Type="Views" store:Schema="market">
+            <DefiningQuery>SELECT 
+    [WochenmarktView].[Strasse] AS [Strasse], 
+    [WochenmarktView].[PLZ] AS [PLZ], 
+    [WochenmarktView].[Ort] AS [Ort], 
+    [WochenmarktView].[MarktDatumVon] AS [MarktDatumVon], 
+    [WochenmarktView].[MarktDatumBis] AS [MarktDatumBis]
+    FROM [market].[WochenmarktView] AS [WochenmarktView]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Abonnement_Abonnement_AbonnementTyp" Association="Self.FK_Abonnement_Abonnement_AbonnementTyp">
             <End Role="AbonnementTyp" EntitySet="AbonnementTyp" />
             <End Role="Abonnement" EntitySet="Abonnement" />
@@ -550,27 +962,14 @@
           </Key>
           <Property Name="AdresseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrtId" Type="Int32" Nullable="false" />
-          <Property Name="Strasse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Strasse" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Hausnummer" Type="Int32" Nullable="false" />
-          <Property Name="HausnummerZusatz" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HausnummerZusatz" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
           <Property Name="StrasseFull" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Ort" Relationship="Self.FK_Adresse_Adresse_Ort" FromRole="Adresse" ToRole="Ort" />
           <NavigationProperty Name="Areal" Relationship="Self.FK_Areal_Areal_Adresse" FromRole="Adresse" ToRole="Areal" />
           <NavigationProperty Name="Mitglied" Relationship="Self.FK_Mitglied_Mitglied_Adresse" FromRole="Adresse" ToRole="Mitglied" />
           <NavigationProperty Name="Wochenmarkt" Relationship="Self.FK_Wochenmarkt_Wochenmarkt_Adresse" FromRole="Adresse" ToRole="Wochenmarkt" />
-        </EntityType>
-        <EntityType Name="Beurteilung">
-          <Key>
-            <PropertyRef Name="BeurteilungId" />
-          </Key>
-          <Property Name="BeurteilungId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StandbetreiberId" Type="Int32" Nullable="false" />
-          <Property Name="InspektorId" Type="Int32" Nullable="false" />
-          <Property Name="BeurteilungAm" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="BeurteilungDurchgefuehrt" Type="Boolean" Nullable="false" />
-          <Property Name="Bestanden" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Inspektor" Relationship="Self.FK_Beurteilung_Beurteilung_Inspektor" FromRole="Beurteilung" ToRole="Inspektor" />
-          <NavigationProperty Name="Standbetreiber" Relationship="Self.FK_Beurteilung_Beurteilung_Standbetreiber" FromRole="Beurteilung" ToRole="Standbetreiber" />
         </EntityType>
         <EntityType Name="Inspektor">
           <Key>
@@ -578,8 +977,8 @@
           </Key>
           <Property Name="InspektorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MitgliedId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Beurteilung" Relationship="Self.FK_Beurteilung_Beurteilung_Inspektor" FromRole="Inspektor" ToRole="Beurteilung" />
           <NavigationProperty Name="Mitglied" Relationship="Self.FK_Inspektor_Inspektor_Mitglied" FromRole="Inspektor" ToRole="Mitglied" />
+          <NavigationProperty Name="Beurteilung" Relationship="WochenmarktModel.FK_Beurteilung_Beurteilung_Inspektor" FromRole="Inspektor" ToRole="Beurteilung" />
         </EntityType>
         <EntityType Name="Mitglied">
           <Key>
@@ -587,9 +986,9 @@
           </Key>
           <Property Name="MitgliedId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AdresseId" Type="Int32" Nullable="false" />
-          <Property Name="Vorname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Nachname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Vorname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nachname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="101" FixedLength="false" Unicode="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="Geburtsdatum" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="ProvisorischesMitglied" Type="Boolean" Nullable="false" />
           <Property Name="ProbezeitVon" Type="DateTime" Nullable="false" Precision="7" />
@@ -602,6 +1001,9 @@
           <NavigationProperty Name="Standbetreiber" Relationship="Self.FK_Standbetreiber_Standbetreiber_Mitglied" FromRole="Mitglied" ToRole="Standbetreiber" />
           <NavigationProperty Name="Anmeldung" Relationship="WochenmarktModel.FK_Anmeldung_Anmeldung_Besucher" FromRole="Mitglied" ToRole="Anmeldung" />
           <NavigationProperty Name="Anmeldung1" Relationship="WochenmarktModel.FK_Anmeldung_Anmeldung_Mitglied" FromRole="Mitglied" ToRole="Anmeldung" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Passwort" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           </EntityType>
         <EntityType Name="Nachfrager">
           <Key>
@@ -616,8 +1018,8 @@
             <PropertyRef Name="OrtId" />
           </Key>
           <Property Name="OrtId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Bezeichnung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PLZ" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Bezeichnung" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PLZ" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Adresse" Relationship="Self.FK_Adresse_Adresse_Ort" FromRole="Ort" ToRole="Adresse" />
         </EntityType>
         <EntityType Name="Standbetreiber">
@@ -626,10 +1028,10 @@
           </Key>
           <Property Name="StandbetreiberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MitgliedId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Beurteilung" Relationship="Self.FK_Beurteilung_Beurteilung_Standbetreiber" FromRole="Standbetreiber" ToRole="Beurteilung" />
           <NavigationProperty Name="Mitglied" Relationship="Self.FK_Standbetreiber_Standbetreiber_Mitglied" FromRole="Standbetreiber" ToRole="Mitglied" />
           <NavigationProperty Name="Abonnement" Relationship="Self.FK_Abonnement_Abonnement_Standbetreiber" FromRole="Standbetreiber" ToRole="Abonnement" />
           <NavigationProperty Name="Nutzung" Relationship="Self.FK_Nutzung_Nutzung_Standbetreiber" FromRole="Standbetreiber" ToRole="Nutzung" />
+          <NavigationProperty Name="Beurteilung" Relationship="WochenmarktModel.FK_Beurteilung_Beurteilung_Standbetreiber" FromRole="Standbetreiber" ToRole="Beurteilung" />
         </EntityType>
         <EntityType Name="Abonnement">
           <Key>
@@ -670,7 +1072,7 @@
             <PropertyRef Name="AbonnementTypId" />
           </Key>
           <Property Name="AbonnementTypId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Bezeichnung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Bezeichnung" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Wert" Type="Int32" Nullable="false" />
           <Property Name="Dauer" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Abonnement" Relationship="Self.FK_Abonnement_Abonnement_AbonnementTyp" FromRole="AbonnementTyp" ToRole="Abonnement" />
@@ -780,30 +1182,6 @@
             </Principal>
             <Dependent Role="Wochenmarkt">
               <PropertyRef Name="AdresseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Beurteilung_Beurteilung_Inspektor">
-          <End Role="Inspektor" Type="Self.Inspektor" Multiplicity="1" />
-          <End Role="Beurteilung" Type="Self.Beurteilung" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Inspektor">
-              <PropertyRef Name="InspektorId" />
-            </Principal>
-            <Dependent Role="Beurteilung">
-              <PropertyRef Name="InspektorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Beurteilung_Beurteilung_Standbetreiber">
-          <End Role="Standbetreiber" Type="Self.Standbetreiber" Multiplicity="1" />
-          <End Role="Beurteilung" Type="Self.Beurteilung" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Standbetreiber">
-              <PropertyRef Name="StandbetreiberId" />
-            </Principal>
-            <Dependent Role="Beurteilung">
-              <PropertyRef Name="StandbetreiberId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -977,7 +1355,6 @@
         </Association>
         <EntityContainer Name="WochenmarktEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Adresse" EntityType="Self.Adresse" />
-          <EntitySet Name="Beurteilung" EntityType="Self.Beurteilung" />
           <EntitySet Name="Inspektor" EntityType="Self.Inspektor" />
           <EntitySet Name="Mitglied" EntityType="Self.Mitglied" />
           <EntitySet Name="Nachfrager" EntityType="Self.Nachfrager" />
@@ -1007,14 +1384,6 @@
           <AssociationSet Name="FK_Wochenmarkt_Wochenmarkt_Adresse" Association="Self.FK_Wochenmarkt_Wochenmarkt_Adresse">
             <End Role="Adresse" EntitySet="Adresse" />
             <End Role="Wochenmarkt" EntitySet="Wochenmarkt" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Beurteilung_Beurteilung_Inspektor" Association="Self.FK_Beurteilung_Beurteilung_Inspektor">
-            <End Role="Inspektor" EntitySet="Inspektor" />
-            <End Role="Beurteilung" EntitySet="Beurteilung" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Beurteilung_Beurteilung_Standbetreiber" Association="Self.FK_Beurteilung_Beurteilung_Standbetreiber">
-            <End Role="Standbetreiber" EntitySet="Standbetreiber" />
-            <End Role="Beurteilung" EntitySet="Beurteilung" />
           </AssociationSet>
           <AssociationSet Name="FK_Inspektor_Inspektor_Mitglied" Association="Self.FK_Inspektor_Inspektor_Mitglied">
             <End Role="Mitglied" EntitySet="Mitglied" />
@@ -1081,6 +1450,27 @@
             <End Role="Mitglied" EntitySet="Mitglied" />
             <End Role="Anmeldung" EntitySet="Anmeldung" />
           </AssociationSet>
+          <EntitySet Name="AnmeldungView" EntityType="WochenmarktModel.AnmeldungView" />
+          <EntitySet Name="BeurteilungView" EntityType="WochenmarktModel.BeurteilungView" />
+          <EntitySet Name="InspektorView" EntityType="WochenmarktModel.InspektorView" />
+          <EntitySet Name="MitgliederView" EntityType="WochenmarktModel.MitgliederView" />
+          <EntitySet Name="NachfragerView" EntityType="WochenmarktModel.NachfragerView" />
+          <EntitySet Name="StandbetreiberView" EntityType="WochenmarktModel.StandbetreiberView" />
+          <EntitySet Name="Abonnement_ArealView" EntityType="WochenmarktModel.Abonnement_ArealView" />
+          <EntitySet Name="Abonnement_MieteView" EntityType="WochenmarktModel.Abonnement_MieteView" />
+          <EntitySet Name="AbonnementView" EntityType="WochenmarktModel.AbonnementView" />
+          <EntitySet Name="ArealView" EntityType="WochenmarktModel.ArealView" />
+          <EntitySet Name="NutzungView" EntityType="WochenmarktModel.NutzungView" />
+          <EntitySet Name="WochenmarktView" EntityType="WochenmarktModel.WochenmarktView" />
+          <EntitySet Name="Beurteilung" EntityType="WochenmarktModel.Beurteilung" />
+          <AssociationSet Name="FK_Beurteilung_Beurteilung_Inspektor" Association="WochenmarktModel.FK_Beurteilung_Beurteilung_Inspektor">
+            <End Role="Inspektor" EntitySet="Inspektor" />
+            <End Role="Beurteilung" EntitySet="Beurteilung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Beurteilung_Beurteilung_Standbetreiber" Association="WochenmarktModel.FK_Beurteilung_Beurteilung_Standbetreiber">
+            <End Role="Standbetreiber" EntitySet="Standbetreiber" />
+            <End Role="Beurteilung" EntitySet="Beurteilung" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Anmeldung">
           <Key>
@@ -1123,6 +1513,277 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AnmeldungView">
+          <Key>
+            <PropertyRef Name="AngemeldetAm" />
+            <PropertyRef Name="Mitglied" />
+            <PropertyRef Name="Besucher" />
+            <PropertyRef Name="StatutenUnterschrieben" />
+            <PropertyRef Name="BesuchDurchgefuehrt" />
+            <PropertyRef Name="BesuchDurchgefuehrtAm" />
+            <PropertyRef Name="BonitaetsPruefungBestanden" />
+            <PropertyRef Name="BonitaetsPruefungBestandenAm" />
+          </Key>
+          <Property Name="AngemeldetAm" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Mitglied" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="Besucher" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="AnmeldungValid" Type="Boolean" />
+          <Property Name="StatutenUnterschrieben" Type="Boolean" Nullable="false" />
+          <Property Name="BesuchDurchgefuehrt" Type="Boolean" Nullable="false" />
+          <Property Name="BesuchDurchgefuehrtAm" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="BonitaetsPruefungBestanden" Type="Boolean" Nullable="false" />
+          <Property Name="BonitaetsPruefungBestandenAm" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="BeurteilungView">
+          <Key>
+            <PropertyRef Name="BeurteilungAm" />
+            <PropertyRef Name="Name_des_Standbetreibers" />
+            <PropertyRef Name="Name_des_Inspektors" />
+            <PropertyRef Name="BeurteilungDurchgefuehrt" />
+            <PropertyRef Name="Bestanden" />
+          </Key>
+          <Property Name="BeurteilungAm" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Name_des_Standbetreibers" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="Name_des_Inspektors" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="BeurteilungDurchgefuehrt" Type="Boolean" Nullable="false" />
+          <Property Name="Bestanden" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InspektorView">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="PLZ" />
+            <PropertyRef Name="Bezeichnung" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Telefon" />
+            <PropertyRef Name="Geburtsdatum" />
+            <PropertyRef Name="ProvisorischesMitglied" />
+            <PropertyRef Name="ProbezeitVon" />
+            <PropertyRef Name="ProbezeitBis" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="StrasseFull" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PLZ" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Geburtsdatum" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ProvisorischesMitglied" Type="Boolean" Nullable="false" />
+          <Property Name="ProbezeitVon" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ProbezeitBis" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="MitgliederView">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="PLZ" />
+            <PropertyRef Name="Bezeichnung" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Telefon" />
+            <PropertyRef Name="Geburtsdatum" />
+            <PropertyRef Name="ProvisorischesMitglied" />
+            <PropertyRef Name="ProbezeitVon" />
+            <PropertyRef Name="ProbezeitBis" />
+            <PropertyRef Name="Abgelehnt" />
+            <PropertyRef Name="Ablehnungsgrund" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="StrasseFull" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PLZ" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Geburtsdatum" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ProvisorischesMitglied" Type="Boolean" Nullable="false" />
+          <Property Name="ProbezeitVon" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ProbezeitBis" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Abgelehnt" Type="Boolean" Nullable="false" />
+          <Property Name="Ablehnungsgrund" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NachfragerView">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="PLZ" />
+            <PropertyRef Name="Bezeichnung" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Telefon" />
+            <PropertyRef Name="Geburtsdatum" />
+            <PropertyRef Name="ProvisorischesMitglied" />
+            <PropertyRef Name="ProbezeitVon" />
+            <PropertyRef Name="ProbezeitBis" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="StrasseFull" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PLZ" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Geburtsdatum" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ProvisorischesMitglied" Type="Boolean" Nullable="false" />
+          <Property Name="ProbezeitVon" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ProbezeitBis" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="StandbetreiberView">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="PLZ" />
+            <PropertyRef Name="Bezeichnung" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Telefon" />
+            <PropertyRef Name="Geburtsdatum" />
+            <PropertyRef Name="ProvisorischesMitglied" />
+            <PropertyRef Name="ProbezeitVon" />
+            <PropertyRef Name="ProbezeitBis" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="StrasseFull" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PLZ" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Geburtsdatum" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ProvisorischesMitglied" Type="Boolean" Nullable="false" />
+          <Property Name="ProbezeitVon" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ProbezeitBis" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="Abonnement_ArealView">
+          <Key>
+            <PropertyRef Name="Abo_Typ" />
+            <PropertyRef Name="Wert" />
+            <PropertyRef Name="Dauer" />
+            <PropertyRef Name="GueltigAb" />
+            <PropertyRef Name="GueltigBis" />
+            <PropertyRef Name="PLZ" />
+            <PropertyRef Name="Ort" />
+          </Key>
+          <Property Name="Abo_Typ" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Wert" Type="Int32" Nullable="false" />
+          <Property Name="Dauer" Type="Int32" Nullable="false" />
+          <Property Name="GueltigAb" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="GueltigBis" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Strasse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PLZ" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Ort" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Laenge" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Breite" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Flaeche" Type="Decimal" Precision="37" Scale="8" />
+          <Property Name="MietPreis" Type="Decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="Abonnement_MieteView">
+          <Key>
+            <PropertyRef Name="Abo_Typ" />
+            <PropertyRef Name="Abo_Wert" />
+            <PropertyRef Name="Abo_Dauer" />
+            <PropertyRef Name="GueltigAb" />
+            <PropertyRef Name="GueltigBis" />
+            <PropertyRef Name="Standbetreiber" />
+            <PropertyRef Name="Mietbetrag" />
+            <PropertyRef Name="Miete_bezahlt" />
+            <PropertyRef Name="Mahnstufe" />
+          </Key>
+          <Property Name="Abo_Typ" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Abo_Wert" Type="Int32" Nullable="false" />
+          <Property Name="Abo_Dauer" Type="Int32" Nullable="false" />
+          <Property Name="GueltigAb" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="GueltigBis" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Standbetreiber" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="Mietbetrag" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="Miete_bezahlt" Type="Boolean" Nullable="false" />
+          <Property Name="Mahnstufe" Type="Int32" Nullable="false" />
+          <Property Name="GemahntAm" Type="DateTime" Precision="7" />
+        </EntityType>
+        <EntityType Name="AbonnementView">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Abo_Typ" />
+            <PropertyRef Name="Wert" />
+            <PropertyRef Name="Dauer" />
+            <PropertyRef Name="GueltigAb" />
+            <PropertyRef Name="GueltigBis" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="Abo_Typ" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Wert" Type="Int32" Nullable="false" />
+          <Property Name="Dauer" Type="Int32" Nullable="false" />
+          <Property Name="GueltigAb" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="GueltigBis" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="ArealView">
+          <Key>
+            <PropertyRef Name="PLZ" />
+            <PropertyRef Name="Ort" />
+          </Key>
+          <Property Name="Strasse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PLZ" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Ort" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Laenge" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Breite" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Flaeche" Type="Decimal" Precision="37" Scale="8" />
+          <Property Name="MietPreis" Type="Decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="NutzungView">
+          <Key>
+            <PropertyRef Name="Areal_PLZ" />
+            <PropertyRef Name="Areal_Ort" />
+            <PropertyRef Name="Wpchenmarktl_PLZ" />
+            <PropertyRef Name="Wochenmarkt_Ort" />
+            <PropertyRef Name="Standbetreiber" />
+          </Key>
+          <Property Name="Areal_Stasse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Areal_PLZ" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Areal_Ort" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Wochenmarkt_Strasse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Wpchenmarktl_PLZ" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Wochenmarkt_Ort" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Standbetreiber" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WochenmarktView">
+          <Key>
+            <PropertyRef Name="PLZ" />
+            <PropertyRef Name="Ort" />
+          </Key>
+          <Property Name="Strasse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PLZ" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Ort" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MarktDatumVon" Type="DateTime" Precision="7" />
+          <Property Name="MarktDatumBis" Type="DateTime" Precision="7" />
+        </EntityType>
+        <EntityType Name="Beurteilung">
+          <Key>
+            <PropertyRef Name="BeurteilungId" />
+          </Key>
+          <Property Name="BeurteilungId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StandbetreiberId" Type="Int32" Nullable="false" />
+          <Property Name="InspektorId" Type="Int32" Nullable="false" />
+          <Property Name="BeurteilungAm" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="BeurteilungDurchgefuehrt" Type="Boolean" Nullable="false" />
+          <Property Name="Bestanden" Type="Boolean" Nullable="false" />
+          <Property Name="BeurteilungsFormularPfad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Inspektor" Relationship="WochenmarktModel.FK_Beurteilung_Beurteilung_Inspektor" FromRole="Beurteilung" ToRole="Inspektor" />
+          <NavigationProperty Name="Standbetreiber" Relationship="WochenmarktModel.FK_Beurteilung_Beurteilung_Standbetreiber" FromRole="Beurteilung" ToRole="Standbetreiber" />
+        </EntityType>
+        <Association Name="FK_Beurteilung_Beurteilung_Inspektor">
+          <End Type="WochenmarktModel.Inspektor" Role="Inspektor" Multiplicity="1" />
+          <End Type="WochenmarktModel.Beurteilung" Role="Beurteilung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inspektor">
+              <PropertyRef Name="InspektorId" />
+            </Principal>
+            <Dependent Role="Beurteilung">
+              <PropertyRef Name="InspektorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Beurteilung_Beurteilung_Standbetreiber">
+          <End Type="WochenmarktModel.Standbetreiber" Role="Standbetreiber" Multiplicity="1" />
+          <End Type="WochenmarktModel.Beurteilung" Role="Beurteilung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Standbetreiber">
+              <PropertyRef Name="StandbetreiberId" />
+            </Principal>
+            <Dependent Role="Beurteilung">
+              <PropertyRef Name="StandbetreiberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1141,18 +1802,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Beurteilung">
-            <EntityTypeMapping TypeName="WochenmarktModel.Beurteilung">
-              <MappingFragment StoreEntitySet="Beurteilung">
-                <ScalarProperty Name="BeurteilungId" ColumnName="BeurteilungId" />
-                <ScalarProperty Name="StandbetreiberId" ColumnName="StandbetreiberId" />
-                <ScalarProperty Name="InspektorId" ColumnName="InspektorId" />
-                <ScalarProperty Name="BeurteilungAm" ColumnName="BeurteilungAm" />
-                <ScalarProperty Name="BeurteilungDurchgefuehrt" ColumnName="BeurteilungDurchgefuehrt" />
-                <ScalarProperty Name="Bestanden" ColumnName="Bestanden" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Inspektor">
             <EntityTypeMapping TypeName="WochenmarktModel.Inspektor">
               <MappingFragment StoreEntitySet="Inspektor">
@@ -1164,6 +1813,9 @@
           <EntitySetMapping Name="Mitglied">
             <EntityTypeMapping TypeName="WochenmarktModel.Mitglied">
               <MappingFragment StoreEntitySet="Mitglied">
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Passwort" ColumnName="Passwort" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="MitgliedId" ColumnName="MitgliedId" />
                 <ScalarProperty Name="AdresseId" ColumnName="AdresseId" />
                 <ScalarProperty Name="Vorname" ColumnName="Vorname" />
@@ -1307,6 +1959,194 @@
                 <ScalarProperty Name="BesucherMitgliedId" ColumnName="BesucherMitgliedId" />
                 <ScalarProperty Name="MitgliedId" ColumnName="MitgliedId" />
                 <ScalarProperty Name="AnmeldungId" ColumnName="AnmeldungId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnmeldungView">
+            <EntityTypeMapping TypeName="WochenmarktModel.AnmeldungView">
+              <MappingFragment StoreEntitySet="AnmeldungView">
+                <ScalarProperty Name="BonitaetsPruefungBestandenAm" ColumnName="BonitaetsPruefungBestandenAm" />
+                <ScalarProperty Name="BonitaetsPruefungBestanden" ColumnName="BonitaetsPruefungBestanden" />
+                <ScalarProperty Name="BesuchDurchgefuehrtAm" ColumnName="BesuchDurchgefuehrtAm" />
+                <ScalarProperty Name="BesuchDurchgefuehrt" ColumnName="BesuchDurchgefuehrt" />
+                <ScalarProperty Name="StatutenUnterschrieben" ColumnName="StatutenUnterschrieben" />
+                <ScalarProperty Name="AnmeldungValid" ColumnName="AnmeldungValid" />
+                <ScalarProperty Name="Besucher" ColumnName="Besucher" />
+                <ScalarProperty Name="Mitglied" ColumnName="Mitglied" />
+                <ScalarProperty Name="AngemeldetAm" ColumnName="AngemeldetAm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BeurteilungView">
+            <EntityTypeMapping TypeName="WochenmarktModel.BeurteilungView">
+              <MappingFragment StoreEntitySet="BeurteilungView">
+                <ScalarProperty Name="Bestanden" ColumnName="Bestanden" />
+                <ScalarProperty Name="BeurteilungDurchgefuehrt" ColumnName="BeurteilungDurchgefuehrt" />
+                <ScalarProperty Name="Name_des_Inspektors" ColumnName="Name des Inspektors" />
+                <ScalarProperty Name="Name_des_Standbetreibers" ColumnName="Name des Standbetreibers" />
+                <ScalarProperty Name="BeurteilungAm" ColumnName="BeurteilungAm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InspektorView">
+            <EntityTypeMapping TypeName="WochenmarktModel.InspektorView">
+              <MappingFragment StoreEntitySet="InspektorView">
+                <ScalarProperty Name="ProbezeitBis" ColumnName="ProbezeitBis" />
+                <ScalarProperty Name="ProbezeitVon" ColumnName="ProbezeitVon" />
+                <ScalarProperty Name="ProvisorischesMitglied" ColumnName="ProvisorischesMitglied" />
+                <ScalarProperty Name="Geburtsdatum" ColumnName="Geburtsdatum" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="PLZ" ColumnName="PLZ" />
+                <ScalarProperty Name="StrasseFull" ColumnName="StrasseFull" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MitgliederView">
+            <EntityTypeMapping TypeName="WochenmarktModel.MitgliederView">
+              <MappingFragment StoreEntitySet="MitgliederView">
+                <ScalarProperty Name="Ablehnungsgrund" ColumnName="Ablehnungsgrund" />
+                <ScalarProperty Name="Abgelehnt" ColumnName="Abgelehnt" />
+                <ScalarProperty Name="ProbezeitBis" ColumnName="ProbezeitBis" />
+                <ScalarProperty Name="ProbezeitVon" ColumnName="ProbezeitVon" />
+                <ScalarProperty Name="ProvisorischesMitglied" ColumnName="ProvisorischesMitglied" />
+                <ScalarProperty Name="Geburtsdatum" ColumnName="Geburtsdatum" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="PLZ" ColumnName="PLZ" />
+                <ScalarProperty Name="StrasseFull" ColumnName="StrasseFull" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NachfragerView">
+            <EntityTypeMapping TypeName="WochenmarktModel.NachfragerView">
+              <MappingFragment StoreEntitySet="NachfragerView">
+                <ScalarProperty Name="ProbezeitBis" ColumnName="ProbezeitBis" />
+                <ScalarProperty Name="ProbezeitVon" ColumnName="ProbezeitVon" />
+                <ScalarProperty Name="ProvisorischesMitglied" ColumnName="ProvisorischesMitglied" />
+                <ScalarProperty Name="Geburtsdatum" ColumnName="Geburtsdatum" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="PLZ" ColumnName="PLZ" />
+                <ScalarProperty Name="StrasseFull" ColumnName="StrasseFull" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StandbetreiberView">
+            <EntityTypeMapping TypeName="WochenmarktModel.StandbetreiberView">
+              <MappingFragment StoreEntitySet="StandbetreiberView">
+                <ScalarProperty Name="ProbezeitBis" ColumnName="ProbezeitBis" />
+                <ScalarProperty Name="ProbezeitVon" ColumnName="ProbezeitVon" />
+                <ScalarProperty Name="ProvisorischesMitglied" ColumnName="ProvisorischesMitglied" />
+                <ScalarProperty Name="Geburtsdatum" ColumnName="Geburtsdatum" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="PLZ" ColumnName="PLZ" />
+                <ScalarProperty Name="StrasseFull" ColumnName="StrasseFull" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Abonnement_ArealView">
+            <EntityTypeMapping TypeName="WochenmarktModel.Abonnement_ArealView">
+              <MappingFragment StoreEntitySet="Abonnement_ArealView">
+                <ScalarProperty Name="MietPreis" ColumnName="MietPreis" />
+                <ScalarProperty Name="Flaeche" ColumnName="Flaeche" />
+                <ScalarProperty Name="Breite" ColumnName="Breite" />
+                <ScalarProperty Name="Laenge" ColumnName="Laenge" />
+                <ScalarProperty Name="Ort" ColumnName="Ort" />
+                <ScalarProperty Name="PLZ" ColumnName="PLZ" />
+                <ScalarProperty Name="Strasse" ColumnName="Strasse" />
+                <ScalarProperty Name="GueltigBis" ColumnName="GueltigBis" />
+                <ScalarProperty Name="GueltigAb" ColumnName="GueltigAb" />
+                <ScalarProperty Name="Dauer" ColumnName="Dauer" />
+                <ScalarProperty Name="Wert" ColumnName="Wert" />
+                <ScalarProperty Name="Abo_Typ" ColumnName="Abo-Typ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Abonnement_MieteView">
+            <EntityTypeMapping TypeName="WochenmarktModel.Abonnement_MieteView">
+              <MappingFragment StoreEntitySet="Abonnement_MieteView">
+                <ScalarProperty Name="GemahntAm" ColumnName="GemahntAm" />
+                <ScalarProperty Name="Mahnstufe" ColumnName="Mahnstufe" />
+                <ScalarProperty Name="Miete_bezahlt" ColumnName="Miete bezahlt" />
+                <ScalarProperty Name="Mietbetrag" ColumnName="Mietbetrag" />
+                <ScalarProperty Name="Standbetreiber" ColumnName="Standbetreiber" />
+                <ScalarProperty Name="GueltigBis" ColumnName="GueltigBis" />
+                <ScalarProperty Name="GueltigAb" ColumnName="GueltigAb" />
+                <ScalarProperty Name="Abo_Dauer" ColumnName="Abo-Dauer" />
+                <ScalarProperty Name="Abo_Wert" ColumnName="Abo-Wert" />
+                <ScalarProperty Name="Abo_Typ" ColumnName="Abo-Typ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AbonnementView">
+            <EntityTypeMapping TypeName="WochenmarktModel.AbonnementView">
+              <MappingFragment StoreEntitySet="AbonnementView">
+                <ScalarProperty Name="GueltigBis" ColumnName="GueltigBis" />
+                <ScalarProperty Name="GueltigAb" ColumnName="GueltigAb" />
+                <ScalarProperty Name="Dauer" ColumnName="Dauer" />
+                <ScalarProperty Name="Wert" ColumnName="Wert" />
+                <ScalarProperty Name="Abo_Typ" ColumnName="Abo-Typ" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArealView">
+            <EntityTypeMapping TypeName="WochenmarktModel.ArealView">
+              <MappingFragment StoreEntitySet="ArealView">
+                <ScalarProperty Name="MietPreis" ColumnName="MietPreis" />
+                <ScalarProperty Name="Flaeche" ColumnName="Flaeche" />
+                <ScalarProperty Name="Breite" ColumnName="Breite" />
+                <ScalarProperty Name="Laenge" ColumnName="Laenge" />
+                <ScalarProperty Name="Ort" ColumnName="Ort" />
+                <ScalarProperty Name="PLZ" ColumnName="PLZ" />
+                <ScalarProperty Name="Strasse" ColumnName="Strasse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NutzungView">
+            <EntityTypeMapping TypeName="WochenmarktModel.NutzungView">
+              <MappingFragment StoreEntitySet="NutzungView">
+                <ScalarProperty Name="Standbetreiber" ColumnName="Standbetreiber" />
+                <ScalarProperty Name="Wochenmarkt_Ort" ColumnName="Wochenmarkt Ort" />
+                <ScalarProperty Name="Wpchenmarktl_PLZ" ColumnName="Wpchenmarktl PLZ" />
+                <ScalarProperty Name="Wochenmarkt_Strasse" ColumnName="Wochenmarkt Strasse" />
+                <ScalarProperty Name="Areal_Ort" ColumnName="Areal Ort" />
+                <ScalarProperty Name="Areal_PLZ" ColumnName="Areal PLZ" />
+                <ScalarProperty Name="Areal_Stasse" ColumnName="Areal Stasse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WochenmarktView">
+            <EntityTypeMapping TypeName="WochenmarktModel.WochenmarktView">
+              <MappingFragment StoreEntitySet="WochenmarktView">
+                <ScalarProperty Name="MarktDatumBis" ColumnName="MarktDatumBis" />
+                <ScalarProperty Name="MarktDatumVon" ColumnName="MarktDatumVon" />
+                <ScalarProperty Name="Ort" ColumnName="Ort" />
+                <ScalarProperty Name="PLZ" ColumnName="PLZ" />
+                <ScalarProperty Name="Strasse" ColumnName="Strasse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Beurteilung">
+            <EntityTypeMapping TypeName="WochenmarktModel.Beurteilung">
+              <MappingFragment StoreEntitySet="Beurteilung">
+                <ScalarProperty Name="BeurteilungsFormularPfad" ColumnName="BeurteilungsFormularPfad" />
+                <ScalarProperty Name="Bestanden" ColumnName="Bestanden" />
+                <ScalarProperty Name="BeurteilungDurchgefuehrt" ColumnName="BeurteilungDurchgefuehrt" />
+                <ScalarProperty Name="BeurteilungAm" ColumnName="BeurteilungAm" />
+                <ScalarProperty Name="InspektorId" ColumnName="InspektorId" />
+                <ScalarProperty Name="StandbetreiberId" ColumnName="StandbetreiberId" />
+                <ScalarProperty Name="BeurteilungId" ColumnName="BeurteilungId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

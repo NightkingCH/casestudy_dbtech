@@ -50,7 +50,7 @@ INSERT INTO invoice.AbonnementTyp (Bezeichnung, Wert, Dauer) VALUES ('Abo für 6
 INSERT INTO invoice.AbonnementTyp (Bezeichnung, Wert, Dauer) VALUES ('Abo für 12 Monate.',3,12);
 
 INSERT INTO invoice.Abonnement (AbonnementTypId, StandbetreiberId, GueltigAb, GueltigBis) VALUES ((SELECT AbonnementTypId FROM invoice.AbonnementTyp WHERE Wert LIKE 2),(SELECT StandbetreiberId FROM app.Standbetreiber WHERE StandbetreiberId LIKE 1),'2016-10-01', '2016-10-05');
-INSERT INTO invoice.Abonnement (AbonnementTypId, StandbetreiberId, GueltigAb, GueltigBis) VALUES ((SELECT AbonnementTypId FROM invoice.AbonnementTyp WHERE Bezeichnung LIKE 3),(SELECT StandbetreiberId FROM app.Standbetreiber WHERE StandbetreiberId LIKE 2),'2016-10-11', '2016-10-16');
+INSERT INTO invoice.Abonnement (AbonnementTypId, StandbetreiberId, GueltigAb, GueltigBis) VALUES ((SELECT AbonnementTypId FROM invoice.AbonnementTyp WHERE Wert LIKE 3),(SELECT StandbetreiberId FROM app.Standbetreiber WHERE StandbetreiberId LIKE 2),'2016-10-11', '2016-10-16');
 
 INSERT INTO invoice.AbonnementMiete (MieteId, AbonnementId) VALUES ((SELECT MieteId FROM invoice.Miete WHERE Betrag LIKE 500.0000),(SELECT AbonnementId FROM invoice.Abonnement WHERE GueltigAb LIKE '2016-10-01 00:00:00.0000000'));
 INSERT INTO invoice.AbonnementMiete (MieteId, AbonnementId) VALUES ((SELECT MieteId FROM invoice.Miete WHERE Betrag LIKE 1000.0000),(SELECT AbonnementId FROM invoice.Abonnement WHERE GueltigAb LIKE '2016-10-11 00:00:00.0000000'));

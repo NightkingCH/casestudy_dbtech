@@ -2,11 +2,11 @@
 (
 	[MitgliedId] INT NOT NULL IDENTITY(1,1),
 	[AdresseId] INT NOT NULL,
-	[Email] NVARCHAR(MAX) NOT NULL DEFAULT(''),
+	[Email] NVARCHAR(255) NOT NULL DEFAULT(''),
 	[Passwort] NVARCHAR(MAX) NOT NULL,
-	[Telefon] NVARCHAR(MAX) NOT NULL,
-	[Vorname] NVARCHAR(MAX) NOT NULL,
-	[Nachname] NVARCHAR(MAX) NOT NULL,
+	[Telefon] NVARCHAR(100) NOT NULL,
+	[Vorname] NVARCHAR(50) NOT NULL,
+	[Nachname] NVARCHAR(50) NOT NULL,
 	[Name] AS ([Vorname] + ' ' + [Nachname]) PERSISTED,
 	[Geburtsdatum] DATETIME2(7) NOT NULL,
 	[ProvisorischesMitglied] BIT NOT NULL DEFAULT(1), -- every account is temporary until it is proven!

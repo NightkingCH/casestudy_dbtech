@@ -73,6 +73,7 @@
     <Folder Include="PostDeployment" />
     <Folder Include="Testing" />
     <Folder Include="00_BackUp" />
+    <Folder Include="app\Indices" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="market\market.sql" />
@@ -114,6 +115,7 @@
     <None Include="Testing\3_AbonnementFromTo.tests.sql" />
     <None Include="Testing\2_MieteGreaterZero.tests.sql" />
     <None Include="Testing\1_UniqueUser.tests.sql" />
+    <Build Include="app\Indices\IX_Adresse_Suche.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="PreDeployment\Script.PreDeployment.sql" />

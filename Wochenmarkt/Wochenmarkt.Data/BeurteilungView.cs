@@ -12,17 +12,12 @@ namespace Wochenmarkt.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Beurteilung
+    public partial class BeurteilungView
     {
-        public int BeurteilungId { get; set; }
-        public int StandbetreiberId { get; set; }
-        public int InspektorId { get; set; }
         public System.DateTime BeurteilungAm { get; set; }
+        public string Name_des_Standbetreibers { get; set; }
+        public string Name_des_Inspektors { get; set; }
         public bool BeurteilungDurchgefuehrt { get; set; }
         public bool Bestanden { get; set; }
-        public string BeurteilungsFormularPfad { get; set; }
-    
-        public virtual Inspektor Inspektor { get; set; }
-        public virtual Standbetreiber Standbetreiber { get; set; }
     }
 }

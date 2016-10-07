@@ -60,7 +60,16 @@
     <Compile Include="AbonnementTyp.cs">
       <DependentUpon>WochenmarktModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AbonnementView.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Abonnement_Areal.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Abonnement_ArealView.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Abonnement_MieteView.cs">
       <DependentUpon>WochenmarktModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Adresse.cs">
@@ -69,13 +78,25 @@
     <Compile Include="Anmeldung.cs">
       <DependentUpon>WochenmarktModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AnmeldungView.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areal.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ArealView.cs">
       <DependentUpon>WochenmarktModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Beurteilung.cs">
       <DependentUpon>WochenmarktModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BeurteilungView.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Inspektor.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InspektorView.cs">
       <DependentUpon>WochenmarktModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Miete.cs">
@@ -84,10 +105,19 @@
     <Compile Include="Mitglied.cs">
       <DependentUpon>WochenmarktModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MitgliederView.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Nachfrager.cs">
       <DependentUpon>WochenmarktModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="NachfragerView.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Nutzung.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NutzungView.cs">
       <DependentUpon>WochenmarktModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Ort.cs">
@@ -98,6 +128,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Standbetreiber.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StandbetreiberView.cs">
       <DependentUpon>WochenmarktModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Wochenmarkt.cs">
@@ -117,6 +150,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WochenmarktModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="WochenmarktView.cs">
+      <DependentUpon>WochenmarktModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -26,7 +26,6 @@ namespace Wochenmarkt.Data
         }
     
         public virtual DbSet<Adresse> Adresse { get; set; }
-        public virtual DbSet<Beurteilung> Beurteilung { get; set; }
         public virtual DbSet<Inspektor> Inspektor { get; set; }
         public virtual DbSet<Mitglied> Mitglied { get; set; }
         public virtual DbSet<Nachfrager> Nachfrager { get; set; }
@@ -42,5 +41,18 @@ namespace Wochenmarkt.Data
         public virtual DbSet<Nutzung> Nutzung { get; set; }
         public virtual DbSet<Wochenmarkt> Wochenmarkt { get; set; }
         public virtual DbSet<Anmeldung> Anmeldung { get; set; }
+        public virtual DbSet<AnmeldungView> AnmeldungView { get; set; }
+        public virtual DbSet<BeurteilungView> BeurteilungView { get; set; }
+        public virtual DbSet<InspektorView> InspektorView { get; set; }
+        public virtual DbSet<MitgliederView> MitgliederView { get; set; }
+        public virtual DbSet<NachfragerView> NachfragerView { get; set; }
+        public virtual DbSet<StandbetreiberView> StandbetreiberView { get; set; }
+        public virtual DbSet<Abonnement_ArealView> Abonnement_ArealView { get; set; }
+        public virtual DbSet<Abonnement_MieteView> Abonnement_MieteView { get; set; }
+        public virtual DbSet<AbonnementView> AbonnementView { get; set; }
+        public virtual DbSet<ArealView> ArealView { get; set; }
+        public virtual DbSet<NutzungView> NutzungView { get; set; }
+        public virtual DbSet<WochenmarktView> WochenmarktView { get; set; }
+        public virtual DbSet<Beurteilung> Beurteilung { get; set; }
     }
 }

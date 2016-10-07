@@ -35,6 +35,9 @@ namespace Wochenmarkt.Data
         public System.DateTime ProbezeitBis { get; set; }
         public bool Abgelehnt { get; set; }
         public string Ablehnungsgrund { get; set; }
+        public string Email { get; set; }
+        public string Passwort { get; set; }
+        public string Telefon { get; set; }
     
         public virtual Adresse Adresse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

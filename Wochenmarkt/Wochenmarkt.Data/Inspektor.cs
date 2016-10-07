@@ -23,8 +23,8 @@ namespace Wochenmarkt.Data
         public int InspektorId { get; set; }
         public int MitgliedId { get; set; }
     
+        public virtual Mitglied Mitglied { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Beurteilung> Beurteilung { get; set; }
-        public virtual Mitglied Mitglied { get; set; }
     }
 }

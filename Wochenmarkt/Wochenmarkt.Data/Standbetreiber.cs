@@ -17,20 +17,20 @@ namespace Wochenmarkt.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Standbetreiber()
         {
-            this.Beurteilung = new HashSet<Beurteilung>();
             this.Abonnement = new HashSet<Abonnement>();
             this.Nutzung = new HashSet<Nutzung>();
+            this.Beurteilung = new HashSet<Beurteilung>();
         }
     
         public int StandbetreiberId { get; set; }
         public int MitgliedId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Beurteilung> Beurteilung { get; set; }
         public virtual Mitglied Mitglied { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Abonnement> Abonnement { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Nutzung> Nutzung { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Beurteilung> Beurteilung { get; set; }
     }
 }
