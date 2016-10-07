@@ -31,7 +31,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="101" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <KeyProperty
@@ -39,7 +40,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="101" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <EntityProperty
@@ -596,14 +598,16 @@
           Type="datetime2"
           Property="AnmeldungView/Properties[AngemeldetAm]" />
         <SsdlProperty
+          MaxLength="101"
           Name="Mitglied"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="AnmeldungView/Properties[Mitglied]" />
         <SsdlProperty
+          MaxLength="101"
           Name="Besucher"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="AnmeldungView/Properties[Besucher]" />
         <SsdlProperty
           Name="AnmeldungValid"

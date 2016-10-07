@@ -31,7 +31,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="101" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <KeyProperty
@@ -39,7 +40,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="101" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <KeyProperty
@@ -391,14 +393,16 @@
           Type="datetime2"
           Property="BeurteilungView/Properties[BeurteilungAm]" />
         <SsdlProperty
+          MaxLength="101"
           Name="Name des Standbetreibers"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="BeurteilungView/Properties[Name_des_Standbetreibers]" />
         <SsdlProperty
+          MaxLength="101"
           Name="Name des Inspektors"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="BeurteilungView/Properties[Name_des_Inspektors]" />
         <SsdlProperty
           Name="BeurteilungDurchgefuehrt"

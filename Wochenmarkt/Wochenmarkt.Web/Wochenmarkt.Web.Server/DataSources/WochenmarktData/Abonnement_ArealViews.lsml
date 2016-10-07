@@ -20,7 +20,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="150" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <KeyProperty
@@ -73,7 +74,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="15" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <KeyProperty
@@ -81,7 +83,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="250" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <EntityProperty
@@ -564,9 +567,10 @@
           Table="Abonnement_ArealView" />
         <IsView />
         <SsdlProperty
+          MaxLength="150"
           Name="Abo-Typ"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="Abonnement_ArealView/Properties[Abo_Typ]" />
         <SsdlProperty
           Name="Wert"
@@ -594,14 +598,16 @@
           Type="nvarchar(max)"
           Property="Abonnement_ArealView/Properties[Strasse]" />
         <SsdlProperty
+          MaxLength="15"
           Name="PLZ"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="Abonnement_ArealView/Properties[PLZ]" />
         <SsdlProperty
+          MaxLength="250"
           Name="Ort"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="Abonnement_ArealView/Properties[Ort]" />
         <SsdlProperty
           Name="Laenge"

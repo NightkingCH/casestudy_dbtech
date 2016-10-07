@@ -5,10 +5,12 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="ViewWochenmarktView">
+    Name="AddEditNutzung">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="WochenmarktData" />
+      <DisplayName
+        Value="Nutzung" />
     </Screen.Attributes>
     <Screen.RootContentItem>
       <ContentItem
@@ -30,7 +32,7 @@
             <ContentItem
               Name="columns"
               Kind="Details"
-              DataType="WochenmarktView"
+              DataType="Nutzung"
               View="Microsoft.LightSwitch.MobileWeb:ColumnsLayout">
               <ContentItem.Attributes>
                 <DisplayName
@@ -40,7 +42,7 @@
                 <ScreenExpressionTree>
                   <ChainExpression>
                     <MemberExpression
-                      Member="ViewWochenmarktView/Properties[WochenmarktView]" />
+                      Member="AddEditNutzung/Properties[Nutzung]" />
                   </ChainExpression>
                 </ScreenExpressionTree>
               </ContentItem.DataSource>
@@ -48,43 +50,50 @@
                 Name="left"
                 Kind="Group">
                 <ContentItem
-                  Name="Strasse"
-                  Kind="Value"
-                  DataType=":String?">
+                  Name="Areal"
+                  Kind="Details"
+                  DataType="Areal">
                   <ContentItem.DataSource>
                     <ScreenExpressionTree>
                       <ChainExpression>
                         <MemberExpression
-                          Member="WochenmarktView/Properties[Strasse]" />
+                          Member="Nutzung/Properties[Areal]" />
                       </ChainExpression>
                     </ScreenExpressionTree>
                   </ContentItem.DataSource>
+                  <ContentItem
+                    Name="RowTemplate"
+                    Kind="Details"
+                    DataType="Areal">
+                    <ContentItem.DataSource>
+                      <ScreenExpressionTree>
+                        <ChainExpression />
+                      </ScreenExpressionTree>
+                    </ContentItem.DataSource>
+                  </ContentItem>
                 </ContentItem>
                 <ContentItem
-                  Name="PLZ"
-                  Kind="Value"
-                  DataType=":String">
+                  Name="Standbetreiber"
+                  Kind="Details"
+                  DataType="Standbetreiber">
                   <ContentItem.DataSource>
                     <ScreenExpressionTree>
                       <ChainExpression>
                         <MemberExpression
-                          Member="WochenmarktView/Properties[PLZ]" />
+                          Member="Nutzung/Properties[Standbetreiber]" />
                       </ChainExpression>
                     </ScreenExpressionTree>
                   </ContentItem.DataSource>
-                </ContentItem>
-                <ContentItem
-                  Name="Ort"
-                  Kind="Value"
-                  DataType=":String">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="WochenmarktView/Properties[Ort]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
+                  <ContentItem
+                    Name="RowTemplate1"
+                    Kind="Details"
+                    DataType="Standbetreiber">
+                    <ContentItem.DataSource>
+                      <ScreenExpressionTree>
+                        <ChainExpression />
+                      </ScreenExpressionTree>
+                    </ContentItem.DataSource>
+                  </ContentItem>
                 </ContentItem>
                 <ContentItem.PropertySources>
                   <ControlPropertySource
@@ -113,30 +122,27 @@
                 Name="right"
                 Kind="Group">
                 <ContentItem
-                  Name="MarktDatumVon"
-                  Kind="Value"
-                  DataType=":DateTime?">
+                  Name="Wochenmarkt"
+                  Kind="Details"
+                  DataType="Wochenmarkt">
                   <ContentItem.DataSource>
                     <ScreenExpressionTree>
                       <ChainExpression>
                         <MemberExpression
-                          Member="WochenmarktView/Properties[MarktDatumVon]" />
+                          Member="Nutzung/Properties[Wochenmarkt]" />
                       </ChainExpression>
                     </ScreenExpressionTree>
                   </ContentItem.DataSource>
-                </ContentItem>
-                <ContentItem
-                  Name="MarktDatumBis"
-                  Kind="Value"
-                  DataType=":DateTime?">
-                  <ContentItem.DataSource>
-                    <ScreenExpressionTree>
-                      <ChainExpression>
-                        <MemberExpression
-                          Member="WochenmarktView/Properties[MarktDatumBis]" />
-                      </ChainExpression>
-                    </ScreenExpressionTree>
-                  </ContentItem.DataSource>
+                  <ContentItem
+                    Name="RowTemplate2"
+                    Kind="Details"
+                    DataType="Wochenmarkt">
+                    <ContentItem.DataSource>
+                      <ScreenExpressionTree>
+                        <ChainExpression />
+                      </ScreenExpressionTree>
+                    </ContentItem.DataSource>
+                  </ContentItem>
                 </ContentItem>
                 <ContentItem.PropertySources>
                   <ControlPropertySource
@@ -163,23 +169,33 @@
               </ContentItem>
             </ContentItem>
           </ContentItem>
-          <ContentItem.PropertySources>
-            <ControlPropertySource
-              Property="Microsoft.LightSwitch.MobileWeb:RootControl/Properties[BrowseOnly]">
-              <ScreenExpressionTree>
-                <ChainExpression>
-                  <ConstantExpression
-                    Value="True"
-                    ResultType=":Boolean" />
-                </ChainExpression>
-              </ScreenExpressionTree>
-            </ControlPropertySource>
-          </ContentItem.PropertySources>
         </ContentItem>
         <ContentItem
           Name="Popups"
           Kind="Group"
           View="Microsoft.LightSwitch.MobileWeb:DialogPages" />
+        <ContentItem.PropertySources>
+          <ControlPropertySource
+            Property="Microsoft.LightSwitch.MobileWeb:Screen/Properties[ScreenType]">
+            <ScreenExpressionTree>
+              <ChainExpression>
+                <ConstantExpression
+                  Value="Edit"
+                  ResultType=":String" />
+              </ChainExpression>
+            </ScreenExpressionTree>
+          </ControlPropertySource>
+          <ControlPropertySource
+            Property="Microsoft.LightSwitch.MobileWeb:Screen/Properties[ShowAsDialog]">
+            <ScreenExpressionTree>
+              <ChainExpression>
+                <ConstantExpression
+                  Value="True"
+                  ResultType=":Boolean" />
+              </ChainExpression>
+            </ScreenExpressionTree>
+          </ControlPropertySource>
+        </ContentItem.PropertySources>
       </ContentItem>
     </Screen.RootContentItem>
     <Screen.Methods>
@@ -208,8 +224,8 @@
     </Screen.Methods>
     <Screen.Properties>
       <ScreenProperty
-        Name="WochenmarktView"
-        PropertyType="WochenmarktView">
+        Name="Nutzung"
+        PropertyType="Nutzung">
         <ScreenProperty.Attributes>
           <IsParameter />
         </ScreenProperty.Attributes>
@@ -218,14 +234,14 @@
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="showViewWochenmarktView">
+      Name="showAddEditNutzung">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="ViewWochenmarktView" />
+          TargetScreen="AddEditNutzung" />
       </ApplicationMethod.Attributes>
       <ApplicationMethodParameter
-        Name="WochenmarktView"
-        ParameterType="WochenmarktView" />
+        Name="Nutzung"
+        ParameterType="Nutzung" />
     </ApplicationMethod>
   </Application.Methods>
 </Application>

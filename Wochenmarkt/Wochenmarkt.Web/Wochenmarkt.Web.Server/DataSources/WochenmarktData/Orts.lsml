@@ -30,7 +30,8 @@
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="250" />
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
@@ -38,7 +39,8 @@
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="15" />
         </EntityProperty.Attributes>
       </EntityProperty>
       <NavigationProperty
@@ -183,14 +185,16 @@
           Type="int"
           Property="Ort/Properties[OrtId]" />
         <SsdlProperty
+          MaxLength="250"
           Name="Bezeichnung"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="Ort/Properties[Bezeichnung]" />
         <SsdlProperty
+          MaxLength="15"
           Name="PLZ"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="Ort/Properties[PLZ]" />
       </EntitySetMapping.Attributes>
     </EntitySetMapping>

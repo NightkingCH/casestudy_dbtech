@@ -225,12 +225,12 @@
     <LightSwitchModel Include="DataSources\WochenmarktData\NachfragerViews.lsml" />
     <LightSwitchModel Include="DataSources\WochenmarktData\StandbetreiberViews.lsml" />
     <LightSwitchModel Include="DataSources\WochenmarktData\Abonnement_ArealViews.lsml" />
-    <LightSwitchModel Include="DataSources\WochenmarktData\AbonnementMieteViews.lsml" />
     <LightSwitchModel Include="DataSources\WochenmarktData\AbonnementViews.lsml" />
     <LightSwitchModel Include="DataSources\WochenmarktData\ArealViews.lsml" />
     <LightSwitchModel Include="DataSources\WochenmarktData\NutzungViews.lsml" />
     <LightSwitchModel Include="DataSources\WochenmarktData\WochenmarktViews.lsml" />
     <LightSwitchModel Include="Properties\DataSources\WochenmarktData.lsml" />
+    <LightSwitchModel Include="DataSources\WochenmarktData\Abonnement_MieteViews.lsml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

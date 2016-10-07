@@ -62,6 +62,13 @@
         Association="FK_Beurteilung_Beurteilung_Standbetreiber"
         FromEnd="Beurteilung"
         ToEnd="Standbetreiber" />
+      <EntityProperty
+        Name="BeurteilungsFormularPfad"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength />
+        </EntityProperty.Attributes>
+      </EntityProperty>
     </EntityType.Properties>
   </EntityType>
   <EntityContainer
@@ -188,6 +195,11 @@
           Nullable="False"
           Type="bit"
           Property="Beurteilung/Properties[Bestanden]" />
+        <SsdlProperty
+          Name="BeurteilungsFormularPfad"
+          Nullable="True"
+          Type="nvarchar(max)"
+          Property="Beurteilung/Properties[BeurteilungsFormularPfad]" />
         <SsdlForeignKeyProperty
           Name="InspektorId"
           Nullable="False"

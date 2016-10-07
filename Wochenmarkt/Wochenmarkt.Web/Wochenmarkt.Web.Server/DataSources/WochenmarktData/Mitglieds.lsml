@@ -30,7 +30,8 @@
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="255" />
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
@@ -38,7 +39,8 @@
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="100" />
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
@@ -46,7 +48,8 @@
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="50" />
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
@@ -54,7 +57,8 @@
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="50" />
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
@@ -63,7 +67,8 @@
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="101" />
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
@@ -153,6 +158,14 @@
         Association="FK_Standbetreiber_Standbetreiber_Mitglied"
         FromEnd="Mitglied"
         ToEnd="Standbetreiber" />
+      <EntityProperty
+        Name="Passwort"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength />
+        </EntityProperty.Attributes>
+      </EntityProperty>
     </EntityType.Properties>
   </EntityType>
   <Association
@@ -390,30 +403,40 @@
           Type="int"
           Property="Mitglied/Properties[MitgliedId]" />
         <SsdlProperty
+          MaxLength="255"
           Name="Email"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="Mitglied/Properties[Email]" />
         <SsdlProperty
+          Name="Passwort"
+          Nullable="False"
+          Type="nvarchar(max)"
+          Property="Mitglied/Properties[Passwort]" />
+        <SsdlProperty
+          MaxLength="100"
           Name="Telefon"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="Mitglied/Properties[Telefon]" />
         <SsdlProperty
+          MaxLength="50"
           Name="Vorname"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="Mitglied/Properties[Vorname]" />
         <SsdlProperty
+          MaxLength="50"
           Name="Nachname"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="Mitglied/Properties[Nachname]" />
         <SsdlProperty
+          MaxLength="101"
           Name="Name"
           Nullable="False"
           StoreGeneratedPattern="Computed"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="Mitglied/Properties[Name]" />
         <SsdlProperty
           Name="Geburtsdatum"

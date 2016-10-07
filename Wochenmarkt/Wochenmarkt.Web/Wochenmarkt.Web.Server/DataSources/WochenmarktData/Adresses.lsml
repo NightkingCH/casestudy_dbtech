@@ -30,7 +30,8 @@
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="150" />
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
@@ -45,7 +46,8 @@
         Name="HausnummerZusatz"
         PropertyType=":String?">
         <EntityProperty.Attributes>
-          <MaxLength />
+          <MaxLength
+            Value="4" />
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
@@ -263,9 +265,10 @@
           Type="int"
           Property="Adresse/Properties[AdresseId]" />
         <SsdlProperty
+          MaxLength="150"
           Name="Strasse"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="Adresse/Properties[Strasse]" />
         <SsdlProperty
           Name="Hausnummer"
@@ -273,9 +276,10 @@
           Type="int"
           Property="Adresse/Properties[Hausnummer]" />
         <SsdlProperty
+          MaxLength="4"
           Name="HausnummerZusatz"
           Nullable="True"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="Adresse/Properties[HausnummerZusatz]" />
         <SsdlProperty
           Name="StrasseFull"

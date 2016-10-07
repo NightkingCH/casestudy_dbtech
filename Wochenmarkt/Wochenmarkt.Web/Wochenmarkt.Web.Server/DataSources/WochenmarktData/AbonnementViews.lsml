@@ -20,7 +20,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="101" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <KeyProperty
@@ -28,7 +29,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="150" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <KeyProperty
@@ -453,14 +455,16 @@
           Table="AbonnementView" />
         <IsView />
         <SsdlProperty
+          MaxLength="101"
           Name="Name"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="AbonnementView/Properties[Name]" />
         <SsdlProperty
+          MaxLength="150"
           Name="Abo-Typ"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="AbonnementView/Properties[Abo_Typ]" />
         <SsdlProperty
           Name="Wert"

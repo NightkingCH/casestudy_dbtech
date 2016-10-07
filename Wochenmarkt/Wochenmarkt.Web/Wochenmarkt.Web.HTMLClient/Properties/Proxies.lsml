@@ -19,19 +19,7 @@
   <EntityType>
     <EntityType.Attributes>
       <Proxy
-        Target="ServiceInterface:Beurteilung" />
-    </EntityType.Attributes>
-  </EntityType>
-  <EntityType>
-    <EntityType.Attributes>
-      <Proxy
         Target="ServiceInterface:Inspektor" />
-    </EntityType.Attributes>
-  </EntityType>
-  <EntityType>
-    <EntityType.Attributes>
-      <Proxy
-        Target="ServiceInterface:Mitglied" />
     </EntityType.Attributes>
   </EntityType>
   <EntityType>
@@ -50,12 +38,6 @@
     <EntityType.Attributes>
       <Proxy
         Target="ServiceInterface:Standbetreiber" />
-    </EntityType.Attributes>
-  </EntityType>
-  <EntityType>
-    <EntityType.Attributes>
-      <Proxy
-        Target="ServiceInterface:Abonnement" />
     </EntityType.Attributes>
   </EntityType>
   <EntityType>
@@ -97,18 +79,6 @@
   <EntityType>
     <EntityType.Attributes>
       <Proxy
-        Target="ServiceInterface:Nutzung" />
-    </EntityType.Attributes>
-  </EntityType>
-  <EntityType>
-    <EntityType.Attributes>
-      <Proxy
-        Target="ServiceInterface:Wochenmarkt" />
-    </EntityType.Attributes>
-  </EntityType>
-  <EntityType>
-    <EntityType.Attributes>
-      <Proxy
         Target="ServiceInterface:AnmeldungView" />
     </EntityType.Attributes>
   </EntityType>
@@ -116,18 +86,6 @@
     <EntityType.Attributes>
       <Proxy
         Target="ServiceInterface:BeurteilungView" />
-    </EntityType.Attributes>
-  </EntityType>
-  <EntityType>
-    <EntityType.Attributes>
-      <Proxy
-        Target="ServiceInterface:InspektorView" />
-    </EntityType.Attributes>
-  </EntityType>
-  <EntityType>
-    <EntityType.Attributes>
-      <Proxy
-        Target="ServiceInterface:MitgliederView" />
     </EntityType.Attributes>
   </EntityType>
   <EntityType>
@@ -145,25 +103,7 @@
   <EntityType>
     <EntityType.Attributes>
       <Proxy
-        Target="ServiceInterface:Abonnement_ArealView" />
-    </EntityType.Attributes>
-  </EntityType>
-  <EntityType>
-    <EntityType.Attributes>
-      <Proxy
-        Target="ServiceInterface:AbonnementMieteView" />
-    </EntityType.Attributes>
-  </EntityType>
-  <EntityType>
-    <EntityType.Attributes>
-      <Proxy
         Target="ServiceInterface:AbonnementView" />
-    </EntityType.Attributes>
-  </EntityType>
-  <EntityType>
-    <EntityType.Attributes>
-      <Proxy
-        Target="ServiceInterface:ArealView" />
     </EntityType.Attributes>
   </EntityType>
   <EntityType>
@@ -310,4 +250,10 @@
         Target="ServiceInterface:WochenmarktData" />
     </EntityContainer.Attributes>
   </EntityContainer>
+  <EntityType>
+    <EntityType.Attributes>
+      <Proxy
+        Target="ServiceInterface:WochenmarktView" />
+    </EntityType.Attributes>
+  </EntityType>
 </Application>

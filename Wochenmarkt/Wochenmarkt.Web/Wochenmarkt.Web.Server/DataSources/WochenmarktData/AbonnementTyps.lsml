@@ -30,7 +30,8 @@
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="150" />
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
@@ -191,9 +192,10 @@
           Type="int"
           Property="AbonnementTyp/Properties[AbonnementTypId]" />
         <SsdlProperty
+          MaxLength="150"
           Name="Bezeichnung"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="AbonnementTyp/Properties[Bezeichnung]" />
         <SsdlProperty
           Name="Wert"

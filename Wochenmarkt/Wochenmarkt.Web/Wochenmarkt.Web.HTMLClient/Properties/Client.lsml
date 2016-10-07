@@ -11,7 +11,7 @@
     <Partial
       IsPrimary="True" />
     <HomeScreen
-      Value="ViewWochenmarktView" />
+      Value="BrowseWochenmarkts" />
   </Application.Attributes>
   <EntityContainerGroup
     Name="DataWorkspace">
@@ -36,4 +36,36 @@
         Target="ServiceInterface:LightSwitchServiceApplicationGroup" />
     </GlobalAttributeGroup.Attributes>
   </GlobalAttributeGroup>
+  <Application.NavigationItems>
+    <ApplicationNavigationMethodLink
+      Name="link"
+      Method="!module/Methods[showBrowseWochenmarkts]" />
+    <ApplicationNavigationMethodLink
+      Name="link1"
+      Method="!module/Methods[showBrowseInspektorViews]" />
+    <ApplicationNavigationMethodLink
+      Name="link2"
+      Method="!module/Methods[showBrowseMitgliederViews]" />
+    <ApplicationNavigationMethodLink
+      Name="link3"
+      Method="!module/Methods[showBrowseMitglieds]" />
+    <ApplicationNavigationMethodLink
+      Name="link4"
+      Method="!module/Methods[showBrowseAbonnement_MieteViews]" />
+    <ApplicationNavigationMethodLink
+      Name="link5"
+      Method="!module/Methods[showBrowseAbonnement_ArealViews]" />
+    <ApplicationNavigationMethodLink
+      Name="link6"
+      Method="!module/Methods[showBrowseAbonnements]" />
+    <ApplicationNavigationMethodLink
+      Name="link7"
+      Method="!module/Methods[showBrowseNutzungs]" />
+    <ApplicationNavigationMethodLink
+      Name="link8"
+      Method="!module/Methods[showBrowseArealViews]" />
+    <ApplicationNavigationMethodLink
+      Name="link9"
+      Method="!module/Methods[showBrowseBeurteilungs]" />
+  </Application.NavigationItems>
 </Application>

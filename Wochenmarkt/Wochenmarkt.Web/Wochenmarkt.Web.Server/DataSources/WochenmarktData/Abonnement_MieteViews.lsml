@@ -5,7 +5,7 @@
     <Partial />
   </ServiceApplication.Attributes>
   <EntityType
-    Name="AbonnementMieteView">
+    Name="Abonnement_MieteView">
     <EntityType.Methods>
       <EntityMethod
         Name="Delete">
@@ -20,7 +20,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="150" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <KeyProperty
@@ -66,7 +67,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="101" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <KeyProperty
@@ -114,11 +116,11 @@
       <Partial />
     </EntityContainer.Attributes>
     <EntitySet
-      Name="AbonnementMieteViews"
-      EntityType="AbonnementMieteView" />
+      Name="Abonnement_MieteViews"
+      EntityType="Abonnement_MieteView" />
     <QueryOperation
-      Name="AbonnementMieteViews_Single"
-      ReturnType="AbonnementMieteView">
+      Name="Abonnement_MieteViews_Single"
+      ReturnType="Abonnement_MieteView">
       <QueryOperation.Attributes>
         <Generated />
         <Description
@@ -304,7 +306,7 @@
       <QueryOperation.Source>
         <QuerySourceExpressionTree>
           <MemberExpression
-            Member="AbonnementMieteViews" />
+            Member="Abonnement_MieteViews" />
         </QuerySourceExpressionTree>
       </QueryOperation.Source>
       <QueryOperationParameter
@@ -381,8 +383,8 @@
       </QueryOperationParameter>
     </QueryOperation>
     <QueryOperation
-      Name="AbonnementMieteViews_SingleOrDefault"
-      ReturnType="AbonnementMieteView">
+      Name="Abonnement_MieteViews_SingleOrDefault"
+      ReturnType="Abonnement_MieteView">
       <QueryOperation.Attributes>
         <Generated />
         <Description
@@ -568,7 +570,7 @@
       <QueryOperation.Source>
         <QuerySourceExpressionTree>
           <MemberExpression
-            Member="AbonnementMieteViews" />
+            Member="Abonnement_MieteViews" />
         </QuerySourceExpressionTree>
       </QueryOperation.Source>
       <QueryOperationParameter
@@ -651,63 +653,65 @@
       <Partial />
     </DataService.Attributes>
     <EntitySetMapping
-      EntitySet="AbonnementMieteViews">
+      EntitySet="Abonnement_MieteViews">
       <EntitySetMapping.Attributes>
         <SsdlEntitySet
           Schema="invoice"
-          Table="AbonnementMieteView" />
+          Table="Abonnement_MieteView" />
         <IsView />
         <SsdlProperty
+          MaxLength="150"
           Name="Abo-Typ"
           Nullable="False"
-          Type="nvarchar(max)"
-          Property="AbonnementMieteView/Properties[Abo_Typ]" />
+          Type="nvarchar"
+          Property="Abonnement_MieteView/Properties[Abo_Typ]" />
         <SsdlProperty
           Name="Abo-Wert"
           Nullable="False"
           Type="int"
-          Property="AbonnementMieteView/Properties[Abo_Wert]" />
+          Property="Abonnement_MieteView/Properties[Abo_Wert]" />
         <SsdlProperty
           Name="Abo-Dauer"
           Nullable="False"
           Type="int"
-          Property="AbonnementMieteView/Properties[Abo_Dauer]" />
+          Property="Abonnement_MieteView/Properties[Abo_Dauer]" />
         <SsdlProperty
           Name="GueltigAb"
           Nullable="False"
           Type="datetime2"
-          Property="AbonnementMieteView/Properties[GueltigAb]" />
+          Property="Abonnement_MieteView/Properties[GueltigAb]" />
         <SsdlProperty
           Name="GueltigBis"
           Nullable="False"
           Type="datetime2"
-          Property="AbonnementMieteView/Properties[GueltigBis]" />
+          Property="Abonnement_MieteView/Properties[GueltigBis]" />
         <SsdlProperty
+          MaxLength="101"
           Name="Standbetreiber"
           Nullable="False"
-          Type="nvarchar(max)"
-          Property="AbonnementMieteView/Properties[Standbetreiber]" />
+          Type="nvarchar"
+          Property="Abonnement_MieteView/Properties[Standbetreiber]" />
         <SsdlProperty
           Name="Mietbetrag"
           Nullable="False"
           Scale="4"
           Type="decimal"
-          Property="AbonnementMieteView/Properties[Mietbetrag]" />
+          Property="Abonnement_MieteView/Properties[Mietbetrag]" />
         <SsdlProperty
           Name="Miete bezahlt"
           Nullable="False"
           Type="bit"
-          Property="AbonnementMieteView/Properties[Miete_bezahlt]" />
+          Property="Abonnement_MieteView/Properties[Miete_bezahlt]" />
         <SsdlProperty
           Name="Mahnstufe"
           Nullable="False"
           Type="int"
-          Property="AbonnementMieteView/Properties[Mahnstufe]" />
+          Property="Abonnement_MieteView/Properties[Mahnstufe]" />
         <SsdlProperty
           Name="GemahntAm"
           Nullable="True"
           Type="datetime2"
-          Property="AbonnementMieteView/Properties[GemahntAm]" />
+          Property="Abonnement_MieteView/Properties[GemahntAm]" />
       </EntitySetMapping.Attributes>
     </EntitySetMapping>
   </DataService>

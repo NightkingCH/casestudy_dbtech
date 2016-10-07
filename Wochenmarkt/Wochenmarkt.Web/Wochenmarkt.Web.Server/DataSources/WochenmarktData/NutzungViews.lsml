@@ -27,7 +27,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="15" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <KeyProperty
@@ -35,7 +36,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="250" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <EntityProperty
@@ -50,7 +52,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="15" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <KeyProperty
@@ -58,7 +61,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="250" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <KeyProperty
@@ -66,7 +70,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="101" />
         </KeyProperty.Attributes>
       </KeyProperty>
     </EntityType.Properties>
@@ -402,14 +407,16 @@
           Type="nvarchar(max)"
           Property="NutzungView/Properties[Areal_Stasse]" />
         <SsdlProperty
+          MaxLength="15"
           Name="Areal PLZ"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="NutzungView/Properties[Areal_PLZ]" />
         <SsdlProperty
+          MaxLength="250"
           Name="Areal Ort"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="NutzungView/Properties[Areal_Ort]" />
         <SsdlProperty
           Name="Wochenmarkt Strasse"
@@ -417,19 +424,22 @@
           Type="nvarchar(max)"
           Property="NutzungView/Properties[Wochenmarkt_Strasse]" />
         <SsdlProperty
+          MaxLength="15"
           Name="Wpchenmarktl PLZ"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="NutzungView/Properties[Wpchenmarktl_PLZ]" />
         <SsdlProperty
+          MaxLength="250"
           Name="Wochenmarkt Ort"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="NutzungView/Properties[Wochenmarkt_Ort]" />
         <SsdlProperty
+          MaxLength="101"
           Name="Standbetreiber"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="NutzungView/Properties[Standbetreiber]" />
       </EntitySetMapping.Attributes>
     </EntitySetMapping>

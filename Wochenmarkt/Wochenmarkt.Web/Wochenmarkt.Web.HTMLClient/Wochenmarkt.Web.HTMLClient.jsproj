@@ -69,6 +69,36 @@
     <Content Include="Content\Images\user-splash-screen.png" />
     <Content Include="Content\Web.config" />
     <Content Include="packages.config" />
+    <Content Include="Screens\Abonnements\ViewAbonnement.lsml.js">
+      <DependentUpon>ViewAbonnement.lsml</DependentUpon>
+    </Content>
+    <Content Include="Screens\Abonnement_ArealViews\ViewAbonnement_ArealView.lsml.js">
+      <DependentUpon>ViewAbonnement_ArealView.lsml</DependentUpon>
+    </Content>
+    <Content Include="Screens\Abonnement_MieteViews\ViewAbonnement_MieteView.lsml.js">
+      <DependentUpon>ViewAbonnement_MieteView.lsml</DependentUpon>
+    </Content>
+    <Content Include="Screens\ArealViews\ViewArealView.lsml.js">
+      <DependentUpon>ViewArealView.lsml</DependentUpon>
+    </Content>
+    <Content Include="Screens\Beurteilungs\ViewBeurteilung.lsml.js">
+      <DependentUpon>ViewBeurteilung.lsml</DependentUpon>
+    </Content>
+    <Content Include="Screens\InspektorViews\ViewInspektorView.lsml.js">
+      <DependentUpon>ViewInspektorView.lsml</DependentUpon>
+    </Content>
+    <Content Include="Screens\MitgliederViews\ViewMitgliederView.lsml.js">
+      <DependentUpon>ViewMitgliederView.lsml</DependentUpon>
+    </Content>
+    <Content Include="Screens\Mitglieds\ViewMitglied.lsml.js">
+      <DependentUpon>ViewMitglied.lsml</DependentUpon>
+    </Content>
+    <Content Include="Screens\Nutzungs\ViewNutzung.lsml.js">
+      <DependentUpon>ViewNutzung.lsml</DependentUpon>
+    </Content>
+    <Content Include="Screens\Wochenmarkts\ViewWochenmarkt.lsml.js">
+      <DependentUpon>ViewWochenmarkt.lsml</DependentUpon>
+    </Content>
     <Content Include="Scripts\datajs-1.1.3.js" />
     <Content Include="Scripts\datajs-1.1.3.min.js" />
     <Content Include="Scripts\jquery-1.9.1.intellisense.js" />
@@ -94,8 +124,41 @@
       <ProjectCritical>true</ProjectCritical>
     </LightSwitchModel>
     <LightSwitchModel Include="Properties\Proxies.lsml" />
-    <LightSwitchModel Include="Properties\WochenmarktData\WochenmarktViews.lsml" />
-    <LightSwitchModel Include="Screens\ViewWochenmarktView.lsml" />
+    <LightSwitchModel Include="Properties\WochenmarktData\Abonnements.lsml" />
+    <LightSwitchModel Include="Properties\WochenmarktData\Abonnement_ArealViews.lsml" />
+    <LightSwitchModel Include="Properties\WochenmarktData\Abonnement_MieteViews.lsml" />
+    <LightSwitchModel Include="Properties\WochenmarktData\ArealViews.lsml" />
+    <LightSwitchModel Include="Properties\WochenmarktData\Beurteilungs.lsml" />
+    <LightSwitchModel Include="Properties\WochenmarktData\InspektorViews.lsml" />
+    <LightSwitchModel Include="Properties\WochenmarktData\MitgliederViews.lsml" />
+    <LightSwitchModel Include="Properties\WochenmarktData\Mitglieds.lsml" />
+    <LightSwitchModel Include="Properties\WochenmarktData\Nutzungs.lsml" />
+    <LightSwitchModel Include="Properties\WochenmarktData\Wochenmarkts.lsml" />
+    <LightSwitchModel Include="Screens\Abonnements\AddEditAbonnement.lsml" />
+    <LightSwitchModel Include="Screens\Abonnements\BrowseAbonnements.lsml" />
+    <LightSwitchModel Include="Screens\Abonnements\ViewAbonnement.lsml" />
+    <LightSwitchModel Include="Screens\Abonnement_ArealViews\BrowseAbonnement_ArealViews.lsml" />
+    <LightSwitchModel Include="Screens\Abonnement_ArealViews\ViewAbonnement_ArealView.lsml" />
+    <LightSwitchModel Include="Screens\Abonnement_MieteViews\BrowseAbonnement_MieteViews.lsml" />
+    <LightSwitchModel Include="Screens\Abonnement_MieteViews\ViewAbonnement_MieteView.lsml" />
+    <LightSwitchModel Include="Screens\ArealViews\BrowseArealViews.lsml" />
+    <LightSwitchModel Include="Screens\ArealViews\ViewArealView.lsml" />
+    <LightSwitchModel Include="Screens\Beurteilungs\AddEditBeurteilung.lsml" />
+    <LightSwitchModel Include="Screens\Beurteilungs\BrowseBeurteilungs.lsml" />
+    <LightSwitchModel Include="Screens\Beurteilungs\ViewBeurteilung.lsml" />
+    <LightSwitchModel Include="Screens\InspektorViews\BrowseInspektorViews.lsml" />
+    <LightSwitchModel Include="Screens\InspektorViews\ViewInspektorView.lsml" />
+    <LightSwitchModel Include="Screens\MitgliederViews\BrowseMitgliederViews.lsml" />
+    <LightSwitchModel Include="Screens\MitgliederViews\ViewMitgliederView.lsml" />
+    <LightSwitchModel Include="Screens\Mitglieds\AddEditMitglied.lsml" />
+    <LightSwitchModel Include="Screens\Mitglieds\BrowseMitglieds.lsml" />
+    <LightSwitchModel Include="Screens\Mitglieds\ViewMitglied.lsml" />
+    <LightSwitchModel Include="Screens\Nutzungs\AddEditNutzung.lsml" />
+    <LightSwitchModel Include="Screens\Nutzungs\BrowseNutzungs.lsml" />
+    <LightSwitchModel Include="Screens\Nutzungs\ViewNutzung.lsml" />
+    <LightSwitchModel Include="Screens\Wochenmarkts\AddEditWochenmarkt.lsml" />
+    <LightSwitchModel Include="Screens\Wochenmarkts\BrowseWochenmarkts.lsml" />
+    <LightSwitchModel Include="Screens\Wochenmarkts\ViewWochenmarkt.lsml" />
   </ItemGroup>
   <ItemGroup>
     <_ClientBuildFile Include="GeneratedArtifacts\model.json">

@@ -20,7 +20,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="101" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <EntityProperty
@@ -35,7 +36,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="15" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <KeyProperty
@@ -43,7 +45,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="250" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <KeyProperty
@@ -51,7 +54,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="255" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <KeyProperty
@@ -59,7 +63,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="100" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <KeyProperty
@@ -783,9 +788,10 @@
           Table="MitgliederView" />
         <IsView />
         <SsdlProperty
+          MaxLength="101"
           Name="Name"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="MitgliederView/Properties[Name]" />
         <SsdlProperty
           Name="StrasseFull"
@@ -793,24 +799,28 @@
           Type="nvarchar(max)"
           Property="MitgliederView/Properties[StrasseFull]" />
         <SsdlProperty
+          MaxLength="15"
           Name="PLZ"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="MitgliederView/Properties[PLZ]" />
         <SsdlProperty
+          MaxLength="250"
           Name="Bezeichnung"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="MitgliederView/Properties[Bezeichnung]" />
         <SsdlProperty
+          MaxLength="255"
           Name="Email"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="MitgliederView/Properties[Email]" />
         <SsdlProperty
+          MaxLength="100"
           Name="Telefon"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="MitgliederView/Properties[Telefon]" />
         <SsdlProperty
           Name="Geburtsdatum"

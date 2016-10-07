@@ -27,7 +27,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="15" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <KeyProperty
@@ -35,7 +36,8 @@
         PropertyType=":String">
         <KeyProperty.Attributes>
           <Required />
-          <MaxLength />
+          <MaxLength
+            Value="250" />
         </KeyProperty.Attributes>
       </KeyProperty>
       <EntityProperty
@@ -223,14 +225,16 @@
           Type="nvarchar(max)"
           Property="WochenmarktView/Properties[Strasse]" />
         <SsdlProperty
+          MaxLength="15"
           Name="PLZ"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="WochenmarktView/Properties[PLZ]" />
         <SsdlProperty
+          MaxLength="250"
           Name="Ort"
           Nullable="False"
-          Type="nvarchar(max)"
+          Type="nvarchar"
           Property="WochenmarktView/Properties[Ort]" />
         <SsdlProperty
           Name="MarktDatumVon"

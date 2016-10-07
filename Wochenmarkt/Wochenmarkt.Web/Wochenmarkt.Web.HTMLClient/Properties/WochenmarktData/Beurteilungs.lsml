@@ -7,12 +7,12 @@
   <EntityType>
     <EntityType.Attributes>
       <Proxy
-        Target="ServiceInterface:WochenmarktView" />
+        Target="ServiceInterface:Beurteilung" />
       <DefaultScreen
-        Value="ViewWochenmarktView">
+        Value="ViewBeurteilung">
         <DefaultScreen.Attributes>
           <ScreenParameterMapping
-            ScreenParameter="ViewWochenmarktView/Properties[WochenmarktView]" />
+            ScreenParameter="ViewBeurteilung/Properties[Beurteilung]" />
         </DefaultScreen.Attributes>
       </DefaultScreen>
     </EntityType.Attributes>
