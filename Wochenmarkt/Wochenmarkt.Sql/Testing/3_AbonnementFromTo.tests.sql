@@ -3,7 +3,7 @@ GO
 
 BEGIN TRANSACTION TH_Abonnement
 
-	--TC:3.1 GueltigAb <= GueltigBis--> möglich
+	--TC:3.1 GueltigAb = GueltigBis--> möglich
 	INSERT INTO [invoice].[Abonnement]
            ([AbonnementTypId]
            ,[StandbetreiberId]
