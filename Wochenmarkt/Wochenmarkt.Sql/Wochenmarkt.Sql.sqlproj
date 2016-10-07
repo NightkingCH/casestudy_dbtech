@@ -71,6 +71,8 @@
     <Folder Include="app\Functions" />
     <Folder Include="Scripts" />
     <Folder Include="PostDeployment" />
+    <Folder Include="Testing" />
+    <Folder Include="00_BackUp" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="market\market.sql" />
@@ -109,6 +111,9 @@
     <None Include="Scripts\DeleteTables.sql" />
     <None Include="Scripts\Insert.sql" />
     <None Include="Scripts\SelectAllTables.sql" />
+    <None Include="Testing\3_AbonnementFromTo.tests.sql" />
+    <None Include="Testing\2_MieteGreaterZero.tests.sql" />
+    <None Include="Testing\1_UniqueUser.tests.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="PreDeployment\Script.PreDeployment.sql" />
@@ -130,5 +135,8 @@
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostDeployment\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="00_BackUp\DB-Backup-AfterSetup.bak" />
   </ItemGroup>
 </Project>

@@ -48,3 +48,9 @@ IF OBJECTPROPERTY(object_id(''?''), ''TableHasIdentity'') = 1
 DBCC CHECKIDENT (''?'', RESEED, 0)  
 '  
 GO
+
+EXEC sp_MSforeachtable '  
+IF OBJECTPROPERTY(object_id(''?''), ''TableHasIdentity'') = 1  
+DBCC CHECKIDENT (''?'', RESEED, 0)  
+'  
+GO
