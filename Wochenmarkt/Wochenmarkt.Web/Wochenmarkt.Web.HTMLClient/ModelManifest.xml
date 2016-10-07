@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ModelDocumentManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Documents>
+    <Document FullPath="C:\Projects\casestudy_dbtech\Wochenmarkt\Wochenmarkt.Web\Wochenmarkt.Web.HTMLClient\Properties\Client.lsml" Checksum="AD0C4F3861D5EE9F254C6E6D55A9E854D5645F62B22949E1FC7E47B791D559F3" />
+    <Document FullPath="C:\Projects\casestudy_dbtech\Wochenmarkt\Wochenmarkt.Web\Wochenmarkt.Web.HTMLClient\Properties\Proxies.lsml" Checksum="07C4CDBC7A0757B411E60B4C378DEE1060298F15399EF6C5AFBEC7E28EEED33C" />
+    <Document FullPath="C:\Projects\casestudy_dbtech\Wochenmarkt\Wochenmarkt.Web\Wochenmarkt.Web.HTMLClient\Screens\ViewWochenmarktView.lsml" Checksum="BE10B6EB92D0A80EC9CACF86F50DBA4F670694276DE5D05DCA3D88EE8AFA8C7D" />
+    <Document FullPath="C:\Projects\casestudy_dbtech\Wochenmarkt\Wochenmarkt.Web\Wochenmarkt.Web.HTMLClient\Properties\WochenmarktData\WochenmarktViews.lsml" Checksum="DE0985597D5CADB2DF005AA2CBFF154C1EC74E13EC5D06389365FE4650D7673E" />
+  </Documents>
+</ModelDocumentManifest>

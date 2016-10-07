@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Standbetreiber">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="StandbetreiberId"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <NavigationProperty
+        Name="Abonnements"
+        Association="FK_Abonnement_Abonnement_Standbetreiber"
+        FromEnd="Standbetreiber"
+        ToEnd="Abonnement" />
+      <NavigationProperty
+        Name="Beurteilungs"
+        Association="FK_Beurteilung_Beurteilung_Standbetreiber"
+        FromEnd="Standbetreiber"
+        ToEnd="Beurteilung" />
+      <NavigationProperty
+        Name="Nutzungs"
+        Association="FK_Nutzung_Nutzung_Standbetreiber"
+        FromEnd="Standbetreiber"
+        ToEnd="Nutzung" />
+      <NavigationProperty
+        Name="Mitglied"
+        Association="FK_Standbetreiber_Standbetreiber_Mitglied"
+        FromEnd="Standbetreiber"
+        ToEnd="Mitglied" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Abonnement_Abonnement_Standbetreiber">
+    <AssociationEnd
+      Name="Standbetreiber"
+      Multiplicity="One"
+      EntityType="Standbetreiber">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Abonnement"
+      Multiplicity="Many"
+      EntityType="Abonnement" />
+  </Association>
+  <Association
+    Name="FK_Beurteilung_Beurteilung_Standbetreiber">
+    <AssociationEnd
+      Name="Standbetreiber"
+      Multiplicity="One"
+      EntityType="Standbetreiber">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Beurteilung"
+      Multiplicity="Many"
+      EntityType="Beurteilung" />
+  </Association>
+  <Association
+    Name="FK_Nutzung_Nutzung_Standbetreiber">
+    <AssociationEnd
+      Name="Standbetreiber"
+      Multiplicity="One"
+      EntityType="Standbetreiber">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Nutzung"
+      Multiplicity="Many"
+      EntityType="Nutzung" />
+  </Association>
+  <EntityContainer
+    Name="WochenmarktData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Standbetreibers"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Standbetreiber" />
+    <AssociationSet
+      Name="FK_Abonnement_Abonnement_Standbetreiber"
+      Association="FK_Abonnement_Abonnement_Standbetreiber">
+      <AssociationSetEnd
+        Name="Standbetreiber"
+        EntitySet="Standbetreibers" />
+      <AssociationSetEnd
+        Name="Abonnement"
+        EntitySet="Abonnements" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_Beurteilung_Beurteilung_Standbetreiber"
+      Association="FK_Beurteilung_Beurteilung_Standbetreiber">
+      <AssociationSetEnd
+        Name="Standbetreiber"
+        EntitySet="Standbetreibers" />
+      <AssociationSetEnd
+        Name="Beurteilung"
+        EntitySet="Beurteilungs" />
+    </AssociationSet>
+    <AssociationSet
+      Name="FK_Nutzung_Nutzung_Standbetreiber"
+      Association="FK_Nutzung_Nutzung_Standbetreiber">
+      <AssociationSetEnd
+        Name="Standbetreiber"
+        EntitySet="Standbetreibers" />
+      <AssociationSetEnd
+        Name="Nutzung"
+        EntitySet="Nutzungs" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Standbetreibers_Single"
+      ReturnType="Standbetreiber">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="StandbetreiberId" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="StandbetreiberId" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Standbetreibers" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="StandbetreiberId"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'StandbetreiberId' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Standbetreibers_SingleOrDefault"
+      ReturnType="Standbetreiber">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="StandbetreiberId" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="StandbetreiberId" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Standbetreibers" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="StandbetreiberId"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'StandbetreiberId' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="WochenmarktDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Standbetreibers">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="app"
+          Table="Standbetreiber" />
+        <SsdlProperty
+          Name="StandbetreiberId"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="Standbetreiber/Properties[StandbetreiberId]" />
+        <SsdlForeignKeyProperty
+          Name="MitgliedId"
+          Nullable="False"
+          Type="int"
+          PropertyName="MitgliedId" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Abonnement_Abonnement_Standbetreiber">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Abonnement_Abonnement_Standbetreiber" />
+        <SsdlAssociationSetEnd
+          End="WochenmarktData/Members[FK_Abonnement_Abonnement_Standbetreiber]/Members[Standbetreiber]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="StandbetreiberId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="WochenmarktData/Members[FK_Abonnement_Abonnement_Standbetreiber]/Members[Abonnement]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="StandbetreiberId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Beurteilung_Beurteilung_Standbetreiber">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Beurteilung_Beurteilung_Standbetreiber" />
+        <SsdlAssociationSetEnd
+          End="WochenmarktData/Members[FK_Beurteilung_Beurteilung_Standbetreiber]/Members[Standbetreiber]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="StandbetreiberId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="WochenmarktData/Members[FK_Beurteilung_Beurteilung_Standbetreiber]/Members[Beurteilung]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="StandbetreiberId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Nutzung_Nutzung_Standbetreiber">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Nutzung_Nutzung_Standbetreiber" />
+        <SsdlAssociationSetEnd
+          End="WochenmarktData/Members[FK_Nutzung_Nutzung_Standbetreiber]/Members[Standbetreiber]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="StandbetreiberId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="WochenmarktData/Members[FK_Nutzung_Nutzung_Standbetreiber]/Members[Nutzung]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="StandbetreiberId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>
