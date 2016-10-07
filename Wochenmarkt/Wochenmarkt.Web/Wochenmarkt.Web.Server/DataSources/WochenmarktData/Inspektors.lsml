@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Inspektor">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="InspektorId"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <NavigationProperty
+        Name="Beurteilungs"
+        Association="FK_Beurteilung_Beurteilung_Inspektor"
+        FromEnd="Inspektor"
+        ToEnd="Beurteilung" />
+      <NavigationProperty
+        Name="Mitglied"
+        Association="FK_Inspektor_Inspektor_Mitglied"
+        FromEnd="Inspektor"
+        ToEnd="Mitglied" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Beurteilung_Beurteilung_Inspektor">
+    <AssociationEnd
+      Name="Inspektor"
+      Multiplicity="One"
+      EntityType="Inspektor">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Beurteilung"
+      Multiplicity="Many"
+      EntityType="Beurteilung" />
+  </Association>
+  <EntityContainer
+    Name="WochenmarktData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Inspektors"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Inspektor" />
+    <AssociationSet
+      Name="FK_Beurteilung_Beurteilung_Inspektor"
+      Association="FK_Beurteilung_Beurteilung_Inspektor">
+      <AssociationSetEnd
+        Name="Inspektor"
+        EntitySet="Inspektors" />
+      <AssociationSetEnd
+        Name="Beurteilung"
+        EntitySet="Beurteilungs" />
+    </AssociationSet>
+    <QueryOperation
+      Name="Inspektors_Single"
+      ReturnType="Inspektor">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="InspektorId" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="InspektorId" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Inspektors" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="InspektorId"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'InspektorId' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Inspektors_SingleOrDefault"
+      ReturnType="Inspektor">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="InspektorId" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="InspektorId" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Inspektors" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="InspektorId"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'InspektorId' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="WochenmarktDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Inspektors">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="app"
+          Table="Inspektor" />
+        <SsdlProperty
+          Name="InspektorId"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="Inspektor/Properties[InspektorId]" />
+        <SsdlForeignKeyProperty
+          Name="MitgliedId"
+          Nullable="False"
+          Type="int"
+          PropertyName="MitgliedId" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Beurteilung_Beurteilung_Inspektor">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Beurteilung_Beurteilung_Inspektor" />
+        <SsdlAssociationSetEnd
+          End="WochenmarktData/Members[FK_Beurteilung_Beurteilung_Inspektor]/Members[Inspektor]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="InspektorId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="WochenmarktData/Members[FK_Beurteilung_Beurteilung_Inspektor]/Members[Beurteilung]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="InspektorId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>

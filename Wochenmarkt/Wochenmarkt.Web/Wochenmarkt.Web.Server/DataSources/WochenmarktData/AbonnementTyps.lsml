@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="AbonnementTyp">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="AbonnementTypId"
+        IsReadOnly="True"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Hidden />
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="Bezeichnung"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Wert"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Dauer"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="Abonnements"
+        Association="FK_Abonnement_Abonnement_AbonnementTyp"
+        FromEnd="AbonnementTyp"
+        ToEnd="Abonnement" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="FK_Abonnement_Abonnement_AbonnementTyp">
+    <AssociationEnd
+      Name="AbonnementTyp"
+      Multiplicity="One"
+      EntityType="AbonnementTyp">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Abonnement"
+      Multiplicity="Many"
+      EntityType="Abonnement" />
+  </Association>
+  <EntityContainer
+    Name="WochenmarktData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="AbonnementTyps"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="AbonnementTyp" />
+    <AssociationSet
+      Name="FK_Abonnement_Abonnement_AbonnementTyp"
+      Association="FK_Abonnement_Abonnement_AbonnementTyp">
+      <AssociationSetEnd
+        Name="AbonnementTyp"
+        EntitySet="AbonnementTyps" />
+      <AssociationSetEnd
+        Name="Abonnement"
+        EntitySet="Abonnements" />
+    </AssociationSet>
+    <QueryOperation
+      Name="AbonnementTyps_Single"
+      ReturnType="AbonnementTyp">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="AbonnementTypId" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="AbonnementTypId" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="AbonnementTyps" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="AbonnementTypId"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'AbonnementTypId' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="AbonnementTyps_SingleOrDefault"
+      ReturnType="AbonnementTyp">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="AbonnementTypId" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="AbonnementTypId" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="AbonnementTyps" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="AbonnementTypId"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'AbonnementTypId' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="WochenmarktDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="AbonnementTyps">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="invoice"
+          Table="AbonnementTyp" />
+        <SsdlProperty
+          Name="AbonnementTypId"
+          Nullable="False"
+          StoreGeneratedPattern="Identity"
+          Type="int"
+          Property="AbonnementTyp/Properties[AbonnementTypId]" />
+        <SsdlProperty
+          Name="Bezeichnung"
+          Nullable="False"
+          Type="nvarchar(max)"
+          Property="AbonnementTyp/Properties[Bezeichnung]" />
+        <SsdlProperty
+          Name="Wert"
+          Nullable="False"
+          Type="int"
+          Property="AbonnementTyp/Properties[Wert]" />
+        <SsdlProperty
+          Name="Dauer"
+          Nullable="False"
+          Type="int"
+          Property="AbonnementTyp/Properties[Dauer]" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Abonnement_Abonnement_AbonnementTyp">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Abonnement_Abonnement_AbonnementTyp" />
+        <SsdlAssociationSetEnd
+          End="WochenmarktData/Members[FK_Abonnement_Abonnement_AbonnementTyp]/Members[AbonnementTyp]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="AbonnementTypId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="WochenmarktData/Members[FK_Abonnement_Abonnement_AbonnementTyp]/Members[Abonnement]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="AbonnementTypId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ServiceApplication>
