@@ -111,9 +111,9 @@
     <None Include="Scripts\DeleteTables.sql" />
     <None Include="Scripts\Insert.sql" />
     <None Include="Scripts\SelectAllTables.sql" />
-    <Build Include="Testing\AbonnementFromTo.tests.sql" />
-    <Build Include="Testing\MieteGreaterZero.tests.sql" />
-    <Build Include="Testing\UniqueUser.tests.sql" />
+    <None Include="Testing\3_AbonnementFromTo.tests.sql" />
+    <None Include="Testing\2_MieteGreaterZero.tests.sql" />
+    <None Include="Testing\1_UniqueUser.tests.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="PreDeployment\Script.PreDeployment.sql" />
